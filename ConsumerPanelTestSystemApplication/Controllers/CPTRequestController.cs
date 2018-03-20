@@ -37,7 +37,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     RequestTitle = item.RequestTitle,
                     RequestDate = item.RequestDate,
-                    REmployeeID = item.REmployeeID,
+                    REmployeeId = item.REmployeeId,
                     ProductDivision = item.ProductDivision,
                     RequestStatus = item.RequestStatus
                 });
@@ -66,8 +66,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 ProductDivision = request.ProductDivision,
                 Justification = request.Justification,
                 LocationId = request.LocationId,
-                RequestDate = request.RequestDate,
-                REmployeeID = request.REmployeeID,
+                RequestDate = request.RequestDate??DateTime.Now.Date,
+                REmployeeId = request.REmployeeId,
                 RequestStatus = request.RequestStatus
             };
 
@@ -77,7 +77,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CPTRequest/Create
         public ActionResult Create()
         {
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationId", "City");
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
             return View();
         }
 
@@ -92,12 +92,23 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 var request = new CPTRequest
                 {
                     RequestTitle = model.RequestTitle,
+                    RequestDate = DateTime.Now.Date,
+                    RequestStatus = model.RequestStatus,
                     ProductDivision = model.ProductDivision,
                     Justification = model.Justification,
+                    MDecisionId = model.MDecisionId,
+                    MReviewRequest = model.MReviewRequest,
+                    BEmployeeId = model.BEmployeeId,
+                    BReviewRequest = model.BReviewRequest,
+                    BDecisionId = model.BDecisionId,
+                    REmployeeId = model.REmployeeId,
+                    BDecisionMade = model.BDecisionMade,
+                    BDecisionDate = model.BDecisionDate,
+                    BReview = model.BReview,
+                    MDecision = model.MDecision,
+                    MDecisionDate = model.MDecisionDate,
+                    MReview = model.MReview,
                     LocationId = model.LocationId,
-                    RequestDate = DateTime.Now,
-                    REmployeeID = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id,
-                    RequestStatus = model.RequestStatus
                 };
 
                 // Save the created request to the database.

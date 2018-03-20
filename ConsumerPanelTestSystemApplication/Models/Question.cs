@@ -19,7 +19,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("Question")]
     public partial class Question
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Question()
         {
             ContainQuestions = new HashSet<ContainQuestion>();
@@ -27,20 +26,17 @@ namespace ConsumerPanelTestSystemApplication.Models
             QuestionnaireTypes = new HashSet<QuestionnaireType>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int QuestionID { get; set; }
 
         [Required]
         [StringLength(100)]
         public string QuestionText { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContainQuestion> ContainQuestions { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EnterResult> EnterResults { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionnaireType> QuestionnaireTypes { get; set; }
     }
 }

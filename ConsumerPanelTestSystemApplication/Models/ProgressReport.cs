@@ -20,7 +20,7 @@ namespace ConsumerPanelTestSystemApplication.Models
     public partial class ProgressReport
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PReportID { get; set; }
 
         [Required]

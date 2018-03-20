@@ -19,7 +19,7 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("QuestionnaireType")]
     public partial class QuestionnaireType
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int QuestionnaireTypeID { get; set; }
 
         public int QuestionID { get; set; }

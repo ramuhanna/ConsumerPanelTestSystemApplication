@@ -82,6 +82,62 @@ namespace ConsumerPanelTestSystemApplication.Migrations
 
             locations.ForEach(s => context.Locations.AddOrUpdate(p => p.City, s));
             context.SaveChanges();
+
+            // Add Employees to test the CPTRequest
+            // MDecisionId = 2 => MarketingDirector(Id)
+
+            var mdUser = new MarketingDirector
+            {
+                UserName = "MDUN",
+                Email = "MD@G.COM",
+                FirstName = "MDFN",
+                LastName = "MDLN",
+                Country = EmployeeCountry.SaudiArabia,
+                City = EmployeeCity.Jeddah,
+                Type = EmployeeType.MarketingDirector,
+            };
+
+            userManager.Create(mdUser, "123456");
+
+            // MReviewRequest = 2 => MarketingDirector(Id)
+            // mdUser
+
+            //REmployeeId = 3 => Requester(Id)
+            var requesterUser = new Requester
+            {
+                UserName = "REQUN",
+                Email = "REQ@G.COM",
+                FirstName = "REQFN",
+                LastName = "REQLN",
+                Country = EmployeeCountry.SaudiArabia,
+                City = EmployeeCity.Jeddah,
+                Type = EmployeeType.MarketingDirector,
+                Department = Department.Marketing,
+                Position = "Boss",
+            };
+
+            userManager.Create(requesterUser, "123456");
+
+            // BDecisionId = 4 => BrandManager(Id)
+            var bmUser = new BrandManager
+            {
+                UserName = "BMUN",
+                Email = "BM@G.COM",
+                FirstName = "BMFN",
+                LastName = "BMLN",
+                Country = EmployeeCountry.SaudiArabia,
+                City = EmployeeCity.Jeddah,
+                Type = EmployeeType.MarketingDirector,
+                ProductDivision = BrandManagerProductDivision.BabyCare,
+            };
+
+            userManager.Create(bmUser, "123456");
+
+            // BReviewRequest = 4 => BrandManager(Id)
+            // bmUser
+
+            // BEmployeeId = 4 => BrandManager(Id)
+            // bmUser
         }
     }
 }

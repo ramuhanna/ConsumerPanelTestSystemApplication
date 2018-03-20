@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>CA2227;CA2214</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -302,7 +304,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
-    <Content Include="Views\CPTRequest\Create.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
@@ -320,7 +321,6 @@
     <Content Include="Views\Requester\Delete.cshtml" />
     <Content Include="Views\CRUMember\Create.cshtml" />
     <Content Include="Views\CRUMember\Index.cshtml" />
-    <Content Include="Views\CPTRequest\Index.cshtml" />
     <Content Include="Views\CPTRequest\Details.cshtml" />
     <Content Include="Views\Home\AllUsers.cshtml" />
     <Content Include="Views\CRUSupervisor\Create.cshtml" />
@@ -328,6 +328,8 @@
     <Content Include="Views\CRUSupervisor\Index.cshtml" />
     <Content Include="Views\CRUSupervisor\Delete.cshtml" />
     <Content Include="Views\CRUSupervisor\Edit.cshtml" />
+    <Content Include="Views\CPTRequest\Index.cshtml" />
+    <Content Include="Views\CPTRequest\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -355,7 +357,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50821</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

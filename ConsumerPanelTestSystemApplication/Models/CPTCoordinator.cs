@@ -20,23 +20,20 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("CPTCoordinator")]
     public partial class CPTCoordinator : Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CPTCoordinator()
         {
             Answers = new HashSet<Answer>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EmployeeID { get; set; }
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public int EmployeeID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answers { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        //public virtual Employee Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
     }
 }

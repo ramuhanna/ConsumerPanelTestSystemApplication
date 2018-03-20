@@ -19,7 +19,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("Answer")]
     public partial class Answer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Answer()
         {
             EnterResults = new HashSet<EnterResult>();
@@ -54,7 +53,6 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public virtual CRUSupervisor CRUSupervisor { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EnterResult> EnterResults { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("BrandManager")]
     public partial class BrandManager : Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BrandManager()
         {
             BFinalizedRequests = new HashSet<CPTRequest>();
@@ -35,16 +34,12 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         //public virtual Employee Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CPTRequest> BFinalizedRequests { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CPTRequest> SubmittedRequests { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CPTRequest> BReveiewedRequests { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questionnaire> Questionnaires { get; set; }
     }
 

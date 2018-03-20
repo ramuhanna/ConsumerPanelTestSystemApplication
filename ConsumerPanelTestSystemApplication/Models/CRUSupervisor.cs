@@ -20,7 +20,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("CRUSupervisor")]
     public partial class CRUSupervisor : Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CRUSupervisor()
         {
             Answers = new HashSet<Answer>();
@@ -37,21 +36,16 @@ namespace ConsumerPanelTestSystemApplication.Models
         public SupervisorRegion Region { get; set; }
         
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answers { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CRUMember> CRUMembers { get; set; }
 
         //public virtual Employee Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProgressReport> ProgressReports { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ResponsibleFor> ResponsibleFors { get; set; }
         
     }

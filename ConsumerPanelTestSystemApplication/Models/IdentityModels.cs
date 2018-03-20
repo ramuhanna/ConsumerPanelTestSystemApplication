@@ -80,7 +80,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             modelBuilder.Entity<BrandManager>()
                 .HasMany(e => e.SubmittedRequests)
                 .WithOptional(e => e.BrandManagerSubmitRequest)
-                .HasForeignKey(e => e.BEmployeeID)
+                .HasForeignKey(e => e.BEmployeeId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<BrandManager>()
@@ -276,31 +276,19 @@ namespace ConsumerPanelTestSystemApplication.Models
             modelBuilder.Entity<Requester>()
                 .HasMany(e => e.CPTRequests)
                 .WithOptional (e => e.Requester)
-                .HasForeignKey(e => e.REmployeeID)
+                .HasForeignKey(e => e.REmployeeId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CPTRequest>()
-                .HasMany(c => c.Locations)
-                .WithMany(f => f.CPTRequests)
-                .Map(m =>
-                {
-                    m.ToTable("RequestLocation");
-                    m.MapLeftKey("RequestID");
-                    m.MapRightKey("LocationID");
-                });
+            //modelBuilder.Entity<CPTRequest>()
+            //    .HasMany(c => c.Locations)
+            //    .WithMany(f => f.CPTRequests)
+            //    .Map(m =>
+            //    {
+            //        m.ToTable("RequestLocation");
+            //        m.MapLeftKey("RequestID");
+            //        m.MapRightKey("LocationID");
+            //    });
         }
-
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.EmployeeViewModel> EmployeeViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.BrandManagerViewModel> BrandManagerViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.RequesterViewModel> RequesterViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUMemberViewModel> CRUMemberViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUSupervisorViewModel> CRUSupervisorViewModels { get; set; }
     }
 
     public class CustomUserRole : IdentityUserRole<int> { }

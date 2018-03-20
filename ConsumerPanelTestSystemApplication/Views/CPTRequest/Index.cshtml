@@ -18,12 +18,14 @@
             @Html.DisplayNameFor(model => model.RequestDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RequestStatus)
+            @Html.DisplayNameFor(model => model.REmployeeId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.REmployeeID)
+            @Html.DisplayNameFor(model => model.ProductDivision)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -34,12 +36,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.RequestDate)
         </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.REmployeeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductDivision)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.REmployeeID)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

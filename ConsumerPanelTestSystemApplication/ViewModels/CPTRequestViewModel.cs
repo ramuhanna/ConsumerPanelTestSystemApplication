@@ -27,58 +27,64 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Request Title")]
         public string RequestTitle { get; set; }
 
-        [Column(TypeName = "date")]
-        [Display(Name = "Request Submission Date")]
+        //[Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Submission Date")]
         public DateTime? RequestDate { get; set; }
 
         [Display(Name = "Request Status")]
         public RequestStatus? RequestStatus { get; set; }
 
         [Display(Name = "Product Division")]
-        public BrandManagerProductDivision ProductDivision { get; set; }
+        public BrandManagerProductDivision? ProductDivision { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(200)]
         [Display(Name = "Request Justification")]
         public string Justification { get; set; }
 
-        public int? MDecisionID { get; set; }
+        public int? MDecisionId { get; set; }
 
         [Display(Name = "Marketing Director")]
         public int? MReviewRequest { get; set; }
 
         [Display(Name = "Submitted By")]
-        public int? BEmployeeID { get; set; }
+        public int? BEmployeeId { get; set; }
 
         [Display(Name = "Brand Manager")]
         public int? BReviewRequest { get; set; }
 
-        public int? BDecisionID { get; set; }
+        public int? BDecisionId { get; set; }
 
         [Display(Name = "Submitted By")]
-        public int? REmployeeID { get; set; }
+        public int? REmployeeId { get; set; }
 
         [Display(Name = "Brand Manager Decision")]
         [StringLength(100)]
         public string BDecisionMade { get; set; }
 
-        [Column(TypeName = "date")]
+        //[Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? BDecisionDate { get; set; }
 
-        public Boolean? BReview { get; set; }
+        public bool? BReview { get; set; }
 
         [Display(Name = "Marketing Director Decision")]
         [StringLength(100)]
         public string MDecision { get; set; }
 
-        [Column(TypeName = "date")]
+        //[Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? MDecisionDate { get; set; }
 
-        public Boolean? MReview { get; set; }
+        public bool? MReview { get; set; }
         
-        [Required]
+        //[Required]
         [Display(Name = "Execution location(s)")]
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
 
         public string City { get; set; }
     }

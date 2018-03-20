@@ -19,7 +19,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("MarketingDirector")]
     public partial class MarketingDirector : Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MarketingDirector()
         {
             MFinalizedRequests = new HashSet<CPTRequest>();
@@ -27,19 +26,16 @@ namespace ConsumerPanelTestSystemApplication.Models
             Questionnaires = new HashSet<Questionnaire>();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EmployeeID { get; set; }
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public int EmployeeID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CPTRequest> MFinalizedRequests { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CPTRequest> MReveiewedRequests { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        //public virtual Employee Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questionnaire> Questionnaires { get; set; }
     }
 }

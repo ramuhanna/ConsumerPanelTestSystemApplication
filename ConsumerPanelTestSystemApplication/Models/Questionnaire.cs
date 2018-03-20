@@ -19,7 +19,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("Questionnaire")]
     public partial class Questionnaire
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Questionnaire()
         {
             AdditionalQuestions = new HashSet<AdditionalQuestion>();
@@ -29,7 +28,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int QuestionnaireID { get; set; }
 
         [Column(TypeName = "date")]
@@ -52,23 +51,18 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(200)]
         public string MComment { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
 
         public virtual BrandManager BrandManager { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContainQuestion> ContainQuestions { get; set; }
 
         public virtual MarketingDirector MarketingDirector { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ResponsibleFor> ResponsibleFors { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
     }
 

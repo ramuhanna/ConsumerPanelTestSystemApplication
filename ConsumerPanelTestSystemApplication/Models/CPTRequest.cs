@@ -19,13 +19,12 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("CPTRequest")]
     public partial class CPTRequest
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CPTRequest()
         {
             ExecutionLocations = new HashSet<ExecutionLocation>();
             ProgressReports = new HashSet<ProgressReport>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
-            Locations = new HashSet<Location>();
+            //Locations = new HashSet<Location>();
         }
 
         [Key]
@@ -40,9 +39,10 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public RequestStatus? RequestStatus { get; set; }
 
-        public BrandManagerProductDivision ProductDivision { get; set; }
+        //notnull
+        public BrandManagerProductDivision? ProductDivision { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(200)]
         public string Justification { get; set; }
 
@@ -50,13 +50,13 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int? MReviewRequest { get; set; }
 
-        public int? BEmployeeID { get; set; }
+        public int? BEmployeeId { get; set; }
 
         public int? BReviewRequest { get; set; }
 
         public int? BDecisionId { get; set; }
 
-        public int? REmployeeID { get; set; }
+        public int? REmployeeId { get; set; }
 
         [StringLength(100)]
         public string BDecisionMade { get; set; }
@@ -64,7 +64,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Column(TypeName = "date")]
         public DateTime? BDecisionDate { get; set; }
 
-        public Boolean? BReview { get; set; }
+        public bool? BReview { get; set; }
 
         [StringLength(100)]
         public string MDecision { get; set; }
@@ -72,9 +72,10 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Column(TypeName = "date")]
         public DateTime? MDecisionDate { get; set; }
 
-        public Boolean? MReview { get; set; }
+        public bool? MReview { get; set; }
 
-        public int LocationId { get; set; }
+        //notnull
+        public int? LocationId { get; set; }
 
         public virtual BrandManager BrandManagerDecision { get; set; }
 
@@ -88,16 +89,14 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public virtual Requester Requester { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProgressReport> ProgressReports { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
 
-        public virtual ICollection<Location> Locations { get; set; }
+        //public virtual ICollection<Location> Locations { get; set; }
+        public virtual Location Location { get; set; }
     }
 
     public enum RequestStatus

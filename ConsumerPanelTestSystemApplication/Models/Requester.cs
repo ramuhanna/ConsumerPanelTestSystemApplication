@@ -19,7 +19,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("Requester")]
     public partial class Requester : Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Requester()
         {
             CPTRequests = new HashSet<CPTRequest>();
@@ -35,7 +34,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(50)]
         public string Position { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CPTRequest> CPTRequests { get; set; }
 
         //public virtual Employee Employee { get; set; }

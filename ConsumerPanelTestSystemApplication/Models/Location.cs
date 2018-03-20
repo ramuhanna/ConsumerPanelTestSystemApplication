@@ -19,20 +19,18 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("Location")]
     public partial class Location
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Location()
         {
             ExecutionLocations = new HashSet<ExecutionLocation>();
             CPTRequests = new HashSet<CPTRequest>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationID { get; set; }
 
         [Required]
         public string City { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
 
         public virtual ICollection<CPTRequest> CPTRequests { get; set; }
