@@ -79,6 +79,9 @@ namespace ConsumerPanelTestSystemApplication.Migrations
                   new Location { City = "Jubail" },
                   new Location { City = "Qassim" }
             };
+
+            locations.ForEach(s => context.Locations.AddOrUpdate(p => p.City, s));
+            context.SaveChanges();
         }
     }
 }

@@ -73,7 +73,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<BrandManager>()
                 .HasMany(e => e.BFinalizedRequests)
-                .WithRequired(e => e.BrandManagerDecision)
+                .WithOptional(e => e.BrandManagerDecision)
                 .HasForeignKey(e => e.BDecisionId)
                 .WillCascadeOnDelete(false);
 
@@ -85,7 +85,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<BrandManager>()
                 .HasMany(e => e.BReveiewedRequests)
-                .WithRequired(e => e.BrandManagerReviewRequest)
+                .WithOptional(e => e.BrandManagerReviewRequest)
                 .HasForeignKey(e => e.BReviewRequest)
                 .WillCascadeOnDelete(false);
 
@@ -217,13 +217,13 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<MarketingDirector>()
                 .HasMany(e => e.MFinalizedRequests)
-                .WithRequired(e => e.MarketingDirectorDecision)
+                .WithOptional(e => e.MarketingDirectorDecision)
                 .HasForeignKey(e => e.MDecisionId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MarketingDirector>()
                 .HasMany(e => e.MReveiewedRequests)
-                .WithRequired(e => e.MarketingDirectorReviewRequest)
+                .WithOptional(e => e.MarketingDirectorReviewRequest)
                 .HasForeignKey(e => e.MReviewRequest)
                 .WillCascadeOnDelete(false);
 

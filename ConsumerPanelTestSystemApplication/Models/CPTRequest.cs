@@ -36,9 +36,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         public string RequestTitle { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime RequestDate { get; set; }
+        public DateTime? RequestDate { get; set; }
 
-        public RequestStatus RequestStatus { get; set; }
+        public RequestStatus? RequestStatus { get; set; }
 
         public BrandManagerProductDivision ProductDivision { get; set; }
 
@@ -46,15 +46,15 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(200)]
         public string Justification { get; set; }
 
-        public int MDecisionId { get; set; }
+        public int? MDecisionId { get; set; }
 
-        public int MReviewRequest { get; set; }
+        public int? MReviewRequest { get; set; }
 
         public int? BEmployeeID { get; set; }
 
-        public int BReviewRequest { get; set; }
+        public int? BReviewRequest { get; set; }
 
-        public int BDecisionId { get; set; }
+        public int? BDecisionId { get; set; }
 
         public int? REmployeeID { get; set; }
 
@@ -64,7 +64,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Column(TypeName = "date")]
         public DateTime? BDecisionDate { get; set; }
 
-        public Boolean BReview { get; set; }
+        public Boolean? BReview { get; set; }
 
         [StringLength(100)]
         public string MDecision { get; set; }
@@ -72,9 +72,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Column(TypeName = "date")]
         public DateTime? MDecisionDate { get; set; }
 
-        public Boolean MReview { get; set; }
+        public Boolean? MReview { get; set; }
 
-        [Required]
         public int LocationId { get; set; }
 
         public virtual BrandManager BrandManagerDecision { get; set; }

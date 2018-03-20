@@ -29,10 +29,10 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         [Column(TypeName = "date")]
         [Display(Name = "Request Submission Date")]
-        public DateTime RequestDate { get; set; }
+        public DateTime? RequestDate { get; set; }
 
         [Display(Name = "Request Status")]
-        public RequestStatus RequestStatus { get; set; }
+        public RequestStatus? RequestStatus { get; set; }
 
         [Display(Name = "Product Division")]
         public BrandManagerProductDivision ProductDivision { get; set; }
@@ -42,18 +42,18 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Request Justification")]
         public string Justification { get; set; }
 
-        public int MDecisionID { get; set; }
+        public int? MDecisionID { get; set; }
 
         [Display(Name = "Marketing Director")]
-        public int MReviewRequest { get; set; }
+        public int? MReviewRequest { get; set; }
 
         [Display(Name = "Submitted By")]
         public int? BEmployeeID { get; set; }
 
         [Display(Name = "Brand Manager")]
-        public int BReviewRequest { get; set; }
+        public int? BReviewRequest { get; set; }
 
-        public int BDecisionID { get; set; }
+        public int? BDecisionID { get; set; }
 
         [Display(Name = "Submitted By")]
         public int? REmployeeID { get; set; }
@@ -65,7 +65,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Column(TypeName = "date")]
         public DateTime? BDecisionDate { get; set; }
 
-        public Boolean BReview { get; set; }
+        public Boolean? BReview { get; set; }
 
         [Display(Name = "Marketing Director Decision")]
         [StringLength(100)]
@@ -74,10 +74,12 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Column(TypeName = "date")]
         public DateTime? MDecisionDate { get; set; }
 
-        public Boolean MReview { get; set; }
+        public Boolean? MReview { get; set; }
         
         [Required]
         [Display(Name = "Execution location(s)")]
         public int LocationId { get; set; }
+
+        public string City { get; set; }
     }
 }

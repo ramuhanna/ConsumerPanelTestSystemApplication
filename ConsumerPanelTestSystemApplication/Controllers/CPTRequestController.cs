@@ -77,7 +77,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CPTRequest/Create
         public ActionResult Create()
         {
-            ViewBag.LocationID = new SelectList(db.Locations, "ID", "Name");
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationId", "City");
             return View();
         }
 
@@ -97,14 +97,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     LocationId = model.LocationId,
                     RequestDate = DateTime.Now,
                     REmployeeID = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id,
-                    RequestStatus = model.RequestStatus,
-                    MDecisionId = model.MDecisionID,
-                    MReviewRequest = model.MReviewRequest,
-                    BReviewRequest = model.BReviewRequest,
-                    BDecisionId = model.BDecisionID,
-                    BEmployeeID = model.BEmployeeID,
-                    BDecisionDate = model.BDecisionDate,
-                    MDecisionDate = model.MDecisionDate
+                    RequestStatus = model.RequestStatus
                 };
 
                 // Save the created request to the database.
@@ -113,11 +106,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
                 return RedirectToAction("Index");
             }
-            else
-            {
-                ViewBag.LocationId = new SelectList(db.Locations, "ID", "Name");
-                return View();
-            }
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            return View();
+
         }
 
         //// GET: CPTRequest/Edit/5
