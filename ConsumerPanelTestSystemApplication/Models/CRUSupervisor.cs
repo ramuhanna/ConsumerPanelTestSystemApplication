@@ -34,7 +34,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public int EmployeeID { get; set; }
 
-        //public SupervisorRegion Region { get; set; }
+        public SupervisorRegion Region { get; set; }
         
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -56,10 +56,10 @@ namespace ConsumerPanelTestSystemApplication.Models
         
     }
 
-    //public enum SupervisorRegion
-    //{
-    //    Jeddah,
-    //    Riyadh,
-    //    Sharqiyah
-    //}
+    public enum SupervisorRegion
+    {
+        Jeddah,
+        Riyadh,
+        Sharqiyah
+    }
 }

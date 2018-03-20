@@ -25,6 +25,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             ExecutionLocations = new HashSet<ExecutionLocation>();
             ProgressReports = new HashSet<ProgressReport>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
+            Locations = new HashSet<Location>();
         }
 
         [Key]
@@ -74,7 +75,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         public Boolean MReview { get; set; }
 
         [Required]
-        public string City { get; set; }
+        public int LocationId { get; set; }
 
         public virtual BrandManager BrandManagerDecision { get; set; }
 
@@ -96,6 +97,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
+
+        public virtual ICollection<Location> Locations { get; set; }
     }
 
     public enum RequestStatus

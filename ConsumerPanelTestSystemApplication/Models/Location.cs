@@ -23,6 +23,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         public Location()
         {
             ExecutionLocations = new HashSet<ExecutionLocation>();
+            CPTRequests = new HashSet<CPTRequest>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -33,6 +34,19 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
+
+        public virtual ICollection<CPTRequest> CPTRequests { get; set; }
     }
 
+    //public enum ExecutionCities
+    //{
+    //    Jeddah,
+    //    Riyadh,
+    //    Dammam,
+    //    Madina,
+    //    Taif,
+    //    Khobar,
+    //    Jubail,
+    //    Qassim
+    //}
 }

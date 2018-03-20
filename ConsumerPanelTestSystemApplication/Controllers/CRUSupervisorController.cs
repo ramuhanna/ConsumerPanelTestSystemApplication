@@ -74,7 +74,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     UserName = user.UserName,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    //Region = user.Region
+                    Region = user.Region
                 });
             }
             return View(model);
@@ -104,7 +104,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     Mobile = crusupervisor.PhoneNumber,
                     Country = crusupervisor.Country,
                     City = crusupervisor.City,
-                    //Region = crusupervisor.Region,
+                    Region = crusupervisor.Region,
                     Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
                 };
 
@@ -141,7 +141,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     PhoneNumber = model.Mobile,
                     Country = model.Country,
                     City = model.City,
-                    //Region = model.Region
+                    Region = model.Region
                 };
 
                 var result = UserManager.Create(crusupervisor, model.Password);
@@ -177,7 +177,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 return View("Error");
             }
 
-            RequesterViewModel model = new RequesterViewModel
+            CRUSupervisorViewModel model = new CRUSupervisorViewModel
             {
                 Id = crusupervisor.Id,
                 UserName = crusupervisor.UserName,
@@ -213,7 +213,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     return HttpNotFound();
                 }
 
-                // Edit the requester info
+                // Edit the crusupervisor info
                 crusupervisor.UserName = model.UserName;
                 crusupervisor.Email = model.Email;
                 crusupervisor.FirstName = model.FirstName;
@@ -223,7 +223,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 crusupervisor.PhoneNumber = model.Mobile;
                 crusupervisor.Country = model.Country;
                 crusupervisor.City = model.City;
-                //crusupervisor.Region = model.Region;
+                crusupervisor.Region = model.Region;
 
                 var userResult = UserManager.Update(crusupervisor);
 
@@ -245,7 +245,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 return HttpNotFound();
             }
 
-            RequesterViewModel model = new RequesterViewModel
+           CRUSupervisorViewModel model = new CRUSupervisorViewModel
             {
                 Id = crusupervisor.Id,
                 UserName = crusupervisor.UserName,
@@ -257,7 +257,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 Mobile = crusupervisor.PhoneNumber,
                 Country = crusupervisor.Country,
                 City = crusupervisor.City,
-                //Region = crusupervisor.Region,
+                Region = crusupervisor.Region,
                 Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
             };
 

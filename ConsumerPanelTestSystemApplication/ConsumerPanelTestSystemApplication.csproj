@@ -322,10 +322,15 @@
     <Content Include="Views\CRUMember\Index.cshtml" />
     <Content Include="Views\CPTRequest\Index.cshtml" />
     <Content Include="Views\CPTRequest\Details.cshtml" />
+    <Content Include="Views\Home\AllUsers.cshtml" />
+    <Content Include="Views\CRUSupervisor\Create.cshtml" />
+    <Content Include="Views\CRUSupervisor\Details.cshtml" />
+    <Content Include="Views\CRUSupervisor\Index.cshtml" />
+    <Content Include="Views\CRUSupervisor\Delete.cshtml" />
+    <Content Include="Views\CRUSupervisor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CRUSupervisor\" />
     <Folder Include="Views\Location\" />
   </ItemGroup>
   <ItemGroup>

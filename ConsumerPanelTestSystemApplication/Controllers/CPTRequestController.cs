@@ -65,7 +65,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 RequestTitle = request.RequestTitle,
                 ProductDivision = request.ProductDivision,
                 Justification = request.Justification,
-                City = request.City,
+                LocationId = request.LocationId,
                 RequestDate = request.RequestDate,
                 REmployeeID = request.REmployeeID,
                 RequestStatus = request.RequestStatus
@@ -77,6 +77,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CPTRequest/Create
         public ActionResult Create()
         {
+            ViewBag.LocationID = new SelectList(db.Locations, "ID", "Name");
             return View();
         }
 
@@ -93,11 +94,17 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     RequestTitle = model.RequestTitle,
                     ProductDivision = model.ProductDivision,
                     Justification = model.Justification,
-                    City = model.City,
+                    LocationId = model.LocationId,
                     RequestDate = DateTime.Now,
-                    //REmployeeID = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id,
                     REmployeeID = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id,
-                    RequestStatus = model.RequestStatus       
+                    RequestStatus = model.RequestStatus,
+                    MDecisionId = model.MDecisionID,
+                    MReviewRequest = model.MReviewRequest,
+                    BReviewRequest = model.BReviewRequest,
+                    BDecisionId = model.BDecisionID,
+                    BEmployeeID = model.BEmployeeID,
+                    BDecisionDate = model.BDecisionDate,
+                    MDecisionDate = model.MDecisionDate
                 };
 
                 // Save the created request to the database.
@@ -108,6 +115,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
             else
             {
+                ViewBag.LocationId = new SelectList(db.Locations, "ID", "Name");
                 return View();
             }
         }

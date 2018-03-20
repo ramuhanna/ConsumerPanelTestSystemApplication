@@ -32,5 +32,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
             return View();
         }
+
+        public ActionResult AllUsers()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
     }
 }

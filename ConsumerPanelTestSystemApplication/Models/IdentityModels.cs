@@ -79,7 +79,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<BrandManager>()
                 .HasMany(e => e.SubmittedRequests)
-                .WithRequired(e => e.BrandManagerSubmitRequest)
+                .WithOptional(e => e.BrandManagerSubmitRequest)
                 .HasForeignKey(e => e.BEmployeeID)
                 .WillCascadeOnDelete(false);
 
@@ -275,9 +275,19 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<Requester>()
                 .HasMany(e => e.CPTRequests)
-                .WithRequired(e => e.Requester)
+                .WithOptional (e => e.Requester)
                 .HasForeignKey(e => e.REmployeeID)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CPTRequest>()
+                .HasMany(c => c.Locations)
+                .WithMany(f => f.CPTRequests)
+                .Map(m =>
+                {
+                    m.ToTable("RequestLocation");
+                    m.MapLeftKey("RequestID");
+                    m.MapRightKey("LocationID");
+                });
         }
 
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.EmployeeViewModel> EmployeeViewModels { get; set; }
@@ -289,6 +299,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.RequesterViewModel> RequesterViewModels { get; set; }
 
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUMemberViewModel> CRUMemberViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUSupervisorViewModel> CRUSupervisorViewModels { get; set; }
     }
 
     public class CustomUserRole : IdentityUserRole<int> { }

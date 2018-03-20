@@ -27,12 +27,10 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Request Title")]
         public string RequestTitle { get; set; }
 
-        //????????????
         [Column(TypeName = "date")]
         [Display(Name = "Request Submission Date")]
         public DateTime RequestDate { get; set; }
 
-        //??????
         [Display(Name = "Request Status")]
         public RequestStatus RequestStatus { get; set; }
 
@@ -80,6 +78,6 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         
         [Required]
         [Display(Name = "Execution location(s)")]
-        public string City { get; set; }
+        public int LocationId { get; set; }
     }
 }

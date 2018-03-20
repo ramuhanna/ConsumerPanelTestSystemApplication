@@ -3,6 +3,7 @@ namespace ConsumerPanelTestSystemApplication.Migrations
     using Microsoft.AspNet.Identity;
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -64,6 +65,20 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 userManager.AddToRole(admin.Id, roles[0]);
             }
+
+
+            // Add examples of locations.
+            var locations = new List<Location>
+            {
+                  new Location { City = "Jeddah" },
+                  new Location { City = "Madina" },
+                  new Location { City = "Riyadh" },
+                  new Location { City = "Dammam" },
+                  new Location { City = "Taif" },
+                  new Location { City = "Khobar" },
+                  new Location { City = "Jubail" },
+                  new Location { City = "Qassim" }
+            };
         }
     }
 }
