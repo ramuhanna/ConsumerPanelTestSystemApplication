@@ -1,0 +1,90 @@
+﻿@model ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CPTRequestViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDivision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDivision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Justification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Justification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MReviewRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MReviewRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BReviewRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BReviewRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
