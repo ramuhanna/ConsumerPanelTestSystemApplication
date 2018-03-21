@@ -24,7 +24,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         {
         }
 
-        // This action generates a list of CPT requests.
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of CPT Requests. 
+        /// </summary>
+
         // GET: CPTRequest
         public ActionResult Index()
         {
@@ -38,7 +41,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     Id = item.RequestID,
                     RequestTitle = item.RequestTitle,
                     RequestDate = item.RequestDate,
-                    REmployeeId = item.REmployeeId,
+                    //REmployeeId = item.REmployeeId,
+                    SubmittedBy = item.SubmittedBy,
                     ProductDivision = item.ProductDivision,
                     RequestStatus = item.RequestStatus
                 });
@@ -46,7 +50,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action displays the details of a specific CPT request.
+        /// <summary>  
+        /// The Details action is utilized in order to view the details of a specific CPT Request. 
+        /// </summary>
+        
         // GET: CPTRequest/Details/5
         public ActionResult Details(int? id)
         {
@@ -68,7 +75,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 Justification = request.Justification,
                 LocationId = request.LocationId,
                 RequestDate = request.RequestDate??DateTime.Now.Date,
-                REmployeeId = request.REmployeeId,
+                //REmployeeId = request.REmployeeId,
+                SubmittedBy = request.SubmittedBy,
                 RequestStatus = request.RequestStatus
             };
 
@@ -82,7 +90,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // This action allows for the creation of a new CPT request.
+        /// <summary>  
+        /// The Create action allows for the creation of a new CPT request. 
+        /// </summary>
+
         // POST: CPTRequest/Create
         [HttpPost]
         public ActionResult Create(CPTRequestViewModel model)
@@ -94,7 +105,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     RequestTitle = model.RequestTitle,
                     RequestDate = DateTime.Now.Date,
-                    RequestStatus = model.RequestStatus,
+                    RequestStatus = RequestStatus.BMRequestApproval,
                     ProductDivision = model.ProductDivision,
                     Justification = model.Justification,
                     MDecisionId = model.MDecisionId,
@@ -110,6 +121,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     MDecisionDate = model.MDecisionDate,
                     MReview = model.MReview,
                     LocationId = model.LocationId,
+                    SubmittedBy = User.Identity.GetUserName(),
                 };
 
                 // Save the created request to the database.

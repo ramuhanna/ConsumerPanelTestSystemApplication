@@ -166,7 +166,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<CRUSupervisor>()
                 .HasMany(e => e.CRUMembers)
-                .WithRequired(e => e.AssignedCRUSupervisor)
+                .WithOptional(e => e.AssignedCRUSupervisor)
                 .HasForeignKey(e => e.CRUSupervisorId)
                 .WillCascadeOnDelete(false);
 
@@ -293,6 +293,10 @@ namespace ConsumerPanelTestSystemApplication.Models
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
 
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.LocationViewModel> LocationViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUSupervisorViewModel> CRUSupervisorViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUMemberViewModel> CRUMemberViewModels { get; set; }
     }
 
     public class CustomUserRole : IdentityUserRole<int> { }

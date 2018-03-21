@@ -59,8 +59,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
         }
 
-        // This action is utilized in order to generate a list of Employee users.
-        // GET: Employee
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of Employee users. 
+        /// </summary>
+     
         public ActionResult Index()
         {
             var users = db.Employees.ToList();
@@ -82,7 +84,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action displays the details of a specific Employee user.
+        /// <summary>  
+        /// The Details action displays the details of a specific Employee user.
+        /// </summary>
+    
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
@@ -127,7 +132,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // This action allows the creation of a new Employee user.
+        /// <summary>  
+        /// The Create action allows the creation of a new Employee user.
+        /// </summary>
+
         // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -234,7 +242,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
-        // This action permits updating an Employee user's details.
+        /// <summary>  
+        /// The Edit action permits updating an Employee user's details.
+        /// </summary>
+       
         // POST: Employee/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -301,7 +312,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action removes an Employee user from the database.
+        /// <summary>  
+        /// The Delete action removes an Employee user from the database.
+        /// </summary>
+
         // POST: Employee/Delete/5
         [HttpPost]
         [ActionName("Delete")]

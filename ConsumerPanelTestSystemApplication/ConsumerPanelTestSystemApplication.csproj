@@ -331,6 +331,9 @@
     <Content Include="Views\CPTRequest\Index.cshtml" />
     <Content Include="Views\CPTRequest\Create.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\CRUMember\Details.cshtml" />
+    <Content Include="Views\CRUMember\Edit.cshtml" />
+    <Content Include="Views\CRUMember\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

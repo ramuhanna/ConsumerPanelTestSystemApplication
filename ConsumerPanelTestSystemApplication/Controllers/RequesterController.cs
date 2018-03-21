@@ -58,7 +58,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         public object UserManeger { get; private set; }
 
-        // This action is utilized in order to generate a list of Requester users.
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of Requester users. 
+        /// </summary>
+       
         // GET: Requester
         public ActionResult Index()
         {
@@ -80,7 +83,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action displays the details of a specific Requester user.
+        /// <summary>  
+        /// The Details action displays the details of a specific Requester user.
+        /// </summary>
+
         // GET: Requester/Details/5
         public ActionResult Details(int id)
         {
@@ -124,7 +130,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // This action allows the creation of a new Requester user.
+        /// <summary>  
+        /// The Create action allows the creation of a new Requester user.
+        /// </summary>
+
         // POST: Requester/Create
         [HttpPost]
         public ActionResult Create(RequesterViewModel model)
@@ -199,7 +208,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action permits updating a Requester user's details.
+        /// <summary>  
+        /// The Edit action permits updating a Requester user's details.
+        /// </summary>
+
         // POST: Requester/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, RequesterViewModel model)
@@ -269,7 +281,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action removes a Requester user from the database.
+        /// <summary>  
+        /// The Delete action removes a Requester user from the database.
+        /// </summary>
+        
         // POST: Requester/Delete/5
         [HttpPost]
         [ActionName("Delete")]

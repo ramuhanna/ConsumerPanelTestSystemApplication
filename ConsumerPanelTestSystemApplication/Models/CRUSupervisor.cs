@@ -12,7 +12,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-
     /// <summary>  
     /// This class describes the CRU Supervisor user who assigns work to CRU Members and verifies results. 
     /// </summary>

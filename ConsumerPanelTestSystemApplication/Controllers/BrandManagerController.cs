@@ -58,7 +58,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         public object UserManeger { get; private set; }
 
-        // This action is utilized in order to generate a list of Brand Manager users.
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of Brand Manager users. 
+        /// </summary>
+
         // GET: BrandManager
         public ActionResult Index()
         {
@@ -79,7 +82,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action displays the details of a specific Brand Manager user.
+        /// <summary>  
+        /// The Details action displays the details of a specific Brand Manager user.
+        /// </summary>
+
         // GET: BrandManager/Details/5
         public ActionResult Details(int id)
         {
@@ -122,7 +128,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // This action allows the creation of a new Brand Manager user.
+        /// <summary>  
+        /// The Create action allows the creation of a new Brand Manager user.
+        /// </summary>
+
         // POST: BrandManager/Create
         [HttpPost]
         public ActionResult Create(BrandManagerViewModel model)
@@ -195,7 +204,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action permits updating a Brand Manager user's details.
+        /// <summary>  
+        /// The Edit action permits updating a Brand Manager user's details.
+        /// </summary>
+       
         // POST: BrandManager/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -264,7 +276,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action removes a Brand Manager user from the database.
+        /// <summary>  
+        /// The Delete action removes a Brand Manager user from the database.
+        /// </summary>
+
         // POST: BrandManager/Delete/5
         [HttpPost]
         [ActionName("Delete")]

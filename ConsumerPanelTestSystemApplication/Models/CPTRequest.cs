@@ -74,6 +74,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public bool? MReview { get; set; }
 
+        public string SubmittedBy { get; set; }
+
         //notnull
         public int? LocationId { get; set; }
 
@@ -106,7 +108,7 @@ namespace ConsumerPanelTestSystemApplication.Models
     public enum RequestStatus
     {
         [Display(Name = "Pending Brand Manager Request Approval")]
-        BMRequestApproval,
+        BMRequestApproval = 0,
 
         [Display(Name = "Pending Marketing Director Request Approval")]
         MDRequestApproval,

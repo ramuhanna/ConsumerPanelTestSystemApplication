@@ -59,7 +59,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         public object UserManeger { get; private set; }
 
-        // This action is utilized in order to generate a list of CRU Member users.
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of CRU Member users. 
+        /// </summary>
+
         // GET: CRUMember
         public ActionResult Index()
         {
@@ -74,17 +77,52 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     UserName = user.UserName,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    //CRUSupervisorId = user.CRUSupervisorId
+                    Region = user.Region,
+                    CRUSupervisorId =user.CRUSupervisorId
                 });
             }
             return View(model);
         }
 
-        // This action displays the details of a specific CRU Member user.
+        /// <summary>  
+        /// The Details action displays the details of a specific CRU Member user.
+        /// </summary>
+
         // GET: CRUMember/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            // find the user in the database
+            var user = UserManager.FindById(id);
+
+            // Check if the user exists
+            if (user != null)
+            {
+                var crumember = (CRUMember)user;
+
+                CRUMemberViewModel model = new CRUMemberViewModel()
+                {
+                    Id = crumember.Id,
+                    UserName = crumember.UserName,
+                    Email = crumember.Email,
+                    FirstName = crumember.FirstName,
+                    LastName = crumember.LastName,
+                    Telephone = crumember.Telephone,
+                    TelExtension = crumember.TelExtension,
+                    Mobile = crumember.PhoneNumber,
+                    Country = crumember.Country,
+                    City = crumember.City,
+                    Region = crumember.Region,
+                    CRUSupervisorId = crumember.CRUSupervisorId,
+                    Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
+                };
+
+                return View(model);
+            }
+            else
+            {
+                // Customize the error view: /Views/Shared/Error.cshtml
+                return View("Error");
+            }
         }
 
         // GET: CRUMember/Create
@@ -93,7 +131,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // This action allows the creation of a new CRU Member user.
+        /// <summary>  
+        /// The Create action allows the creation of a new CRU Member user.
+        /// </summary>
+
         // POST: CRUMember/Create
         [HttpPost]
         public ActionResult Create(CRUMemberViewModel model)
@@ -111,7 +152,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     PhoneNumber = model.Mobile,
                     Country = model.Country,
                     City = model.City,
-                    //CRUSupervisorId = model.CRUSupervisorId
+                    Region = model.Region,
+                    CRUSupervisorId = model.CRUSupervisorId
                 };
 
                 var result = UserManager.Create(crumember, model.Password);
@@ -147,7 +189,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 return View("Error");
             }
 
-           CRUMemberViewModel model = new CRUMemberViewModel
+            CRUMemberViewModel model = new CRUMemberViewModel
             {
                 Id = crumember.Id,
                 UserName = crumember.UserName,
@@ -159,14 +201,18 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 Mobile = crumember.PhoneNumber,
                 Country = crumember.Country,
                 City = crumember.City,
-                CRUSupervisorId = crumember.CRUSupervisorId,                
+                Region = crumember.Region,
+                CRUSupervisorId = crumember.CRUSupervisorId,
                 Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
             };
 
             return View(model);
         }
 
-        // This action permits updating a CRU Member user's details.
+        /// <summary>  
+        /// The Edit action permits updating a CRU Member user's details.
+        /// </summary>
+
         // POST: CRUMember/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, CRUMemberViewModel model)
@@ -183,7 +229,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     return HttpNotFound();
                 }
 
-                // Edit the requester info
+                // Edit the crusupervisor info
                 crumember.UserName = model.UserName;
                 crumember.Email = model.Email;
                 crumember.FirstName = model.FirstName;
@@ -193,6 +239,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 crumember.PhoneNumber = model.Mobile;
                 crumember.Country = model.Country;
                 crumember.City = model.City;
+                crumember.Region = model.Region;
                 crumember.CRUSupervisorId = model.CRUSupervisorId;
 
                 var userResult = UserManager.Update(crumember);
@@ -209,24 +256,61 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CRUMember/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var crumember = (CRUMember)UserManager.FindById(id);
+            if (crumember == null)
+            {
+                return HttpNotFound();
+            }
+
+            CRUMemberViewModel model = new CRUMemberViewModel
+            {
+                Id = crumember.Id,
+                UserName = crumember.UserName,
+                Email = crumember.Email,
+                FirstName = crumember.FirstName,
+                LastName = crumember.LastName,
+                Telephone = crumember.Telephone,
+                TelExtension = crumember.TelExtension,
+                Mobile = crumember.PhoneNumber,
+                Country = crumember.Country,
+                City = crumember.City,
+                Region = crumember.Region,
+                CRUSupervisorId = crumember.CRUSupervisorId,
+                Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
+            };
+
+            return View(model);
         }
 
-        // This action removes a CRU Member user from the database.
+        /// <summary>  
+        /// The Delete action removes a CRU Member user from the database.
+        /// </summary>
+
         // POST: CRUMember/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmPassword");
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (ModelState.IsValid)
             {
-                return View();
+                var user = UserManager.FindById(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var result = UserManager.Delete(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+
+            return View();
+        
         }
     }
 }

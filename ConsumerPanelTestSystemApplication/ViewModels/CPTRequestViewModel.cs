@@ -86,6 +86,9 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Execution location(s)")]
         public int? LocationId { get; set; }
 
+        [Display(Name = "Submitted By")]
+        public string SubmittedBy { get; set; }
+
         public string City { get; set; }
     }
 }

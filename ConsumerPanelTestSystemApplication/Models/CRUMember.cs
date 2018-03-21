@@ -30,7 +30,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public int EmployeeID { get; set; }
 
-        public int CRUSupervisorId { get; set; }
+        public int? CRUSupervisorId { get; set; }
+
+        public SupervisorRegion Region { get; set; }
 
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
 

@@ -59,7 +59,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         public object UserManeger { get; private set; }
 
 
-        // This action is utilized in order to generate a list of CRU Supervisor users.
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of CRU Supervisor users. 
+        /// </summary>
+
         // GET: CRUSupervisor
         public ActionResult Index()
         {
@@ -80,7 +83,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action displays the details of a specific CRU Supervisor user.
+        /// <summary>  
+        /// The Details action displays the details of a specific CRU Supervisor user.
+        /// </summary>
+
         // GET: CRUSupervisor/Details/5
         public ActionResult Details(int id)
         {
@@ -123,7 +129,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // This action allows the creation of a new CRU Supervisor user.
+        /// <summary>  
+        /// The Create action allows the creation of a new CRU Supervisor user.
+        /// </summary>
+
         // POST: CRUSupervisor/Create
         [HttpPost]
         public ActionResult Create(CRUSupervisorViewModel model)
@@ -189,14 +198,17 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 Mobile = crusupervisor.PhoneNumber,
                 Country = crusupervisor.Country,
                 City = crusupervisor.City,
-                //Region = crusupervisor.Region,
+                Region = crusupervisor.Region,
                 Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
             };
 
             return View(model);
         }
 
-        // This action permits updating a CRU Supervisor user's details.
+        /// <summary>  
+        /// The Edit action permits updating a CRU Supervisor user's details.
+        /// </summary>
+
         // POST: CRUSupervisor/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, CRUSupervisorViewModel model)
@@ -264,7 +276,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // This action removes a CRU Supervisor user from the database.
+        /// <summary>  
+        /// The Delete action removes a CRU Supervisor user from the database.
+        /// </summary>
+
         // POST: CRUSupervisor/Delete/5
         [HttpPost]
         [ActionName("Delete")]

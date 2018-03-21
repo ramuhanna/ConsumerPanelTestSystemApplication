@@ -67,9 +67,10 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "City")]
         public EmployeeCity City { get; set; }
 
-        [Required]
         [Display(Name = "CRU Supervisor")]
-        public int CRUSupervisorId { get; set; }
+        public int? CRUSupervisorId { get; set; }
+
+        public SupervisorRegion Region { get; set; }
 
         public string Roles { get; set; }
     }
