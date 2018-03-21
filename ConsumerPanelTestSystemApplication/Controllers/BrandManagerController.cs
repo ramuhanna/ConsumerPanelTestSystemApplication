@@ -1,4 +1,10 @@
-﻿using ConsumerPanelTestSystemApplication.Models;
+﻿/*
+* Description: This controller contains the Index, Create, Delete, Edit and Details Actions for Brand Manager users.
+* Author: R.M.
+* Due date: 21/03/2018
+*/
+
+using ConsumerPanelTestSystemApplication.Models;
 using ConsumerPanelTestSystemApplication.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

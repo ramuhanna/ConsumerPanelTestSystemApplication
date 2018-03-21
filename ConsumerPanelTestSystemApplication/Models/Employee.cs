@@ -1,7 +1,7 @@
 /*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This file contains the Employee class and the EmployeeType, EmployeeCountry and EmployeeCity enums.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -75,6 +75,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         //public virtual Requester Requester { get; set; }
     }
 
+    /// <summary>  
+    /// This enum contains the possible Employee Types an Employee may belong to.
+    /// </summary>
     public enum EmployeeType
     {
         [Display(Name = "Marketing Director")]
@@ -84,12 +87,12 @@ namespace ConsumerPanelTestSystemApplication.Models
         CPTCoornidator,
 
         [Display(Name = "CRU Manager")]
-        CRUManager,
-
-        [Display(Name = "CRU Supervisor")]
-        CRUSupervisor, 
+        CRUManager
     }
 
+    /// <summary>  
+    /// This enum contains the possible Countries an Employee may reside in.
+    /// </summary>
     public enum EmployeeCountry
     {
         [Display(Name = "Saudi Arabia")]
@@ -100,6 +103,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         Other
     }
 
+    /// <summary>  
+    /// This enum contains the possible Cities an Employee may reside in.
+    /// </summary>
     public enum EmployeeCity
     {
         Jeddah,
@@ -110,6 +116,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         Madina,
         Makkah,
         Taif,
+        Beirut,
         Other
     }
 }

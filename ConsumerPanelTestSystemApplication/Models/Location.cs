@@ -1,7 +1,7 @@
 /*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This file contains the Location class.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -36,15 +36,4 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<CPTRequest> CPTRequests { get; set; }
     }
 
-    //public enum ExecutionCities
-    //{
-    //    Jeddah,
-    //    Riyadh,
-    //    Dammam,
-    //    Madina,
-    //    Taif,
-    //    Khobar,
-    //    Jubail,
-    //    Qassim
-    //}
 }

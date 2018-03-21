@@ -1,7 +1,7 @@
 ﻿/*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This file contains the ManageViewModel class.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
 
 using System.Collections.Generic;

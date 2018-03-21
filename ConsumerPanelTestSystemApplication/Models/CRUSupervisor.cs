@@ -1,7 +1,7 @@
 /*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This file contains the CRU Supervisor class and the SupervisorRegion enum.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -50,6 +50,10 @@ namespace ConsumerPanelTestSystemApplication.Models
         
     }
 
+    /// <summary>  
+    /// This enum contains all the possible Regions a CRU Supervisor may be responsible for.
+    /// </summary>
+    
     public enum SupervisorRegion
     {
         Jeddah,

@@ -1,8 +1,9 @@
 /*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This file contains the Brand Manager class and the BrandManagerProductDivision enum.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
+
 namespace ConsumerPanelTestSystemApplication.Models
 {
     using System;
@@ -43,6 +44,10 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<Questionnaire> Questionnaires { get; set; }
     }
 
+    /// <summary>  
+    /// This enum contains all the possible Product Divisions a Brand Manager may be responsible for.
+    /// </summary> 
+ 
     public enum BrandManagerProductDivision
     {
         [Display(Name = "Family Care")]

@@ -1,4 +1,10 @@
-﻿using ConsumerPanelTestSystemApplication.Models;
+﻿/*
+* Description: This controller contains the Index, Create, Delete, Edit and Details Actions for Locations.
+* Author: R.M.
+* Due date: 21/03/2018
+*/
+
+using ConsumerPanelTestSystemApplication.Models;
 using ConsumerPanelTestSystemApplication.ViewModels;
 using System;
 using System.Collections.Generic;

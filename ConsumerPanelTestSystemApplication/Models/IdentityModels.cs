@@ -1,7 +1,7 @@
 ﻿/*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This file contains the Identity Model class and the Application DbContext class.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
 
 using System.Data.Entity;
@@ -289,6 +289,10 @@ namespace ConsumerPanelTestSystemApplication.Models
             //        m.MapRightKey("LocationID");
             //    });
         }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.LocationViewModel> LocationViewModels { get; set; }
     }
 
     public class CustomUserRole : IdentityUserRole<int> { }

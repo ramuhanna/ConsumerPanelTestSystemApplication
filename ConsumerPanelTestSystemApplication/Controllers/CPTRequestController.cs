@@ -1,7 +1,7 @@
 ﻿/*
-* Description: The Consumer Panel Test System is a Web-Based application utilized for organized and systemized market research process.
+* Description: This controller contains the Index, Create and Details Actions for CPTRequests.
 * Author: R.M.
-* Due date: 20/03/2018
+* Due date: 21/03/2018
 */
 
 using ConsumerPanelTestSystemApplication.Models;
@@ -35,6 +35,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             {
                 model.Add(new CPTRequestViewModel
                 {
+                    Id = item.RequestID,
                     RequestTitle = item.RequestTitle,
                     RequestDate = item.RequestDate,
                     REmployeeId = item.REmployeeId,
