@@ -31,7 +31,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public int EmployeeID { get; set; }
 
-        public BrandManagerProductDivision ProductDivision { get; set; }
+        public BrandManagerProductDivision? ProductDivision { get; set; }
 
         //public virtual Employee Employee { get; set; }
 

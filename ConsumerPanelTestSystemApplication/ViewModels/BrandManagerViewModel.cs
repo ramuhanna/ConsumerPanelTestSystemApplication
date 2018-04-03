@@ -71,6 +71,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public string Roles { get; set; }
 
-        public BrandManagerProductDivision ProductDivision { get; set; }
+        [Display(Name = "Product Division")]
+        public BrandManagerProductDivision? ProductDivision { get; set; }
     }
 }

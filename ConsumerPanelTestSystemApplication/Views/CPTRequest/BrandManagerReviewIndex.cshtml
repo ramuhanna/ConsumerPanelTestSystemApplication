@@ -6,6 +6,8 @@
 
 <h2>Pending Requests</h2>
 
+<h4>Requests to be reviewed.</h4>
+
 
 <table class="table">
     <tr>
@@ -38,9 +40,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>
-        <td>
-            @Html.ActionLink("Review", "Review", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |           
+        <td>            
+            @Html.ActionLink("View Request Details", "Details", new { id=item.Id }) | 
+            @Html.ActionLink("Review", "Review", new { id = item.Id })           
         </td>
     </tr>
 }

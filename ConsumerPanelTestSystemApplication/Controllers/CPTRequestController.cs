@@ -95,10 +95,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CPTRequest
         public ActionResult BrandManagerReviewIndex()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole ("Brand Manager"))
-            {
-                var requests = db.CPTRequests.Where(b => b.BrandManagerReviewRequest.ProductDivision == b.ProductDivision).ToList();
-                var model = new List<CPTRequestViewModel>();
+            var isBrandManager = User.IsInRole("Brand Manager");
+            var user = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id;
+            var requests = db.CPTRequests.Where(b => b.BrandManagerReviewRequest.ProductDivision == b.ProductDivision).ToList();
+
+            var model = new List<CPTRequestViewModel>();
 
                 foreach (var item in requests)
                 {
@@ -115,11 +116,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 }
 
                 return View(model);
-            }
-            else
-            {
                 return View("Error");
-            }
                
         }
 
@@ -151,7 +148,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 RequestDate = request.RequestDate??DateTime.Now.Date,
                 //REmployeeId = request.REmployeeId,
                 SubmittedBy = request.SubmittedBy,
-                RequestStatus = request.RequestStatus
+                RequestStatus = request.RequestStatus,
+                BReviewRequest = request.BReviewRequest
             };
 
             return View(model);
@@ -172,6 +170,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         [HttpPost]
         public ActionResult Create(CPTRequestViewModel model)
         {
+            
             if (ModelState.IsValid)
             {
                 // Create the request from the model.
@@ -185,7 +184,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     MDecisionId = model.MDecisionId,
                     MReviewRequest = model.MReviewRequest,
                     BEmployeeId = model.BEmployeeId,
-                    BReviewRequest = model.BReviewRequest,
                     BDecisionId = model.BDecisionId,
                     REmployeeId = model.REmployeeId,
                     BDecisionMade = model.BDecisionMade,
@@ -195,8 +193,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     MDecisionDate = model.MDecisionDate,
                     MReview = model.MReview,
                     LocationId = model.LocationId,
-                    SubmittedBy = User.Identity.GetUserId(),
+                    SubmittedBy = User.Identity.GetUserId(),                 
                 };
+
+                //var BMID = db.BrandManagers.Where(b => b.ProductDivision == model.ProductDivision);
+                //request.BReviewRequest = Convert.ToInt32(BMID);
 
                 // Save the created request to the database.
                 db.CPTRequests.Add(request);
