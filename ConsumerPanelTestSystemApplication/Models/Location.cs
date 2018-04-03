@@ -31,6 +31,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Required]
         public string City { get; set; }
 
+        [Required]
+        public SupervisorRegion Region { get; set; }
+
         public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
 
         public virtual ICollection<CPTRequest> CPTRequests { get; set; }

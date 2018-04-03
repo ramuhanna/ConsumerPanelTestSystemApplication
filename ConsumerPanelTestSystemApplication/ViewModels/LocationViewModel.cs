@@ -4,6 +4,7 @@
 * Due date: 21/03/2018
 */
 
+using ConsumerPanelTestSystemApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,5 +24,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         [Required]
         public string City { get; set; }
+
+        [Required]
+        public SupervisorRegion Region { get; set; }
     }
 }

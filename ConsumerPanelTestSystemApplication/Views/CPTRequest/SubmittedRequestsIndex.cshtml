@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel>
 
 @{
-    ViewBag.Title = "Request List";
+    ViewBag.Title = "SubmittedRequestsIndex";
 }
 
-<h2>Index</h2>
+<h2>SubmittedRequestsIndex</h2>
 
 <p>
-    @Html.ActionLink("Submit New Request", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,14 +18,9 @@
             @Html.DisplayNameFor(model => model.RequestDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProductDivision)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.RequestStatus)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubmittedBy)
-        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -37,20 +32,12 @@
             @Html.DisplayFor(modelItem => item.RequestDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProductDivision)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SubmittedBy)
-        </td>
-        
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
-            @Html.ActionLink("Review", "Review", new { id = item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

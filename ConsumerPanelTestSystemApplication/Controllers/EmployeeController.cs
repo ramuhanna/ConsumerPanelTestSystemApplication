@@ -249,14 +249,17 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // POST: Employee/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EmployeeViewModel model, params string[] roles)
+        public ActionResult Edit(int? id, EmployeeViewModel model, params string[] roles)
         {
             ModelState.Remove("Password");
             ModelState.Remove("ConfirmPassword");
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && id != null)
             {
-                var employee = (Employee)UserManager.FindById(id);
+                // Convert id to non-nullable int
+                var userId = id ?? default(int);
+
+                var employee = (Employee)UserManager.FindById(userId);
                 if (employee == null)
                 {
                     return HttpNotFound();
@@ -278,6 +281,24 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
                 if (userResult.Succeeded)
                 {
+                    var userRoles = UserManager.GetRoles(employee.Id);
+                    roles = roles ?? new string[] { };
+                    var roleResult = UserManager.AddToRoles(employee.Id, roles.Except(userRoles).ToArray<string>());
+
+                    if (!roleResult.Succeeded)
+                    {
+                        ModelState.AddModelError(string.Empty, roleResult.Errors.First());
+                        return View();
+                    }
+
+                    roleResult = UserManager.RemoveFromRoles(employee.Id, userRoles.Except(roles).ToArray<string>());
+
+                    if (!roleResult.Succeeded)
+                    {
+                        ModelState.AddModelError(string.Empty, roleResult.Errors.First());
+                        return View();
+                    }
+
                     return RedirectToAction("Index");
                 }
             }

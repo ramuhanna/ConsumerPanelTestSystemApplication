@@ -87,7 +87,18 @@ namespace ConsumerPanelTestSystemApplication.Models
         CPTCoornidator,
 
         [Display(Name = "CRU Manager")]
-        CRUManager
+        CRUManager,
+
+        [Display(Name = "CRU Member")]
+        CRUMember,
+
+        [Display(Name = "CRU Supervisor")]
+        CRUSupervisor,
+
+        [Display(Name = "Brand Manager")]
+        BrandManager,
+
+        Requester,
     }
 
     /// <summary>  

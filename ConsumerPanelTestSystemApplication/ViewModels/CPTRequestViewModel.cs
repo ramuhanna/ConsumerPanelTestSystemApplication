@@ -55,6 +55,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Brand Manager")]
         public int? BReviewRequest { get; set; }
 
+        public string BrandManagerReviewRequest { get; set; }
+
         public int? BDecisionId { get; set; }
 
         [Display(Name = "Submitted By")]
@@ -90,5 +92,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public string SubmittedBy { get; set; }
 
         public string City { get; set; }
+
+
     }
 }

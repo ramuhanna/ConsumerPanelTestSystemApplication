@@ -7,8 +7,10 @@
 using ConsumerPanelTestSystemApplication.Models;
 using ConsumerPanelTestSystemApplication.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,12 +52,60 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        /// <summary>  
-        /// The Details action is utilized in order to view the details of a specific CPT Request. 
-        /// </summary>
+
+        // GET: CPTRequest
+        public ActionResult SubmittedRequestsIndex()
+        {
+            var loggeduserid = User.Identity.GetUserId();
+            var requests = db.CPTRequests.Where(d => d.SubmittedBy == loggeduserid).ToList();
+            var model = new List<CPTRequestViewModel>();
+
+            foreach (var item in requests)
+            {
+                model.Add(new CPTRequestViewModel
+                {
+                    Id = item.RequestID,
+                    RequestTitle = item.RequestTitle,
+                    RequestDate = item.RequestDate,
+                    ProductDivision = item.ProductDivision,
+                    RequestStatus = item.RequestStatus,                                    
+                });
+            }
+            return View(model);
+        }
+
+
+    //    // GET: CPTRequest
+    //    public ActionResult BrandManagerReviewIndex()
+    //    {
+    //        var requests = db.CPTRequests.Where(b => b.BrandManagerReviewRequest.ProductDivision).ToList();
+    //        var model = new List<CPTRequestViewModel>();
+
+    //        foreach (var item in requests)
+    //        {
+
+    //            model.Add(new CPTRequestViewModel
+    //            {
+    //                Id = item.RequestID,
+    //                RequestTitle = item.RequestTitle,
+    //                RequestDate = item.RequestDate,
+    //                ProductDivision = item.ProductDivision,
+    //                RequestStatus = item.RequestStatus,
+                    
+    //            });
+    //        }
+
+    //        return View(model);
         
-        // GET: CPTRequest/Details/5
-        public ActionResult Details(int? id)
+    //}
+
+
+    /// <summary>  
+    /// The Details action is utilized in order to view the details of a specific CPT Request. 
+    /// </summary>
+
+    // GET: CPTRequest/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -121,7 +171,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     MDecisionDate = model.MDecisionDate,
                     MReview = model.MReview,
                     LocationId = model.LocationId,
-                    SubmittedBy = User.Identity.GetUserName(),
+                    SubmittedBy = User.Identity.GetUserId(),
                 };
 
                 // Save the created request to the database.
@@ -132,31 +182,142 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
 
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+
+            bool isBrandManager = User.IsInRole("BrandManager");
+
+            if (isBrandManager == true)
+            {
+                return View();
+            }
+
             return View();
 
         }
 
-        //// GET: CPTRequest/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
 
-        //// POST: CPTRequest/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+        // GET: CPTRequest/BrandManagerCreate
+        public ActionResult BrandManagerCreate()
+        {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            return View();
+        }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        /// <summary>  
+        /// The Create action allows the Brand Manager user to create a new CPT request. 
+        /// </summary>
+
+        // POST: CPTRequest/BrandManagerCreate
+        [HttpPost]
+        public ActionResult BrandManagerCreate(CPTRequestViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Create the request from the model.
+                var request = new CPTRequest
+                {
+                    RequestTitle = model.RequestTitle,
+                    RequestDate = DateTime.Now.Date,
+                    RequestStatus = RequestStatus.MDRequestApproval,
+                    Justification = model.Justification,
+                    MDecisionId = model.MDecisionId,
+                    MReviewRequest = model.MReviewRequest,
+                    BEmployeeId = model.BEmployeeId,
+                    BReviewRequest = model.BReviewRequest,
+                    BDecisionId = model.BDecisionId,
+                    REmployeeId = model.REmployeeId,
+                    BDecisionMade = model.BDecisionMade,
+                    BDecisionDate = model.BDecisionDate,
+                    BReview = model.BReview,
+                    MDecision = model.MDecision,
+                    MDecisionDate = model.MDecisionDate,
+                    MReview = model.MReview,
+                    LocationId = model.LocationId,
+                    SubmittedBy = User.Identity.GetUserId(),
+                };
+
+                // Save the created request to the database.
+                db.CPTRequests.Add(request);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            else
+            {
+                return View("Error");
+            }
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+
+            //bool isBrandManager = User.IsInRole("BrandManager");
+
+            //if (isBrandManager == true)
+            //{
+            //    return View();
+            //}
+
+            return View();
+        }
+
+        // GET: CPTRequest/Review/5
+        public ActionResult Review(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CPTRequest request = db.CPTRequests.Find(id);
+            if (request == null)
+            {
+                return HttpNotFound();
+            }
+
+            CPTRequestViewModel model = new CPTRequestViewModel
+            {
+                Id = request.RequestID,
+                RequestTitle = request.RequestTitle,
+                Justification = request.Justification,
+                //ProductDivision = request.ProductDivision,
+                LocationId = request.LocationId,
+                SubmittedBy = request.SubmittedBy,
+                RequestDate = request.RequestDate,
+                BReview = request.BReview,
+                BReviewRequest = request.BReviewRequest
+            };
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            return View(model);
+        }
+
+        // POST: CPTRequest/Review/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Review (int id, CPTRequestViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var request = db.CPTRequests.Find(id);
+                if (request == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Review the request.
+
+                request.BReview = model.BReview;
+                request.LocationId = model.LocationId;
+                request.BReviewRequest = User.Identity.GetUserId<int>();
+
+                db.Entry(request).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            return View();
+        }
 
         // GET: CPTRequest/Delete/5
         public ActionResult Delete(int id)
@@ -180,5 +341,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 return View();
             }
         }
+
+       
+
     }
 }

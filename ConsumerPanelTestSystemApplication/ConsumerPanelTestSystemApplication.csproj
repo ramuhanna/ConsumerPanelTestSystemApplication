@@ -334,6 +334,13 @@
     <Content Include="Views\CRUMember\Details.cshtml" />
     <Content Include="Views\CRUMember\Edit.cshtml" />
     <Content Include="Views\CRUMember\Delete.cshtml" />
+    <Content Include="Views\Location\Create.cshtml" />
+    <Content Include="Views\Location\Edit.cshtml" />
+    <Content Include="Views\Location\Delete.cshtml" />
+    <Content Include="Views\Location\Details.cshtml" />
+    <Content Include="Views\CPTRequest\BrandManagerCreate.cshtml" />
+    <Content Include="Views\CPTRequest\SubmittedRequestsIndex.cshtml" />
+    <Content Include="Views\CPTRequest\Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
