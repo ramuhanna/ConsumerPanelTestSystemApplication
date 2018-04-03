@@ -31,81 +31,105 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
 
         // GET: CPTRequest
-        public ActionResult Index()
+        public ActionResult MarketingDirectorIndex()
         {
-            var requests = db.CPTRequests.ToList();
-            var model = new List<CPTRequestViewModel>();
-
-            foreach (var item in requests)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Marketing Director"))
             {
-                model.Add(new CPTRequestViewModel
+                var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval).ToList();
+                var model = new List<CPTRequestViewModel>();
+
+                foreach (var item in requests)
                 {
-                    Id = item.RequestID,
-                    RequestTitle = item.RequestTitle,
-                    RequestDate = item.RequestDate,
-                    //REmployeeId = item.REmployeeId,
-                    SubmittedBy = item.SubmittedBy,
-                    ProductDivision = item.ProductDivision,
-                    RequestStatus = item.RequestStatus
-                });
+                    model.Add(new CPTRequestViewModel
+                    {
+                        Id = item.RequestID,
+                        RequestTitle = item.RequestTitle,
+                        RequestDate = item.RequestDate,
+                        //REmployeeId = item.REmployeeId,
+                        SubmittedBy = item.SubmittedBy,
+                        ProductDivision = item.ProductDivision,
+                        RequestStatus = item.RequestStatus
+                    });
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return View("Error");
+            }
+                
         }
 
 
         // GET: CPTRequest
         public ActionResult SubmittedRequestsIndex()
         {
-            var loggeduserid = User.Identity.GetUserId();
-            var requests = db.CPTRequests.Where(d => d.SubmittedBy == loggeduserid).ToList();
-            var model = new List<CPTRequestViewModel>();
-
-            foreach (var item in requests)
+            if (User.Identity.IsAuthenticated && (User.IsInRole("Brand Manager") || User.IsInRole("Requester")))
             {
-                model.Add(new CPTRequestViewModel
+                var loggeduserid = User.Identity.GetUserId();
+                var requests = db.CPTRequests.Where(d => d.SubmittedBy == loggeduserid).ToList();
+                var model = new List<CPTRequestViewModel>();
+
+                foreach (var item in requests)
                 {
-                    Id = item.RequestID,
-                    RequestTitle = item.RequestTitle,
-                    RequestDate = item.RequestDate,
-                    ProductDivision = item.ProductDivision,
-                    RequestStatus = item.RequestStatus,                                    
-                });
+                    model.Add(new CPTRequestViewModel
+                    {
+                        Id = item.RequestID,
+                        RequestTitle = item.RequestTitle,
+                        RequestDate = item.RequestDate,
+                        ProductDivision = item.ProductDivision,
+                        RequestStatus = item.RequestStatus,
+                    });
+                }
+                return View(model);
             }
-            return View(model);
+
+            else
+            {
+                return View("Error");
+            }
+            return View();
         }
 
 
-    //    // GET: CPTRequest
-    //    public ActionResult BrandManagerReviewIndex()
-    //    {
-    //        var requests = db.CPTRequests.Where(b => b.BrandManagerReviewRequest.ProductDivision).ToList();
-    //        var model = new List<CPTRequestViewModel>();
+        // GET: CPTRequest
+        public ActionResult BrandManagerReviewIndex()
+        {
+            if (User.Identity.IsAuthenticated && User.IsInRole ("Brand Manager"))
+            {
+                var requests = db.CPTRequests.Where(b => b.BrandManagerReviewRequest.ProductDivision == b.ProductDivision).ToList();
+                var model = new List<CPTRequestViewModel>();
 
-    //        foreach (var item in requests)
-    //        {
+                foreach (var item in requests)
+                {
 
-    //            model.Add(new CPTRequestViewModel
-    //            {
-    //                Id = item.RequestID,
-    //                RequestTitle = item.RequestTitle,
-    //                RequestDate = item.RequestDate,
-    //                ProductDivision = item.ProductDivision,
-    //                RequestStatus = item.RequestStatus,
-                    
-    //            });
-    //        }
+                    model.Add(new CPTRequestViewModel
+                    {
+                        Id = item.RequestID,
+                        RequestTitle = item.RequestTitle,
+                        RequestDate = item.RequestDate,
+                        ProductDivision = item.ProductDivision,
+                        RequestStatus = item.RequestStatus,
 
-    //        return View(model);
-        
-    //}
+                    });
+                }
+
+                return View(model);
+            }
+            else
+            {
+                return View("Error");
+            }
+               
+        }
 
 
-    /// <summary>  
-    /// The Details action is utilized in order to view the details of a specific CPT Request. 
-    /// </summary>
+        /// <summary>  
+        /// The Details action is utilized in order to view the details of a specific CPT Request. 
+        /// </summary>
 
-    // GET: CPTRequest/Details/5
-    public ActionResult Details(int? id)
+        // GET: CPTRequest/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -178,7 +202,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.CPTRequests.Add(request);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("SubmittedRequestsIndex");
             }
 
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
@@ -210,7 +234,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         [HttpPost]
         public ActionResult BrandManagerCreate(CPTRequestViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User.IsInRole("Brand Manager"))
             {
                 // Create the request from the model.
                 var request = new CPTRequest
@@ -219,6 +243,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     RequestDate = DateTime.Now.Date,
                     RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = model.Justification,
+                    ProductDivision = model.ProductDivision,
                     MDecisionId = model.MDecisionId,
                     MReviewRequest = model.MReviewRequest,
                     BEmployeeId = model.BEmployeeId,
@@ -239,7 +264,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.CPTRequests.Add(request);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("SubmittedRequestsIndex");
             }
 
             else

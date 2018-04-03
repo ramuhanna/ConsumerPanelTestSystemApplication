@@ -1,0 +1,14 @@
+﻿
+<h2>CPT Requests</h2>
+
+@{
+    ViewBag.Title = "CPTRequests";
+    ViewBag.Message = "Page to manage requests of all user types.";
+
+    <li>@Html.ActionLink("Marketing Director", "MarketingDirectorIndex", "CPTRequest")</li>
+    <li>@Html.ActionLink("Requester", "SubmittedRequestsIndex", "CPTRequest")</li>
+    <li>@Html.ActionLink("Brand Manager", "SubmittedRequestsIndex", "CPTRequest")</li>   
+}
+
+
+

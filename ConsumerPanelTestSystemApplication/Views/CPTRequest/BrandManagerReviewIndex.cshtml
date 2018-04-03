@@ -1,21 +1,12 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel>
 
 @{
-    ViewBag.Title = "Submitted Requests";
+    ViewBag.Title = "Brand Manager Pending Requests";
 }
 
-<h2>Submitted Requests</h2>
+<h2>Pending Requests</h2>
 
-<p>
-    @if (User.IsInRole("Brand Manager"))
-    {
-        @Html.ActionLink("Submit New Request", "BrandManagerCreate")    }
 
-    else
-    {
-        @Html.ActionLink("Submit New Request", "Create")
-    }
-</p>
 <table class="table">
     <tr>
         <th>
@@ -23,6 +14,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RequestDate)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.SubmittedBy)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RequestStatus)
@@ -39,10 +33,15 @@
             @Html.DisplayFor(modelItem => item.RequestDate)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.SubmittedBy)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>
         <td>
-            @Html.ActionLink(" View Request Details", "Details", new { id=item.Id }) 
+            @Html.ActionLink("Review", "Review", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |           
+        </td>
     </tr>
 }
 

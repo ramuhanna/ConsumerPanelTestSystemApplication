@@ -38,5 +38,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             ViewBag.Message = "";
             return View();
         }
+
+        public ActionResult CPTRequests()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
     }
 }
