@@ -81,6 +81,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 });              
             }
 
+            var list = db.Employees.ToList().Select(e => new { e.Id, e.FullName });
+            ViewBag.EmployeeId = new SelectList(list, "Id", "FullName");
             return View(model);
         }
 

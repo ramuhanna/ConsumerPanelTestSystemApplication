@@ -60,6 +60,12 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public EmployeeType Type { get; set; }
 
+        [NotMapped]
+        public string FullName
+        {
+            get { return string.Format("{0} {1}", FirstName, LastName); }
+        }
+
         //public virtual BrandManager BrandManager { get; set; }
 
         //public virtual CPTCoordinator CPTCoordinator { get; set; }
@@ -73,6 +79,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         //public virtual MarketingDirector MarketingDirector { get; set; }
 
         //public virtual Requester Requester { get; set; }
+
+        public virtual ICollection<CPTRequest> CPTRequests { get; set; }
     }
 
     /// <summary>  

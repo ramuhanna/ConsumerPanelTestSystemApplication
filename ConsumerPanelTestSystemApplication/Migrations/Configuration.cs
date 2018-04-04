@@ -272,41 +272,41 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 new CPTRequest { RequestTitle = "Feminine Care Product Campaign",  RequestStatus = RequestStatus.BMRequestApproval,
                     Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
-                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = DateTime.Parse("05/01/2018"), SubmittedBy = "15", LocationId = 1},
-                new CPTRequest { RequestTitle = "Bambi Jumbo Launch",  RequestStatus = RequestStatus.BMRequestApproval, SubmittedBy = "15",
+                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = DateTime.Parse("05/01/2018"), SubmittedById = 15, LocationId = 1, BReviewRequest = 6},
+                new CPTRequest { RequestTitle = "Bambi Jumbo Launch",  RequestStatus = RequestStatus.BMRequestApproval, SubmittedById = 15,
                     Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
-                    ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = DateTime.Parse("10/02/2018"), LocationId = 2},
+                    ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = DateTime.Parse("10/02/2018"), LocationId = 2, BReviewRequest = 8},
                 new CPTRequest { RequestTitle = "Competition Analysis",  RequestStatus = RequestStatus.BMRequestApproval,
                     Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
-                    ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = DateTime.Parse("21/01/2018"), SubmittedBy = "17", LocationId = 3},
+                    ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = DateTime.Parse("21/01/2018"), SubmittedById = 17, LocationId = 3, BReviewRequest = 7},
                 new CPTRequest { RequestTitle = "Sanita Tissue Annual Assessment",  RequestStatus = RequestStatus.BMRequestApproval,
                     Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
-                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = DateTime.Parse("15/03/2018"), SubmittedBy = "16", LocationId = 4}
+                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = DateTime.Parse("15/03/2018"), SubmittedById = 16, LocationId = 4, BReviewRequest = 5}
             };
 
             requests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
             context.SaveChanges();
 
 
-            // Add CPT Requests from Brand Managers to the database.
-            var BMrequests = new List<CPTRequest>
-            {
-                new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
-                    Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
-                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = DateTime.Parse("05/01/2018"), SubmittedBy = "6", LocationId = 3},
-                new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
-                    Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
-                    ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = DateTime.Parse("10/02/2018"), SubmittedBy = "8", LocationId = 1},
-                new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
-                    Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
-                    ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = DateTime.Parse("21/01/2018"), SubmittedBy = "7", LocationId = 7},
-                new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
-                    Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
-                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = DateTime.Parse("15/03/2018"), SubmittedBy = "5", LocationId = 5}
-            };
+            //// Add CPT Requests from Brand Managers to the database.
+            //var BMrequests = new List<CPTRequest>
+            //{
+            //    new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
+            //        Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
+            //        ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = DateTime.Parse("05/01/2018"), SubmittedById = 6, LocationId = 3},
+            //    new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
+            //        Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
+            //        ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = DateTime.Parse("10/02/2018"), SubmittedById = 8, LocationId = 1},
+            //    new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
+            //        Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
+            //        ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = DateTime.Parse("21/01/2018"), SubmittedById = 7, LocationId = 7},
+            //    new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
+            //        Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
+            //        ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = DateTime.Parse("15/03/2018"), SubmittedById = 5, LocationId = 5}
+            //};
 
-            BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
-            context.SaveChanges();
+            //BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
+            //context.SaveChanges();
 
         }
     }

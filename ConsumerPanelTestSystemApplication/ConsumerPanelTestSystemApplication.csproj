@@ -231,6 +231,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MarketingDirector.cs" />
+    <Compile Include="Models\ProductDivision.cs" />
     <Compile Include="Models\ProgressReport.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Questionnaire.cs" />
@@ -340,7 +341,7 @@
     <Content Include="Views\Location\Details.cshtml" />
     <Content Include="Views\CPTRequest\BrandManagerCreate.cshtml" />
     <Content Include="Views\CPTRequest\SubmittedRequestsIndex.cshtml" />
-    <Content Include="Views\CPTRequest\Review.cshtml" />
+    <Content Include="Views\CPTRequest\MarketingDirectorReview.cshtml" />
     <Content Include="Views\CPTRequest\BrandManagerReviewIndex.cshtml" />
     <Content Include="Views\Home\CPTRequests.cshtml" />
   </ItemGroup>

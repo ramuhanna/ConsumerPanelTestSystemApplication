@@ -74,10 +74,14 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public bool? MReview { get; set; }
 
-        public string SubmittedBy { get; set; }
+        public int? SubmittedById { get; set; }
+
+        //public string SubmittedBy { get; set; }
 
         //notnull
         public int? LocationId { get; set; }
+
+        public string SubmittedByName { get; set; }
 
         public virtual BrandManager BrandManagerDecision { get; set; }
 
@@ -96,6 +100,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<ProgressReport> ProgressReports { get; set; }
 
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
+
+        public virtual Employee Employee { get; set; }
 
         //public virtual ICollection<Location> Locations { get; set; }
         public virtual Location Location { get; set; }

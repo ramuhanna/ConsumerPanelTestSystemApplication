@@ -72,6 +72,5 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public EmployeeType Type { get; set; }
 
         public string Roles { get; set; }
-
     }
 }

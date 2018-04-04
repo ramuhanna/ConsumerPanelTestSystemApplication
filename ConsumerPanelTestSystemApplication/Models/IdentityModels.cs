@@ -210,6 +210,12 @@ namespace ConsumerPanelTestSystemApplication.Models
             //    .HasOptional(e => e.Requester)
             //    .WithRequired(e => e.Employee);
 
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.CPTRequests)
+                .WithOptional(e => e.Employee)
+                .HasForeignKey(e => e.SubmittedById)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.ExecutionLocations)
                 .WithRequired(e => e.Location)

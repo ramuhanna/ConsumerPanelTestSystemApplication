@@ -1,13 +1,15 @@
 ﻿@model ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = " Request Details";
 }
 
-<h2>Details</h2>
+<h2> Request Details </h2>
 
 <div>
-    <h4>CPTRequestViewModel</h4>
+    <h4><dd>
+    @Html.DisplayFor(model => model.RequestTitle)
+</dd></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,14 +26,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.RequestDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubmittedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubmittedBy)
         </dd>
 
         <dt>
@@ -58,13 +52,25 @@
             @Html.DisplayFor(model => model.Justification)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BReviewRequest)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BReviewRequest)
-        </dd>
+        @if (User.IsInRole("Marketing Director"))
+        {
+            <dt>
+                    @Html.DisplayNameFor(model => model.BReviewRequest)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BReviewRequest)
+                </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BReview)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BReview)
+            </dd>
+        }        
 
         @*<dt>
             @Html.DisplayNameFor(model => model.MDecisionId)
@@ -128,15 +134,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.BDecisionDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BReview)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BReview)
-        </dd>
+        </dd>       
 
         <dt>
             @Html.DisplayNameFor(model => model.MDecision)
@@ -162,25 +160,31 @@
             @Html.DisplayFor(model => model.MReview)
         </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.LocationId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.LocationId)
-        </dd>
+        </dd>*@
 
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.City)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.City)
-        </dd>*@
+        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+@if (User.IsInRole("Marketing Director"))
+{
+    @Html.ActionLink("Back to List", "MarketingDirectorIndex")
+}
+else
+{
+    @Html.ActionLink("Back to List", "SubmittedRequestsIndex")
+}
 </p>

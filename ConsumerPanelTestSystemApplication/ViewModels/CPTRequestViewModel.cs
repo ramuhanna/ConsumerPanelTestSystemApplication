@@ -71,6 +71,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? BDecisionDate { get; set; }
 
+        [Display(Name = "Brand Manager Decision")]
         public bool? BReview { get; set; }
 
         [Display(Name = "Marketing Director Decision")]
@@ -85,13 +86,17 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public bool? MReview { get; set; }
         
         //[Required]
-        [Display(Name = "Execution location(s)")]
         public int? LocationId { get; set; }
 
         [Display(Name = "Submitted By")]
-        public string SubmittedBy { get; set; }
+        public string SubmittedByName { get; set; }
 
+        public int? SubmittedById { get; set; }
+
+        [Display(Name = "Execution location(s)")]
         public string City { get; set; }
+
+
 
 
     }

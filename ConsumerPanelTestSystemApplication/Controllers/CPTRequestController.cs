@@ -27,15 +27,16 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The Index action is utilized in order to generate a list of CPT Requests. 
+        /// The MarketingDirectorIndex action is utilized in order to generate a list of CPT Requests to be reviewed by the Marketing Director. 
         /// </summary>
+        /// <returns>CPTRequest, Marketing Director Index View</returns>
 
         // GET: CPTRequest
         public ActionResult MarketingDirectorIndex()
         {
             if (User.Identity.IsAuthenticated && User.IsInRole("Marketing Director"))
             {
-                var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval).ToList();
+                 var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval).ToList();
                 var model = new List<CPTRequestViewModel>();
 
                 foreach (var item in requests)
@@ -46,9 +47,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                         RequestTitle = item.RequestTitle,
                         RequestDate = item.RequestDate,
                         //REmployeeId = item.REmployeeId,
-                        SubmittedBy = item.SubmittedBy,
+                        //SubmittedById = item.SubmittedById,
                         ProductDivision = item.ProductDivision,
-                        RequestStatus = item.RequestStatus
+                        RequestStatus = item.RequestStatus,
+                        SubmittedByName = item.Employee.FullName                                       
                     });
                 }
                 return View(model);
@@ -60,14 +62,18 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 
         }
 
+        /// <summary>  
+        /// The SubmittedRequestsIndex action is utilized in order to generate a list of the CPT Requests that were submitted by the logged in user. 
+        /// </summary>
+        /// <returns>CPTRequest, Submitted Requests Index View</returns>
 
         // GET: CPTRequest
         public ActionResult SubmittedRequestsIndex()
         {
             if (User.Identity.IsAuthenticated && (User.IsInRole("Brand Manager") || User.IsInRole("Requester")))
             {
-                var loggeduserid = User.Identity.GetUserId();
-                var requests = db.CPTRequests.Where(d => d.SubmittedBy == loggeduserid).ToList();
+                var loggeduserid = User.Identity.GetUserId<int>();
+                var requests = db.CPTRequests.Where(d => d.SubmittedById == loggeduserid).ToList();
                 var model = new List<CPTRequestViewModel>();
 
                 foreach (var item in requests)
@@ -91,13 +97,17 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-
+        /// <summary>  
+        /// The BrandManagerReviewIndex action is utilized in order to generate a list of the CPT Requests to be reviewed by the Brand Manager. 
+        /// </summary>
+        /// <returns>CPTRequest, Brand Manager Review Index View</returns>
+        
         // GET: CPTRequest
         public ActionResult BrandManagerReviewIndex()
         {
             var isBrandManager = User.IsInRole("Brand Manager");
             var user = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id;
-            var requests = db.CPTRequests.Where(b => b.BrandManagerReviewRequest.ProductDivision == b.ProductDivision).ToList();
+            var requests = db.CPTRequests.Where(b => b.BReviewRequest == user).ToList();
 
             var model = new List<CPTRequestViewModel>();
 
@@ -124,6 +134,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Details action is utilized in order to view the details of a specific CPT Request. 
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns>CPTRequest, Details view</returns>
 
         // GET: CPTRequest/Details/5
         public ActionResult Details(int? id)
@@ -145,15 +157,23 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 ProductDivision = request.ProductDivision,
                 Justification = request.Justification,
                 LocationId = request.LocationId,
+                City = request.Location.City,
                 RequestDate = request.RequestDate??DateTime.Now.Date,
                 //REmployeeId = request.REmployeeId,
-                SubmittedBy = request.SubmittedBy,
+                //SubmittedBy = request.SubmittedBy,
                 RequestStatus = request.RequestStatus,
-                BReviewRequest = request.BReviewRequest
+                BReviewRequest = request.BReviewRequest,  
+                SubmittedByName = request.Employee.FullName                         
             };
 
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
             return View(model);
         }
+
+        /// <summary>  
+        /// The Create action allows for the creation of a new CPT request. 
+        /// </summary>
+        /// <returns>CPTRequest, Create view</returns>
 
         // GET: CPTRequest/Create
         public ActionResult Create()
@@ -165,6 +185,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows for the creation of a new CPT request. 
         /// </summary>
+        /// <param name="model"></param>
+        /// <returns>CPTRequest, Create view</returns>
 
         // POST: CPTRequest/Create
         [HttpPost]
@@ -193,9 +215,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     MDecisionDate = model.MDecisionDate,
                     MReview = model.MReview,
                     LocationId = model.LocationId,
-                    SubmittedBy = User.Identity.GetUserId(),                 
+                    SubmittedById = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id,
                 };
-
+              
                 //var BMID = db.BrandManagers.Where(b => b.ProductDivision == model.ProductDivision);
                 //request.BReviewRequest = Convert.ToInt32(BMID);
 
@@ -219,6 +241,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
+        /// <summary>  
+        /// The BrandManagerCreate action allows the Brand Manager user to create a new CPT request. 
+        /// </summary>
+        /// <returns>CPTRequest, Brand Manager Create view</returns>
 
         // GET: CPTRequest/BrandManagerCreate
         public ActionResult BrandManagerCreate()
@@ -228,8 +254,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The Create action allows the Brand Manager user to create a new CPT request. 
+        /// The BrandManagerCreate action allows the Brand Manager user to create a new CPT request. 
         /// </summary>
+        /// <param name="model"></param>
+        /// <returns>CPTRequest, Brand Manager Create view</returns>
 
         // POST: CPTRequest/BrandManagerCreate
         [HttpPost]
@@ -258,7 +286,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     MDecisionDate = model.MDecisionDate,
                     MReview = model.MReview,
                     LocationId = model.LocationId,
-                    SubmittedBy = User.Identity.GetUserId(),
+                    SubmittedById = User.Identity.GetUserId<int>(),
                 };
 
                 // Save the created request to the database.
@@ -275,40 +303,39 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
 
-            //bool isBrandManager = User.IsInRole("BrandManager");
-
-            //if (isBrandManager == true)
-            //{
-            //    return View();
-            //}
-
             return View();
         }
 
-        // GET: CPTRequest/Review/5
-        public ActionResult Review(int? id)
+
+        /// <summary>  
+        /// The MarketingDirectorReview action allows the Marketing Director to review CPT Requests. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>CPTRequest, Marketing Director Review view</returns>
+
+        // GET: CPTRequest/MarketingDirectorReview/5
+        public ActionResult MarketingDirectorReview(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
-
             CPTRequest request = db.CPTRequests.Find(id);
             if (request == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
 
-            CPTRequestViewModel model = new CPTRequestViewModel
+            var model = new CPTRequestViewModel
             {
                 Id = request.RequestID,
                 RequestTitle = request.RequestTitle,
+                ProductDivision = request.ProductDivision,
                 Justification = request.Justification,
-                //ProductDivision = request.ProductDivision,
                 LocationId = request.LocationId,
-                SubmittedBy = request.SubmittedBy,
-                RequestDate = request.RequestDate,
-                BReview = request.BReview,
+                RequestDate = request.RequestDate ?? DateTime.Now.Date,
+                //SubmittedBy = request.SubmittedBy,
+                RequestStatus = request.RequestStatus,
                 BReviewRequest = request.BReviewRequest
             };
 
@@ -316,10 +343,18 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        // POST: CPTRequest/Review/5
+
+        /// <summary>  
+        /// The MarketingDirectorReview action allows the Marketing Director to review CPT Requests. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns>CPTRequest, Marketing Director Review view</returns>
+
+        // POST: CPTRequest/MarketingDirectorReview/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Review (int id, CPTRequestViewModel model)
+        public ActionResult MarketingDirectorReview (int id, CPTRequestViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -343,32 +378,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
             return View();
-        }
-
-        // GET: CPTRequest/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // This action removes a CPT Request from the database.
-        // POST: CPTRequest/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-       
-
+        }       
     }
 }
