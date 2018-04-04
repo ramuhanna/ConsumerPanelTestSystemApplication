@@ -55,8 +55,15 @@ namespace ConsumerPanelTestSystemApplication.Models
     
     public enum SupervisorRegion
     {
-        Jeddah,
-        Riyadh,
-        Sharqiyah
+        [Display(Name = "Eastern Region")]
+        EasternRegion,
+
+        [Display(Name = "Central Region")]
+        CentralRegion,
+
+        [Display(Name = "Western Region")]
+        WesternRegion,
+
+        Other
     }
 }

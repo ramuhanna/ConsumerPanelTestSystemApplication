@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.RequestStatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SubmittedBy)
+            @Html.DisplayNameFor(model => model.SubmittedByName)
         </th>
     </tr>
 
@@ -41,11 +41,11 @@
             @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SubmittedBy)
+            @Html.DisplayFor(modelItem => item.SubmittedByName)
         </td>
         
         <td>           
-            @Html.ActionLink("View Request Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("View Request Details", "Details", new { id=item.Id })
             @*@Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id })*@
         </td>
     </tr>

@@ -83,6 +83,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public string SubmittedByName { get; set; }
 
+        public string BrandManagerName { get; set; }
+
         public virtual BrandManager BrandManagerDecision { get; set; }
 
         public virtual BrandManager BrandManagerSubmitRequest { get; set; }

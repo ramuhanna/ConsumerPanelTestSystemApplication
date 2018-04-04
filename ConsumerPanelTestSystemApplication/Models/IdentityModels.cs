@@ -211,7 +211,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             //    .WithRequired(e => e.Employee);
 
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.CPTRequests)
+                .HasMany(e => e.SubmittedCPTRequests)
                 .WithOptional(e => e.Employee)
                 .HasForeignKey(e => e.SubmittedById)
                 .WillCascadeOnDelete(false);

@@ -7,9 +7,9 @@
 <h2> Request Details </h2>
 
 <div>
-    <h4><dd>
+    <h4>
     @Html.DisplayFor(model => model.RequestTitle)
-</dd></h4>
+</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -21,27 +21,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RequestDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RequestDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RequestStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RequestStatus)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.ProductDivision)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ProductDivision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDate)
         </dd>
 
         <dt>
@@ -52,25 +44,13 @@
             @Html.DisplayFor(model => model.Justification)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </dt>
 
-        @if (User.IsInRole("Marketing Director"))
-        {
-            <dt>
-                    @Html.DisplayNameFor(model => model.BReviewRequest)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BReviewRequest)
-                </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.BReview)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.BReview)
-            </dd>
-        }        
+        <dd>
+            @Html.DisplayFor(model => model.RequestStatus)
+        </dd>
 
         @*<dt>
             @Html.DisplayNameFor(model => model.MDecisionId)
@@ -175,6 +155,34 @@
         <dd>
             @Html.DisplayFor(model => model.City)
         </dd>
+
+@if (User.IsInRole("Marketing Director"))
+{
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmittedByName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmittedByName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandManagerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandManagerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BReview)
+        </dd>
+
+}
 
     </dl>
 </div>

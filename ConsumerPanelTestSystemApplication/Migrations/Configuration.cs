@@ -70,14 +70,14 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add examples of locations.
             var locations = new List<Location>
             {
-                  new Location { City = "Jeddah", Region = SupervisorRegion.Jeddah },
-                  new Location { City = "Madina", Region = SupervisorRegion.Jeddah },
-                  new Location { City = "Riyadh", Region = SupervisorRegion.Riyadh },
-                  new Location { City = "Dammam", Region = SupervisorRegion.Sharqiyah },
-                  new Location { City = "Taif", Region = SupervisorRegion.Jeddah },
-                  new Location { City = "Khobar", Region = SupervisorRegion.Sharqiyah },
-                  new Location { City = "Jubail", Region = SupervisorRegion.Sharqiyah },
-                  new Location { City = "Qassim", Region = SupervisorRegion.Riyadh }
+                  new Location { City = "Jeddah", Region = SupervisorRegion.WesternRegion },
+                  new Location { City = "Madina", Region = SupervisorRegion.WesternRegion },
+                  new Location { City = "Riyadh", Region = SupervisorRegion.CentralRegion },
+                  new Location { City = "Dammam", Region = SupervisorRegion.EasternRegion },
+                  new Location { City = "Taif", Region = SupervisorRegion.WesternRegion },
+                  new Location { City = "Khobar", Region = SupervisorRegion.EasternRegion },
+                  new Location { City = "Jubail", Region = SupervisorRegion.EasternRegion },
+                  new Location { City = "Qassim", Region = SupervisorRegion.CentralRegion }
             };
 
             locations.ForEach(s => context.Locations.AddOrUpdate(p => p.City, s));
@@ -182,13 +182,13 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 new CRUSupervisor { UserName = "crus1", Email ="crus1@g.com", FirstName ="CRUS1", LastName ="Supervisor11",
                     PhoneNumber = "0513456789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
-                    Region = SupervisorRegion.Sharqiyah, Type = EmployeeType.CRUSupervisor},
+                    Region = SupervisorRegion.EasternRegion, Type = EmployeeType.CRUSupervisor},
                 new CRUSupervisor { UserName = "crus2", Email ="crus2@g.com", FirstName ="CRUS2", LastName ="Supervisor22",
                     PhoneNumber = "0523456654", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
-                    Region = SupervisorRegion.Jeddah, Type = EmployeeType.CRUSupervisor},
+                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUSupervisor},
                 new CRUSupervisor { UserName = "crus3", Email ="crus3@g.com", FirstName ="CRUS3", LastName ="Supervisor33",
                     PhoneNumber = "0533452589", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
-                    Region = SupervisorRegion.Riyadh, Type = EmployeeType.CRUSupervisor}
+                    Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUSupervisor}
             };
 
             foreach (var crusupervisor in crusupervisors)
@@ -211,13 +211,13 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 new CRUMember { UserName = "crum1", Email ="crum1@g.com", FirstName ="CRUM1", LastName ="Member11",
                     PhoneNumber = "0509637789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
-                    Region = SupervisorRegion.Sharqiyah, Type = EmployeeType.CRUMember},
+                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember},
                 new CRUMember { UserName = "crum2", Email ="crum2@g.com", FirstName ="CRUM2", LastName ="Member22",
                     PhoneNumber = "0508547789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
-                    Region = SupervisorRegion.Jeddah, Type = EmployeeType.CRUMember},
+                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember},
                 new CRUMember { UserName = "crum3", Email ="crum3@g.com", FirstName ="CRUM3", LastName ="Member33",
                     PhoneNumber = "0589047789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
-                    Region = SupervisorRegion.Riyadh, Type = EmployeeType.CRUMember},
+                    Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUMember},
             };
 
             foreach (var crumember in crumembers)
@@ -288,25 +288,25 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             context.SaveChanges();
 
 
-            //// Add CPT Requests from Brand Managers to the database.
-            //var BMrequests = new List<CPTRequest>
-            //{
-            //    new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
-            //        Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
-            //        ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = DateTime.Parse("05/01/2018"), SubmittedById = 6, LocationId = 3},
-            //    new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
-            //        Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
-            //        ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = DateTime.Parse("10/02/2018"), SubmittedById = 8, LocationId = 1},
-            //    new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
-            //        Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
-            //        ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = DateTime.Parse("21/01/2018"), SubmittedById = 7, LocationId = 7},
-            //    new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
-            //        Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
-            //        ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = DateTime.Parse("15/03/2018"), SubmittedById = 5, LocationId = 5}
-            //};
+            // Add CPT Requests from Brand Managers to the database.
+            var BMrequests = new List<CPTRequest>
+            {
+                new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
+                    Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
+                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = DateTime.Parse("05/01/2018"), SubmittedById = 6, LocationId = 3, BReview = true, BReviewRequest = 6},
+                new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
+                    Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
+                    ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = DateTime.Parse("10/02/2018"), SubmittedById = 8, LocationId = 1, BReview = true, BReviewRequest = 8},
+                new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
+                    Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
+                    ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = DateTime.Parse("21/01/2018"), SubmittedById = 7, LocationId = 7, BReview = true, BReviewRequest = 7},
+                new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
+                    Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
+                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = DateTime.Parse("15/03/2018"), SubmittedById = 5, LocationId = 5, BReview = true, BReviewRequest = 5}
+            };
 
-            //BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
-            //context.SaveChanges();
+            BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
+            context.SaveChanges();
 
         }
     }

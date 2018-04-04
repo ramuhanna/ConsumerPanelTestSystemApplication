@@ -80,7 +80,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         //public virtual Requester Requester { get; set; }
 
-        public virtual ICollection<CPTRequest> CPTRequests { get; set; }
+        public virtual ICollection<CPTRequest> SubmittedCPTRequests { get; set; }
     }
 
     /// <summary>  

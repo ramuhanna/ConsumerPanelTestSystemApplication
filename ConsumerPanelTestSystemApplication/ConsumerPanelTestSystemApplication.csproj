@@ -330,7 +330,7 @@
     <Content Include="Views\CRUSupervisor\Delete.cshtml" />
     <Content Include="Views\CRUSupervisor\Edit.cshtml" />
     <Content Include="Views\CPTRequest\MarketingDirectorIndex.cshtml" />
-    <Content Include="Views\CPTRequest\Create.cshtml" />
+    <Content Include="Views\CPTRequest\RequesterCreate.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\CRUMember\Details.cshtml" />
     <Content Include="Views\CRUMember\Edit.cshtml" />

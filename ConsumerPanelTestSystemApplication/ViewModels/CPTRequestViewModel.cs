@@ -41,6 +41,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         //[Required]
         [StringLength(200)]
+        [DataType (DataType.MultilineText)]
         [Display(Name = "Request Justification")]
         public string Justification { get; set; }
 
@@ -84,8 +85,9 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public DateTime? MDecisionDate { get; set; }
 
         public bool? MReview { get; set; }
-        
+
         //[Required]
+        [Display(Name = "Execution location(s)")]
         public int? LocationId { get; set; }
 
         [Display(Name = "Submitted By")]
@@ -96,7 +98,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Execution location(s)")]
         public string City { get; set; }
 
-
+        [Display(Name = "Responsible Brand Manager")]
+        public string BrandManagerName { get; set; }
 
 
     }
