@@ -6,10 +6,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>QuestionViewModel</h4>
         <hr />
@@ -22,16 +22,32 @@
             </div>
         </div>
 
+        @*<div class="form-group">
+                <label class="col-md-2 control-label">
+                    Select Question Type(s)
+                </label>
+                <div class="col-md-10">
+                    @foreach (var item in (SelectList)ViewBag.QuestionnaireTypeId)
+                    {
+                        <input type="checkbox" name="QuestionnaireTypeId" value="@item.Value" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label" })
+                    }
+                </div>
+            </div>*@
         <div class="form-group">
-            <label class="col-md-2 control-label">
-                Select Question Type(s)
-            </label>
-            <div class="col-md-10">
-                @foreach (var item in (SelectList)ViewBag.QuestionnaireTypeId)
+            <div class="col-md-offset-2 col-md-10">
+                @if (Model.QuestionTypes != null)
                 {
-                    <input type="checkbox" name="QuestionnaireTypeId" value="@item.Value" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
+                    for (int i = 0; i < Model.QuestionTypes.Count; i++)
+                    {
+                        @Html.HiddenFor(m => Model.QuestionTypes[i].Value)
+                        @Html.HiddenFor(m => Model.QuestionTypes[i].Text)
+                        @Html.CheckBoxFor(m => Model.QuestionTypes[i].Selected) 
+                        <text>&nbsp;</text>
+                        @Html.Label(Model.QuestionTypes[i].Text) <br />
+                    }
                 }
+                @Html.ValidationMessageFor(model => model.QuestionTypes, "", new { @class = "text-danger" })
             </div>
         </div>
 

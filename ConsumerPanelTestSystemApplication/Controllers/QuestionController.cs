@@ -66,8 +66,18 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: Question/Create
         public ActionResult Create()
         {
-            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName), "QuestionnaireTypeID", "QuestionnaireTypeName");
-            return View();
+            var model = new QuestionViewModel();
+
+            // Select all question types
+            var questionTypes = db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName);
+
+            // Fill in the model with the question types
+            foreach (var item in questionTypes)
+            {
+                model.QuestionTypes.Add(new SelectListItem { Value = item.QuestionnaireTypeID.ToString(), Text = item.QuestionnaireTypeName });
+            }
+
+            return View(model);
         }
 
         /// <summary>  
@@ -86,33 +96,40 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     QuestionText = model.QuestionText
                 };
-                
+
                 // Save the created question to the database
                 db.Questions.Add(question);
                 db.SaveChanges();
 
-                var questiontypes = new List<QuestionViewModel>
+                // Check if no type is selected
+                if (model.QuestionTypes.All(x => x.Selected == false))
                 {
-
-                };
-
-                foreach (var item in questiontypes)
-                {
-                    var questiontype = new QuestionType
-                    {
-                        QuestionID = model.Id,
-                        QuestionnaireTypeID = model.QuestionnaireTypeID
-                    };
-
-                    db.QuestionTypes.Add(questiontype);
-                    db.SaveChanges();
+                    ModelState.AddModelError("QuestionTypes", "Question Should belong to at least one type");
+                    return View(model);
                 }
+
+                // Save data into QuestionType table
+                QuestionType questionType;
+                foreach (var item in model.QuestionTypes)
+                {
+                    if (item.Selected)
+                    {
+                        questionType = new QuestionType
+                        {
+                            QuestionID = question.QuestionID, // from question above
+                            QuestionnaireTypeID = int.Parse(item.Value) // from the model
+                        };
+
+                        db.QuestionTypes.Add(questionType);
+                    }
+                }
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName), "QuestionnaireTypeID", "QuestionnaireTypeName");
-            return View();
+            // Something wrong if reached
+            return View(model);
 
         }
 
@@ -204,7 +221,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        
-     
+
+
     }
 }

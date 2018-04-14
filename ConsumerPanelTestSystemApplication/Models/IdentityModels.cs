@@ -304,15 +304,16 @@ namespace ConsumerPanelTestSystemApplication.Models
             //    });
         }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
+        //HACK When Creating views do not specify the ApplicationDbContext
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.LocationViewModel> LocationViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.LocationViewModel> LocationViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUSupervisorViewModel> CRUSupervisorViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUSupervisorViewModel> CRUSupervisorViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUMemberViewModel> CRUMemberViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUMemberViewModel> CRUMemberViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionViewModel> QuestionViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionViewModel> QuestionViewModels { get; set; }
     }
 
     public class CustomUserRole : IdentityUserRole<int> { }
