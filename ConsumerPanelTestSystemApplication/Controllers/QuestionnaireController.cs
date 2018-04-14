@@ -11,6 +11,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 {
     public class QuestionnaireController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Questionnaire
         public ActionResult Index()
         {
