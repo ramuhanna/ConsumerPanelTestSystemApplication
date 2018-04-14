@@ -78,8 +78,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Region = user.Region,
-                    //CRUSupervisorId = user.CRUSupervisorId
-                    CRUSupervisor = user.AssignedCRUSupervisor.FirstName + " " + user.AssignedCRUSupervisor.LastName,
+                    CRUSupervisorName = db.CRUSupervisors.Find(user.CRUSupervisorId).FullName,
                 });
             }
             return View(model);
@@ -113,8 +112,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     Country = crumember.Country,
                     City = crumember.City,
                     Region = crumember.Region,
-                    //CRUSupervisorId = crumember.CRUSupervisorId,
-                    CRUSupervisor = crumember.AssignedCRUSupervisor.UserName,
+                    CRUSupervisorId = crumember.CRUSupervisorId,
+                    //CRUSupervisorName
                 Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
                 };
 
@@ -132,8 +131,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CRUMember/Create
         public ActionResult Create()
         {
-            var list = db.CRUSupervisors.Select(p => new { p.Id, FullName = p.FirstName + " " + p.LastName, p.Region });
-            ViewBag.CRUSupervisorId = new SelectList(list, "Id", "FullName", "Region");
+           
             return View();
         }
 
@@ -159,7 +157,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     Country = model.Country,
                     City = model.City,
                     Region = model.Region,
-                    CRUSupervisorId = model.CRUSupervisorId
                 };
 
                 var result = UserManager.Create(crumember, model.Password);
@@ -169,21 +166,23 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     var roleResult = UserManager.AddToRoles(crumember.Id, "CRU Member");
 
                     if (roleResult.Succeeded)
-                    {
+                    {                        
                         return RedirectToAction("Index");
                     }
-                    else
-                    {
-                        return View();
-                    }
                 }
-                else
-                {
-                    return View();
-                }
+
+                var supervisorid = from s in db.CRUSupervisors
+                                   where s.Region == crumember.Region
+                                   select s.Id;
+
+                crumember.CRUSupervisorId = supervisorid.First();
+                db.SaveChanges();
             }
-            var list = db.CRUSupervisors.Select(p => new { p.Id, FullName = p.FirstName + " " + p.LastName });
-            ViewBag.CRUSupervisorId = new SelectList(list, "Id", "FullName", "Region");
+            else
+            {
+                return View("Error");
+            }
+
             return View();
         }
 
@@ -285,7 +284,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 Country = crumember.Country,
                 City = crumember.City,
                 Region = crumember.Region,
-                CRUSupervisor = crumember.AssignedCRUSupervisor.UserName,
+                //CRUSupervisor = crumember.AssignedCRUSupervisor.UserName,
                 Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
             };
 

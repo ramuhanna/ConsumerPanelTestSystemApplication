@@ -44,5 +44,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             ViewBag.Message = "";
             return View();
         }
+
+        public ActionResult Questions()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
+
     }
 }

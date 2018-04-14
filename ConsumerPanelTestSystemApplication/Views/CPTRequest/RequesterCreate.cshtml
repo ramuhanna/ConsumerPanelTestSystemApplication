@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RequestTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RequestTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.RequestTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Babycare Analysis" } })
                 @Html.ValidationMessageFor(model => model.RequestTitle, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductDivision, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.ProductDivision, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.ProductDivision, "Select Product Division", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductDivision, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Justification, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Justification, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Justification, new { htmlAttributes = new { @class = "form-control", placeholder = "We need some research." } })
                 @Html.ValidationMessageFor(model => model.Justification, "", new { @class = "text-danger" })
             </div>
         </div>

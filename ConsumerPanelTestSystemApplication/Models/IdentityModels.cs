@@ -56,6 +56,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual DbSet<MarketingDirector> MarketingDirectors { get; set; }
         public virtual DbSet<ProgressReport> ProgressReports { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<QuestionnaireType> QuestionnaireTypes { get; set; }
         public virtual DbSet<Requester> Requesters { get; set; }
@@ -250,8 +251,15 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Question>()
-                .HasMany(e => e.QuestionnaireTypes)
+                .HasMany(e => e.QuestionTypes)
                 .WithRequired(e => e.Question)
+                .HasForeignKey(e => e.QuestionID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<QuestionnaireType>()
+                .HasMany(e => e.QuestionTypes)
+                .WithRequired(e => e.QuestionnaireType)
+                .HasForeignKey(e => e.QuestionnaireTypeID)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Questionnaire>()
@@ -303,6 +311,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUSupervisorViewModel> CRUSupervisorViewModels { get; set; }
 
         public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CRUMemberViewModel> CRUMemberViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionViewModel> QuestionViewModels { get; set; }
     }
 
     public class CustomUserRole : IdentityUserRole<int> { }

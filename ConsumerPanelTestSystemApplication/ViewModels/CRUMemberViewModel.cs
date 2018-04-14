@@ -74,6 +74,6 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public string Roles { get; set; }
 
         [Display(Name = "CRU Supervisor")]
-        public string CRUSupervisor { get; set; }
+        public string CRUSupervisorName { get; set; }
     }
 }

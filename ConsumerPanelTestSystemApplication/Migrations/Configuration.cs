@@ -211,13 +211,13 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 new CRUMember { UserName = "crum1", Email ="crum1@g.com", FirstName ="CRUM1", LastName ="Member11",
                     PhoneNumber = "0509637789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
-                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember},
+                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 10},
                 new CRUMember { UserName = "crum2", Email ="crum2@g.com", FirstName ="CRUM2", LastName ="Member22",
                     PhoneNumber = "0508547789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
-                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember},
+                    Region = SupervisorRegion.EasternRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 9},
                 new CRUMember { UserName = "crum3", Email ="crum3@g.com", FirstName ="CRUM3", LastName ="Member33",
                     PhoneNumber = "0589047789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
-                    Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUMember},
+                    Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 11},
             };
 
             foreach (var crumember in crumembers)
@@ -307,6 +307,25 @@ namespace ConsumerPanelTestSystemApplication.Migrations
 
             BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
             context.SaveChanges();
+
+
+            // Add examples of questins.
+            var questionnairetypes = new List<QuestionnaireType>
+            {
+                new QuestionnaireType { QuestionnaireTypeName = "Performance Tracking"},
+                new QuestionnaireType { QuestionnaireTypeName = "Product Development"},
+                new QuestionnaireType { QuestionnaireTypeName = "Tracking Tests"},
+                new QuestionnaireType { QuestionnaireTypeName = "Product Assessment"}
+            };            
+            questionnairetypes.ForEach(s => context.QuestionnaireTypes.AddOrUpdate(p => p.QuestionnaireTypeName, s));
+            context.SaveChanges();
+
+             //new QuestionnaireType { QuestionText = "Would you purchase this product again?"},
+             //    new Question { QuestionText = "Did the product cause any rashes or discomforts?"},
+             //    new Question { QuestionText = "How much are you willing to pay for this product?"},
+             //    new Question { QuestionText = "What might make you purchase a competing product?"},
+             //    new Question { QuestionText = "Who goes and makes the purchase?"},
+             //    new Question { QuestionText = "For how long have you been purchasing this product?"},
 
         }
     }

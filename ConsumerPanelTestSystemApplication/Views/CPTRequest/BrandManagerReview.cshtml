@@ -1,10 +1,10 @@
 ﻿@model ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel
 
 @{
-    ViewBag.Title = "MarketingDirectorReview";
+    ViewBag.Title = "BrandManagerReview";
 }
 
-<h2>MarketingDirectorReview</h2>
+<h2>BrandManagerReview</h2>
 
 @using (Html.BeginForm())
 {
@@ -54,8 +54,8 @@
                 @Html.EditorFor(model => model.Justification, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Justification, "", new { @class = "text-danger" })
             </div>
-        </div>    
-     
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.BReview, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -65,29 +65,12 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.MReview, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MReview, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MReview, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LocationId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.SubmittedByName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SubmittedByName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SubmittedByName, "", new { @class = "text-danger" })
             </div>
         </div>
-
        
         <div class="form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -96,15 +79,7 @@
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BrandManagerName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BrandManagerName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BrandManagerName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+      
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

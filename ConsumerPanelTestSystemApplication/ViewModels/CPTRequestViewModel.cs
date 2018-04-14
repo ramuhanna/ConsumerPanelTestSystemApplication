@@ -47,13 +47,11 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public int? MDecisionId { get; set; }
 
-        [Display(Name = "Marketing Director")]
         public int? MReviewRequest { get; set; }
 
         [Display(Name = "Submitted By")]
         public int? BEmployeeId { get; set; }
-
-        [Display(Name = "Brand Manager")]
+       
         public int? BReviewRequest { get; set; }
 
         public string BrandManagerReviewRequest { get; set; }
@@ -75,7 +73,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Brand Manager Decision")]
         public bool? BReview { get; set; }
 
-        [Display(Name = "Marketing Director Decision")]
+        //[Display(Name = "Marketing Director Decision")]
         [StringLength(100)]
         public string MDecision { get; set; }
 
@@ -84,6 +82,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? MDecisionDate { get; set; }
 
+        [Display(Name = "Marketing Director Decision")]
         public bool? MReview { get; set; }
 
         //[Required]

@@ -208,6 +208,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\RequesterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,6 +238,7 @@
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Questionnaire.cs" />
     <Compile Include="Models\QuestionnaireType.cs" />
+    <Compile Include="Models\QuestionType.cs" />
     <Compile Include="Models\Requester.cs" />
     <Compile Include="Models\ResponsibleFor.cs" />
     <Compile Include="Models\SelectQuestionnaire.cs" />
@@ -247,6 +250,8 @@
     <Compile Include="ViewModels\CRUSupervisorViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LocationViewModel.cs" />
+    <Compile Include="ViewModels\QuestionnaireViewModel.cs" />
+    <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RequesterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -329,7 +334,7 @@
     <Content Include="Views\CRUSupervisor\Index.cshtml" />
     <Content Include="Views\CRUSupervisor\Delete.cshtml" />
     <Content Include="Views\CRUSupervisor\Edit.cshtml" />
-    <Content Include="Views\CPTRequest\MarketingDirectorIndex.cshtml" />
+    <Content Include="Views\CPTRequest\MarketingDirectorReviewIndex.cshtml" />
     <Content Include="Views\CPTRequest\RequesterCreate.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\CRUMember\Details.cshtml" />
@@ -344,9 +349,17 @@
     <Content Include="Views\CPTRequest\MarketingDirectorReview.cshtml" />
     <Content Include="Views\CPTRequest\BrandManagerReviewIndex.cshtml" />
     <Content Include="Views\Home\CPTRequests.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\CPTRequest\BrandManagerReview.cshtml" />
+    <Content Include="Views\CPTRequest\CPTCoordinatorIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Questionnaire\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

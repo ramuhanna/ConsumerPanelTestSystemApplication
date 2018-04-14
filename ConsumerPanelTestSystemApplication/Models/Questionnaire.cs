@@ -39,7 +39,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int ResponseQuantityRequired { get; set; }
 
-        public int Status { get; set; }
+        public QuestionnaireStatus Status { get; set; }
 
         public int MEmployeeID { get; set; }
 

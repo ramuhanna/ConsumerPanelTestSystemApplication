@@ -32,6 +32,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int? CRUSupervisorId { get; set; }
 
+        public string CRUSupervisorName { get; set; }
+
         public SupervisorRegion Region { get; set; }
 
         public virtual ICollection<AssignWork> AssignWorks { get; set; }

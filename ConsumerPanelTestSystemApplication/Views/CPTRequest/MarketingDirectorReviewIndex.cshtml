@@ -45,8 +45,13 @@
         </td>
         
         <td>           
-            @Html.ActionLink("View Request Details", "Details", new { id=item.Id })
-            @*@Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id })*@
+            @Html.ActionLink("View Request Details", "Details", new { id=item.Id }) |
+            
+            @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval)
+            {
+                @Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id })
+            }
+             
         </td>
     </tr>
 }

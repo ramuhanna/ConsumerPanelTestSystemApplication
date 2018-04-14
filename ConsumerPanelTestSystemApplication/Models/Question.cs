@@ -23,20 +23,23 @@ namespace ConsumerPanelTestSystemApplication.Models
         {
             ContainQuestions = new HashSet<ContainQuestion>();
             EnterResults = new HashSet<EnterResult>();
-            QuestionnaireTypes = new HashSet<QuestionnaireType>();
+            QuestionTypes = new HashSet<QuestionType>();
         }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int QuestionID { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(150)]
         public string QuestionText { get; set; }
+
+        //public QuestionnaireTypeEnum QuestionnaireType { get; set; }
 
         public virtual ICollection<ContainQuestion> ContainQuestions { get; set; }
 
         public virtual ICollection<EnterResult> EnterResults { get; set; }
 
-        public virtual ICollection<QuestionnaireType> QuestionnaireTypes { get; set; }
+        public virtual ICollection<QuestionType> QuestionTypes { get; set; }
+
     }
 }

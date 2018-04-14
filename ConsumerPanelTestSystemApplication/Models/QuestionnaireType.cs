@@ -19,33 +19,22 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("QuestionnaireType")]
     public partial class QuestionnaireType
     {
+        public QuestionnaireType()
+        {
+            QuestionTypes = new HashSet<QuestionType>();
+        }
+
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int QuestionnaireTypeID { get; set; }
 
-        public int QuestionID { get; set; }
+        public string QuestionnaireTypeName { get; set; }
 
-        [Column("QuestionnaireType")]
-        public int QuestionnaireType1 { get; set; }
-
-        public virtual Question Question { get; set; }
+        public virtual ICollection<QuestionType> QuestionTypes { get; set; }
     }
 
-    /// <summary>  
-    /// This enum contains the different types of questionnaires available for execution
-    /// </summary> 
 
-    public enum QuestionnaireTypeEnum
-    {
-        [Display(Name = "Performance Tracking")]
-        PerformanceTracking,
 
-        [Display(Name = "Product Development")]
-        ProductDevelopment,
 
-        [Display(Name = "Tracking Tests")]
-        TrackingTests,
 
-        [Display(Name = "Product Assessment")]
-        ProductAssessment
-    }
+    //}
 }
