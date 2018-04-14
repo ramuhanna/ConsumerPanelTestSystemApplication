@@ -91,7 +91,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.Questions.Add(question);
                 db.SaveChanges();
 
-                var questiontypes = db.QuestionTypes.ToList();
+                var questiontypes = new List<QuestionViewModel>
+                {
+
+                };
 
                 foreach (var item in questiontypes)
                 {
