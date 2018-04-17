@@ -64,12 +64,15 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: Questionnaire/Create
         public ActionResult Create(int? id)
         {
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+
             return View();
         }
 
         // POST: Questionnaire/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "CPT Coordinator")]
         public ActionResult Create(int? id, QuestionnaireViewModel model)
         {
             if (ModelState.IsValid)
@@ -81,27 +84,28 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     EndDate = model.EndDate,
                     Status = QuestionnaireStatus.BMQuestionnaireApproval,
                     ResponseQuantityRequired = model.ResponseQuantityRequired,
-                    //questionnairetype.
+                    QuestionnaireTypeId = model.QuestionnaireTypeId
                 };
 
                 // Save the created course to the database
                 db.Questionnaires.Add(questionnaire);
                 db.SaveChanges();
-                //var sq = new SelectQuestionnaire
-                //{
-                //    QuestionnaireID = questionnaire.QuestionnaireID,
-                //    RequestID = id,
-                //    CPTEmployeeID = User.Identity.GetUserId<int>()
-                //};
-                //db.SelectQuestionnaires.Add(sq);
-                //db.SaveChanges();
 
-                return RedirectToAction("Index");
+                var sq = new SelectQuestionnaire
+                {
+                    QuestionnaireID = questionnaire.QuestionnaireID,
+                    RequestID = id,
+                    CPTEmployeeID = User.Identity.GetUserId<int>()
+                };
+                db.SelectQuestionnaires.Add(sq);
+                db.SaveChanges();
+
+                return RedirectToAction("Create", "Survey", questionnaire.QuestionnaireTypeId);
             }
-            else
-            {
-                return View();
-            }
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View();
+
         }
 
         // GET: Questionnaire/Edit/5
@@ -126,6 +130,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 ResponseQuantityRequired = questionnaire.ResponseQuantityRequired
             };
 
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+
             return View(model);
         }
 
@@ -146,13 +152,14 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 questionnaire.StartDate = model.StartDate;
                 questionnaire.EndDate = model.EndDate;
                 questionnaire.ResponseQuantityRequired = model.ResponseQuantityRequired;
+                questionnaire.QuestionnaireTypeId = model.QuestionnaireTypeId;
 
                 db.Entry(questionnaire).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
             return View();
         }
 

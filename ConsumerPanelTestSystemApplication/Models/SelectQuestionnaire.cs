@@ -22,17 +22,17 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RequestID { get; set; }
+        public int? RequestID { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int QuestionnaireID { get; set; }
+        public int? QuestionnaireID { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CPTEmployeeID { get; set; }
+        public int? CPTEmployeeID { get; set; }
 
         public virtual CPTCoordinator CPTCoordinator { get; set; }
 

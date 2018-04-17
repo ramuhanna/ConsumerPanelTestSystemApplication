@@ -51,6 +51,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(200)]
         public string MComment { get; set; }
 
+        public int? QuestionnaireTypeId { get; set; }
+
         public virtual ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
 
         public virtual ICollection<AssignWork> AssignWorks { get; set; }

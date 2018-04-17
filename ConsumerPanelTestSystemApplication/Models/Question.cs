@@ -33,6 +33,14 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(150)]
         public string QuestionText { get; set; }
 
+        public ResponseType ResponseType { get; set; }
+
+        // Holds values of radio buttons
+        public int? SelectedAnswer { get; set; }
+
+        // Holds values of textboxes and textarea
+        public string Input { get; set; }
+
         //public QuestionnaireTypeEnum QuestionnaireType { get; set; }
 
         public virtual ICollection<ContainQuestion> ContainQuestions { get; set; }
@@ -41,5 +49,11 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public virtual ICollection<QuestionType> QuestionTypes { get; set; }
 
+    }
+
+    public enum ResponseType
+    {
+        RadioButton,
+        TextBox
     }
 }

@@ -212,6 +212,7 @@
     <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\RequesterController.cs" />
     <Compile Include="Controllers\SelectQuestionnaireController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -649,6 +650,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\SelectQuestionnaire\" />
+    <Folder Include="Views\Survey\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -15,7 +15,6 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int QuestionnaireTypeID { get; set; }
 
-
         public virtual Question Question { get; set; }
 
         public virtual QuestionnaireType QuestionnaireType { get; set; }

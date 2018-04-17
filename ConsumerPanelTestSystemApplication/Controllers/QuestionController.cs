@@ -132,86 +132,86 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
-        // GET: Question/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        //// GET: Question/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return HttpNotFound();
-            }
+        //    Question question = db.Questions.Find(id);
+        //    if (question == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            QuestionViewModel model = new QuestionViewModel
-            {
-                Id = question.QuestionID,
-                QuestionText = question.QuestionText
-            };
+        //    QuestionViewModel model = new QuestionViewModel
+        //    {
+        //        Id = question.QuestionID,
+        //        QuestionText = question.QuestionText
+        //    };
 
-            // Select all question types
-            var questionTypes = db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName);
+        //    // Select all question types
+        //    var questionTypes = db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName);
 
-            // Fill in the model with the question types
-            var questionstypes = db.QuestionTypes.ToList();
+        //    // Fill in the model with the question types
+        //    var questionstypes = db.QuestionTypes.ToList();
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        /// <summary>  
-        /// The Edit action allows the editing of a specific Question. 
-        /// </summary>
+        ///// <summary>  
+        ///// The Edit action allows the editing of a specific Question. 
+        ///// </summary>
 
-        // POST: Question/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, QuestionViewModel model)
-        {           
-            if (ModelState.IsValid)
-            {
-                var question = db.Questions.Find(id);
-                if (question == null)
-                {
-                    return HttpNotFound();
-                }
+        //// POST: Question/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, QuestionViewModel model)
+        //{           
+        //    if (ModelState.IsValid)
+        //    {
+        //        var question = db.Questions.Find(id);
+        //        if (question == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
 
-                // Edit the question info
-                question.QuestionText = model.QuestionText;
+        //        // Edit the question info
+        //        question.QuestionText = model.QuestionText;
 
-                db.Entry(question).State = EntityState.Modified;
-                db.SaveChanges();
+        //        db.Entry(question).State = EntityState.Modified;
+        //        db.SaveChanges();
 
-                // Check if no type is selected
-                if (model.QuestionTypes.All(x => x.Selected == false))
-                {
-                    ModelState.AddModelError("QuestionTypes", "Question should belong to at least one type.");
-                    return View(model);
-                }
+        //        // Check if no type is selected
+        //        if (model.QuestionTypes.All(x => x.Selected == false))
+        //        {
+        //            ModelState.AddModelError("QuestionTypes", "Question should belong to at least one type.");
+        //            return View(model);
+        //        }
 
-                QuestionType questionType;
-                foreach (var item in model.QuestionTypes)
-                {
-                    if (item.Selected)
-                    {
-                        questionType = new QuestionType
-                        {
-                            QuestionID = question.QuestionID, // from question above
-                            QuestionnaireTypeID = int.Parse(item.Value) // from the model
-                        };
+        //        QuestionType questionType;
+        //        foreach (var item in model.QuestionTypes)
+        //        {
+        //            if (item.Selected)
+        //            {
+        //                questionType = new QuestionType
+        //                {
+        //                    QuestionID = question.QuestionID, // from question above
+        //                    QuestionnaireTypeID = int.Parse(item.Value) // from the model
+        //                };
 
-                        db.QuestionTypes.Add(questionType);
-                    }
-                }
-                db.SaveChanges();
+        //                db.QuestionTypes.Add(questionType);
+        //            }
+        //        }
+        //        db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
 
         // GET: Question/Delete/5
         public ActionResult Delete(int? id)

@@ -25,6 +25,9 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public QuestionnaireStatus Status { get; set; }
 
+        [Display(Name = "Questionnaire Type")]
+        public int? QuestionnaireTypeId { get; set; }
+
         public int? MEmployeeID { get; set; }
 
         public int? BEmployeeID { get; set; }
