@@ -30,35 +30,37 @@
                 @Html.DisplayNameFor(model => model.RequestStatus)
             </th>
             <th>
-            @if (User.IsInRole("Requester"))
-            {
-                @Html.DisplayNameFor(model => model.ProductDivision)
-            }
+             @Html.DisplayNameFor(model => model.ProductDivision)    
             </th>
             <th></th>
         </tr>
     </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestStatus)
-        </td>
-        <td>
-        @if (User.IsInRole("Requester"))
-        {
-            @Html.DisplayFor(modelItem => item.ProductDivision)
-        }
-        </td>
-        <td>
-            @Html.ActionLink(" View Request Details", "SubmittedRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" }) 
-    </tr>
+    
+@foreach (var item in Model)
+{
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestStatus)
+            </td>
+           
+            <td>                
+                @Html.DisplayFor(modelItem => item.ProductDivision)
+            </td>
+
+
+            
+            <td>
+                @Html.ActionLink(" View Request Details", "SubmittedRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+        </tr>
+    </tbody>
 }
 
 </table>
@@ -72,7 +74,14 @@
     <script type="text/javascript">
       $(document).ready( function () {
           $('#submittedRequestsTable').DataTable();
-      } );
+      });
+
+      $('#employeesTable').dataTable({
+          "columnDefs": [
+            { "orderable": false, "targets": -1 }
+          ]
+      });
+
     </script>
 }
 

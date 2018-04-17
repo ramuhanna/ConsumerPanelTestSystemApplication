@@ -16,7 +16,166 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        @*<div class="form-group">
+        <fieldset class="fieldset-border">
+            <legend class="legend-border">Request Information</legend>
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.RequestTitle, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.RequestTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RequestTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div>
+                @Html.LabelFor(model => model.RequestTitle, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.RequestTitle)
+                @Html.HiddenFor(model => model.RequestTitle)
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.RequestDate, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.RequestDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RequestDate, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div>
+                @Html.LabelFor(model => model.RequestDate, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.RequestDate)
+                @Html.HiddenFor(model => model.RequestDate)
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.RequestStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.RequestStatus, htmlAttributes: new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.RequestStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.ProductDivision, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.ProductDivision, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProductDivision, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.SubmittedByName, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.SubmittedByName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SubmittedByName, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div>
+                @Html.LabelFor(model => model.SubmittedByName, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.SubmittedByName)
+                @Html.HiddenFor(model => model.SubmittedByName)
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.RequestStatus, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.RequestStatus)
+                @Html.HiddenFor(model => model.RequestStatus)
+            </div>
+
+        </fieldset>
+
+        <fieldset class="fieldset-border">
+            <legend class="legend-border">Request Details</legend>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div>
+                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.City)
+                @Html.HiddenFor(model => model.City)
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.ProductDivision, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.ProductDivision)
+                @Html.HiddenFor(model => model.ProductDivision)
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.Justification, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.Justification)
+                @Html.HiddenFor(model => model.Justification)
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Justification, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.Justification, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Justification, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+
+        </fieldset>
+
+        <fieldset class="fieldset-border">
+            <legend class="legend-border">Approval Information</legend>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.BrandManagerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BrandManagerName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BrandManagerName, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div>
+                @Html.LabelFor(model => model.BrandManagerName, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.BrandManagerName)
+                @Html.HiddenFor(model => model.BrandManagerName)
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.BReview, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BReview, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BReview, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div>
+                @Html.LabelFor(model => model.BReview, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.DisplayFor(model => model.BReview)
+                @Html.HiddenFor(model => model.BReview)
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.MReview, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                @Html.EditorFor(model => model.MReview)
+                @Html.HiddenFor(model => model.MReview)
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.MReview, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
+                <div class="control-label col-sm-pull-2">
+                    @Html.EditorFor(model => model.MReview, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MReview, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        </fieldset>    
+
+        <text> </text>
+    
+    @*<div class="form-group">
             @Html.LabelFor(model => model.RequestTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RequestTitle, new { htmlAttributes = new { @class = "form-control" } })
@@ -24,7 +183,7 @@
             </div>
         </div>*@
 
-        <div>
+        @*<div>
             @Html.LabelFor(model => model.RequestTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.DisplayFor(model => model.RequestTitle)    
             @Html.HiddenFor(model=>model.RequestTitle)        
@@ -68,17 +227,11 @@
                 @Html.EditorFor(model => model.BReview, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BReview, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
         
-        <div class="form-group">
-            @Html.LabelFor(model => model.MReview, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MReview, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MReview, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.LocationId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LocationId, new { htmlAttributes = new { @class = "form-control" } })
@@ -92,24 +245,16 @@
                 @Html.EditorFor(model => model.SubmittedByName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SubmittedByName, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
        
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BrandManagerName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BrandManagerName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BrandManagerName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

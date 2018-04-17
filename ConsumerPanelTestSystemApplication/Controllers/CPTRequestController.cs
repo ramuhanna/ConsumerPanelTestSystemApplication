@@ -32,10 +32,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <returns>CPTRequest, MarketingDirectorReviewIndex View</returns>
 
+        [Authorize(Roles = "Marketing Director")]
         // GET: CPTRequest
         public ActionResult MarketingDirectorReviewIndex()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Marketing Director"))
+            if (User.Identity.IsAuthenticated)
             {
                  var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval && b.BReview == true).ToList();
                 var model = new List<CPTRequestViewModel>();
@@ -68,10 +69,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <returns> CPTRequest, CPTCoordinatorIndex View</returns>
 
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: CPTCoordinatorIndex
         public ActionResult CPTCoordinatorIndex()
         {
-                var requests = db.CPTRequests.Where(b => (b.RequestStatus != RequestStatus.BMRequestApproval) && (b.RequestStatus != RequestStatus.MDRequestApproval)).ToList();
+                var requests = db.CPTRequests.Where(b => (b.RequestStatus != RequestStatus.BMRequestApproval) && (b.RequestStatus != RequestStatus.Rejected) && (b.RequestStatus != RequestStatus.MDRequestApproval)).ToList();
                 var model = new List<CPTRequestViewModel>();
 
                 foreach (var item in requests)
@@ -98,10 +100,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <returns>CPTRequest, Submitted Requests Index View</returns>
 
+        [Authorize(Roles = "Brand Manager, Requester")]
         // GET: CPTRequest
         public ActionResult SubmittedRequestsIndex()
         {
-            if (User.Identity.IsAuthenticated && (User.IsInRole("Brand Manager") || User.IsInRole("Requester")))
+            if (User.Identity.IsAuthenticated)
             {
                 var loggeduserid = User.Identity.GetUserId<int>();
                 var requests = db.CPTRequests.Where(d => d.SubmittedById == loggeduserid).ToList();
@@ -131,6 +134,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <returns>CPTRequest, Brand Manager Review Index View</returns>
 
+        [Authorize(Roles = "Brand Manager")]
         // GET: CPTRequest
         public ActionResult BrandManagerReviewIndex()
         {
@@ -162,12 +166,13 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
 
         /// <summary>  
-        /// The Details action is utilized in order to view the details of a specific CPT Request. 
+        /// The PendingRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
         /// </summary>
         /// <param name="id"></param>
         /// <returns>CPTRequest, Details view</returns>
 
-        // GET: CPTRequest/Details/5
+        [Authorize(Roles = "Marketing Director, Brand Manager")]
+        // GET: CPTRequest/PendingRequestsDetails/5
         public ActionResult PendingRequestsDetails(int? id)
         {
             if (id == null)
@@ -202,6 +207,53 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
+        /// <summary>  
+        /// The PendingRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>CPTRequest, Details view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
+        // GET: CPTRequest/PendingRequestsDetails/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CPTRequest request = db.CPTRequests.Find(id);
+            if (request == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new CPTRequestViewModel
+            {
+                Id = request.RequestID,
+                RequestTitle = request.RequestTitle,
+                ProductDivision = request.ProductDivision,
+                Justification = request.Justification,
+                LocationId = request.LocationId,
+                City = request.Location.City,
+                RequestDate = request.RequestDate ?? DateTime.Now.Date,
+                //REmployeeId = request.REmployeeId,
+                SubmittedById = request.SubmittedById,
+                RequestStatus = request.RequestStatus,
+                SubmittedByName = request.Employee.FullName
+            };
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            return View(model);
+        }
+
+        /// <summary>  
+        /// The SubmittedRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>CPTRequest, Details view</returns>
+
+        [Authorize(Roles = "Brand Manager, Requester")]
+        // GET: CPTRequest/SubmittedRequestsDetails/5
         public ActionResult SubmittedRequestsDetails(int? id)
         {
             if (id == null)
@@ -238,6 +290,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <returns>CPTRequest, Requester Create view</returns>
 
+        [Authorize(Roles = "Requester")]
         // GET: CPTRequest/RequesterCreate
         public ActionResult RequesterCreate()
         {
@@ -251,6 +304,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="model"></param>
         /// <returns>CPTRequest, Create view</returns>
 
+        [Authorize(Roles = "Requester")]
         // POST: CPTRequest/RequesterCreate
         [HttpPost]
         public ActionResult RequesterCreate(CPTRequestViewModel model)
@@ -308,6 +362,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <returns>CPTRequest, Brand Manager Create view</returns>
 
+        [Authorize(Roles = "Brand Manager")]
         // GET: CPTRequest/BrandManagerCreate
         public ActionResult BrandManagerCreate()
         {
@@ -321,11 +376,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="model"></param>
         /// <returns>CPTRequest, Brand Manager Create view</returns>
 
+        [Authorize(Roles = "Brand Manager")]
         // POST: CPTRequest/BrandManagerCreate
         [HttpPost]
         public ActionResult BrandManagerCreate(CPTRequestViewModel model)
         {
-            if (ModelState.IsValid && User.IsInRole("Brand Manager"))
+            if (ModelState.IsValid)
             {
                 // Create the request from the model.
                 var request = new CPTRequest
@@ -376,6 +432,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id"></param>
         /// <returns>CPTRequest, Marketing Director Review view</returns>
 
+        [Authorize(Roles = "Marketing Director")]
         // GET: CPTRequest/MarketingDirectorReview/5
         public ActionResult MarketingDirectorReview(int? id)
         {
@@ -421,6 +478,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // POST: CPTRequest/MarketingDirectorReview/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Marketing Director")]
         public ActionResult MarketingDirectorReview(int id, CPTRequestViewModel model)
         {
             if (ModelState.IsValid)
@@ -460,6 +518,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id"></param>
         /// <returns>CPTRequest, BrandManagerReview view</returns>
 
+        [Authorize(Roles = "Brand Manager")]
         // GET: CPTRequest/BrandManagerReview/5
         public ActionResult BrandManagerReview(int? id)
         {
@@ -499,6 +558,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="model"></param>
         /// <returns>CPTRequest, Marketing Director BrandManagerReview view</returns>
 
+        [Authorize(Roles = "Brand Manager")]
         // POST: CPTRequest/BrandManagerReview/5
         [HttpPost]
         [ValidateAntiForgeryToken]

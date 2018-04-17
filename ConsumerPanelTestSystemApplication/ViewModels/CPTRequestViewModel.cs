@@ -42,7 +42,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         //[Required]
         [StringLength(200)]
         [DataType (DataType.MultilineText)]
-        [Display(Name = "Request Justification")]
+        [Display(Name = "Justification")]
         public string Justification { get; set; }
 
         public int? MDecisionId { get; set; }

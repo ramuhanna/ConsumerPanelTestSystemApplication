@@ -11,7 +11,7 @@
         @Html.DisplayFor(model => model.RequestTitle)
     </h4>
     <hr />
-
+    
     <fieldset class="fieldset-border">
         <legend class="legend-border">Request Information</legend>
 
@@ -73,44 +73,7 @@
         </dl>
     </fieldset>
 
-    @if (Model.BReview != null && User.IsInRole("Requester"))
-    {
-        <fieldset class="fieldset-border">
-            <legend class="legend-border">Approval Information</legend>
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.BrandManagerName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BrandManagerName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.BReview)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BReview)
-                </dd>
-                }
-
-                @if (Model.MReview != null)
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.MReview)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.MReview)
-                    </dd>
-                }
-            </dl>
-        </fieldset>}
-
-
-    </div>
-
+</div>
 <p>
-    @Html.ActionLink("Back to Submitted Requests", "SubmittedRequestsIndex", null, new { @class = "btn btn-sm btn-default"})
+    @Html.ActionLink("Back to Approved Requests", "CPTCoordinatorIndex", null, new { @class = "btn btn-sm btn-default" })
 </p>

@@ -23,10 +23,10 @@ textarea {
     max-width: 280px;
 }
 
-.navbar-inverse {
+/*.navbar-inverse {
     background-color: #2e489e;
     border-color: #ffffff;
-}
+}*/
 
 @media screen and (prefers-reduced-motion: reduce) {
   .btn {
