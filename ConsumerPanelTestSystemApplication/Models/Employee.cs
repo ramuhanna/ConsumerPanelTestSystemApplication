@@ -92,7 +92,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         MarketingDirector,
 
         [Display(Name = "CPT Coordinator")]
-        CPTCoornidator,
+        CPTCoordinator,
 
         [Display(Name = "CRU Manager")]
         CRUManager,

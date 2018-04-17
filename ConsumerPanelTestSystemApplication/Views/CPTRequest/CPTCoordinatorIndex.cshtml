@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel>
 
 @{
-    ViewBag.Title = "CPTCoordinatorIndex";
+    ViewBag.Title = "CPT Coordinator Approved Requests";
 }
 
-<h2>CPTCoordinatorIndex</h2>
+<h2>Approved Requests</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -48,9 +45,8 @@
             @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>     
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-sm btn-info" })    
+            @Html.ActionLink("Create Questionnaire", "Create", "Questionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
         </td>
     </tr>
 }

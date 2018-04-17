@@ -41,9 +41,9 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public QuestionnaireStatus Status { get; set; }
 
-        public int MEmployeeID { get; set; }
+        public int? MEmployeeID { get; set; }
 
-        public int BEmployeeID { get; set; }
+        public int? BEmployeeID { get; set; }
 
         [StringLength(200)]
         public string BComment { get; set; }

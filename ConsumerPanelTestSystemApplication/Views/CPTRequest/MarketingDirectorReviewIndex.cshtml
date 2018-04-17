@@ -45,11 +45,11 @@
         </td>
         
         <td>           
-            @Html.ActionLink("View Request Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("View Request Details", "Details", new { id=item.Id }, new { @class = "btn btn-sm btn-info" })
             
             @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval)
             {
-                @Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id })
+                @Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
             }
              
         </td>

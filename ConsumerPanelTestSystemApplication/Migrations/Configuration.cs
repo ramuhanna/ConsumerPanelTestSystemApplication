@@ -114,7 +114,7 @@ namespace ConsumerPanelTestSystemApplication.Migrations
                 PhoneNumber = "0512345678",
                 Country = EmployeeCountry.Lebanon,
                 City = EmployeeCity.Beirut,
-                Type = EmployeeType.CPTCoornidator,
+                Type = EmployeeType.CPTCoordinator,
             };
             userManager.Create(cptUser, "123456");
 
@@ -320,12 +320,71 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             questionnairetypes.ForEach(s => context.QuestionnaireTypes.AddOrUpdate(p => p.QuestionnaireTypeName, s));
             context.SaveChanges();
 
-             //new QuestionnaireType { QuestionText = "Would you purchase this product again?"},
-             //    new Question { QuestionText = "Did the product cause any rashes or discomforts?"},
-             //    new Question { QuestionText = "How much are you willing to pay for this product?"},
-             //    new Question { QuestionText = "What might make you purchase a competing product?"},
-             //    new Question { QuestionText = "Who goes and makes the purchase?"},
-             //    new Question { QuestionText = "For how long have you been purchasing this product?"},
+            var questions = new List<Question>
+            {
+                new Question { QuestionText = "Did the product cause any rashes or discomforts?" },
+                new Question { QuestionText = "How much are you willing to pay for this product?" },
+                new Question { QuestionText = "What might make you purchase a competing product?" },
+                new Question { QuestionText = "Who goes and makes the purchase?" },
+                new Question { QuestionText = "For how long have you been purchasing this product?" },
+
+                new Question { QuestionText = "Which of the following household items do you use on a daily basis?" },
+                new Question { QuestionText = "What is the most important factor for you when purchasing a product like this?" },
+                new Question { QuestionText = "What is your name?" },
+                new Question { QuestionText = "What age group do you belong to?" },
+                new Question { QuestionText = "What was your impression of the product after the trial period?" },
+
+                new Question { QuestionText = "When choosing baby care products, what is the most important factor to you?" },
+                new Question { QuestionText = "How willing would you be to try a new product?" },
+                new Question { QuestionText = "What is your name?" },
+                new Question { QuestionText = "What age group do yuo belong to?" },
+                new Question { QuestionText = "How many children do you have?" },
+
+                new Question { QuestionText = "What is the age of your youngest child?" },
+                new Question { QuestionText = "Where are you most likely to purchase this product?" },
+                new Question { QuestionText = "What product do you currently use for this category?" },
+                new Question { QuestionText = "What do you know about this product?" },
+                new Question { QuestionText = "Where do you live?" },
+            };
+            questions.ForEach(s => context.Questions.AddOrUpdate(p => p.QuestionText, s));
+            context.SaveChanges();
+
+
+            // Seed question types.
+            var questiontypes = new List<QuestionType>
+            {
+                new QuestionType { QuestionID = 1, QuestionnaireTypeID = 3 },
+                new QuestionType { QuestionID = 1, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 2, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 2, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 3, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 3, QuestionnaireTypeID = 2 },
+
+                new QuestionType { QuestionID = 4, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 4, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 5, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 5, QuestionnaireTypeID = 4 },
+
+                new QuestionType { QuestionID = 6, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 6, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 7, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 7, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 7, QuestionnaireTypeID = 3 },
+                new QuestionType { QuestionID = 7, QuestionnaireTypeID = 4 },
+
+                new QuestionType { QuestionID = 8, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 8, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 8, QuestionnaireTypeID = 3 },
+                new QuestionType { QuestionID = 8, QuestionnaireTypeID = 4 },
+
+                new QuestionType { QuestionID = 9, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 9, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 9, QuestionnaireTypeID = 3 },
+                new QuestionType { QuestionID = 9, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 10, QuestionnaireTypeID = 3 }
+            };
+            questiontypes.ForEach(s => context.QuestionTypes.AddOrUpdate(p => new { p.QuestionID, p.QuestionnaireTypeID}, s));
+            context.SaveChanges();
 
         }
     }

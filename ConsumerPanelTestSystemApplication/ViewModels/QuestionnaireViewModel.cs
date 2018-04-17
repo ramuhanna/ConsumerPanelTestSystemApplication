@@ -10,14 +10,17 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 {
     public class QuestionnaireViewModel
     {
-        public int QuestionnaireID { get; set; }
+        public int Id { get; set; }
 
+        [Display(Name = "Start Date")]
         [Column(TypeName = "date")]
         public DateTime StartDate { get; set; }
 
+        [Display(Name = "End Date")]
         [Column(TypeName = "date")]
         public DateTime EndDate { get; set; }
 
+        [Display(Name = "Response Quantity Required")]
         public int ResponseQuantityRequired { get; set; }
 
         public QuestionnaireStatus Status { get; set; }

@@ -1,0 +1,106 @@
+﻿@model ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel
+
+@{
+    ViewBag.Title = "Request Details";
+}
+
+<h2> Requests Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.RequestTitle)
+</h4>
+    <hr />
+
+    <fieldset class="fieldset-border">
+        <legend class="legend-border">Login Information</legend>
+    
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestStatus)
+            </dd>
+        </dl>
+
+</fieldset>
+
+    
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDivision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDivision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Justification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Justification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        @if (Model.BReview != null && User.IsInRole("Requester"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.BrandManagerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BrandManagerName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BReview)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BReview)
+            </dd>
+        }
+
+        @if (Model.MReview != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.MReview)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MReview)
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Submitted Requests", "SubmittedRequestsIndex", null, new { @class = "btn btn-sm btn-default"})
+</p>

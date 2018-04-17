@@ -1,0 +1,82 @@
+﻿@model ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionnaireViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseQuantityRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseQuantityRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MEmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MEmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BEmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BEmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MComment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

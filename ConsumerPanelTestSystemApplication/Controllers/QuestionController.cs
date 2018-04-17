@@ -57,7 +57,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             {
                 Id = question.QuestionID,
                 QuestionText = question.QuestionText,
-                //QuestionnaireTypeName = question.questio
             };
 
             return View(model);
@@ -104,7 +103,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 // Check if no type is selected
                 if (model.QuestionTypes.All(x => x.Selected == false))
                 {
-                    ModelState.AddModelError("QuestionTypes", "Question Should belong to at least one type");
+                    ModelState.AddModelError("QuestionTypes", "Question should belong to at least one type.");
                     return View(model);
                 }
 
@@ -153,6 +152,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 QuestionText = question.QuestionText
             };
 
+            // Select all question types
+            var questionTypes = db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName);
+
+            // Fill in the model with the question types
+            var questionstypes = db.QuestionTypes.ToList();
+
             return View(model);
         }
 
@@ -164,7 +169,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, QuestionViewModel model)
-        {
+        {           
             if (ModelState.IsValid)
             {
                 var question = db.Questions.Find(id);
@@ -177,6 +182,29 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 question.QuestionText = model.QuestionText;
 
                 db.Entry(question).State = EntityState.Modified;
+                db.SaveChanges();
+
+                // Check if no type is selected
+                if (model.QuestionTypes.All(x => x.Selected == false))
+                {
+                    ModelState.AddModelError("QuestionTypes", "Question should belong to at least one type.");
+                    return View(model);
+                }
+
+                QuestionType questionType;
+                foreach (var item in model.QuestionTypes)
+                {
+                    if (item.Selected)
+                    {
+                        questionType = new QuestionType
+                        {
+                            QuestionID = question.QuestionID, // from question above
+                            QuestionnaireTypeID = int.Parse(item.Value) // from the model
+                        };
+
+                        db.QuestionTypes.Add(questionType);
+                    }
+                }
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

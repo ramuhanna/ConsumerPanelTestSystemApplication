@@ -1,9 +1,11 @@
 ﻿using ConsumerPanelTestSystemApplication.Models;
 using ConsumerPanelTestSystemApplication.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,17 +18,51 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: Questionnaire
         public ActionResult Index()
         {
-            return View();
+            var questionnaires = db.Questionnaires.ToList();
+
+            var model = new List<QuestionnaireViewModel>();
+            foreach (var item in questionnaires)
+            {
+                model.Add(new QuestionnaireViewModel
+                {
+                    Id = item.QuestionnaireID,
+                    StartDate = item.StartDate,
+                    EndDate = item.EndDate,
+                    ResponseQuantityRequired = item.ResponseQuantityRequired,
+                    Status = item.Status
+                });
+            }
+            return View(model);
         }
 
         // GET: Questionnaire/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                Status = questionnaire.Status
+            };
+
+            return View(model);
         }
 
         // GET: Questionnaire/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             return View();
         }
@@ -34,7 +70,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // POST: Questionnaire/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(QuestionnaireViewModel model)
+        public ActionResult Create(int? id, QuestionnaireViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -44,12 +80,21 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
                     Status = QuestionnaireStatus.BMQuestionnaireApproval,
-                    ResponseQuantityRequired = model.ResponseQuantityRequired
+                    ResponseQuantityRequired = model.ResponseQuantityRequired,
+                    //questionnairetype.
                 };
 
                 // Save the created course to the database
                 db.Questionnaires.Add(questionnaire);
                 db.SaveChanges();
+                //var sq = new SelectQuestionnaire
+                //{
+                //    QuestionnaireID = questionnaire.QuestionnaireID,
+                //    RequestID = id,
+                //    CPTEmployeeID = User.Identity.GetUserId<int>()
+                //};
+                //db.SelectQuestionnaires.Add(sq);
+                //db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -60,47 +105,104 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         // GET: Questionnaire/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            QuestionnaireViewModel model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired
+            };
+
+            return View(model);
         }
 
         // POST: Questionnaire/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, QuestionnaireViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var questionnaire = db.Questionnaires.Find(id);
+                if (questionnaire == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Edit the location info
+                questionnaire.StartDate = model.StartDate;
+                questionnaire.EndDate = model.EndDate;
+                questionnaire.ResponseQuantityRequired = model.ResponseQuantityRequired;
+
+                db.Entry(questionnaire).State = EntityState.Modified;
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View();
         }
 
         // GET: Questionnaire/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+            var model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                Status = questionnaire.Status
+            };
+
+            return View(model);
         }
 
         // POST: Questionnaire/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            db.Questionnaires.Remove(questionnaire);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+
+        //public ActionResult Survey (int? id)
+        //{
+        //    var q = db.Questionnaires.Find(id); // questionnaire id
+        //    q.questio                       // question type id
+        //                                    // questions
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Survey(int? id)
+        //{
+        //    return View();
+        //}
     }
 }

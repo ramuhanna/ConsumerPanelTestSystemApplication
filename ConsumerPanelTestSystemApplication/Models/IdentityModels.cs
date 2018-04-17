@@ -92,7 +92,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<BrandManager>()
                 .HasMany(e => e.Questionnaires)
-                .WithRequired(e => e.BrandManager)
+                .WithOptional(e => e.BrandManager)
                 .HasForeignKey(e => e.BEmployeeID)
                 .WillCascadeOnDelete(false);
 
@@ -236,7 +236,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<MarketingDirector>()
                 .HasMany(e => e.Questionnaires)
-                .WithRequired(e => e.MarketingDirector)
+                .WithOptional(e => e.MarketingDirector)
                 .HasForeignKey(e => e.MEmployeeID)
                 .WillCascadeOnDelete(false);
 
@@ -303,6 +303,10 @@ namespace ConsumerPanelTestSystemApplication.Models
             //        m.MapRightKey("LocationID");
             //    });
         }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel> QuestionnaireViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
 
         //HACK When Creating views do not specify the ApplicationDbContext
         //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }

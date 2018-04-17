@@ -121,6 +121,27 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Display(Name = "Pending Marketing Director Request Approval")]
         MDRequestApproval,
 
+        [Display(Name = "Pending Questionnaire Creation")]
+        QuestionnaireCreation,
+
+        [Display(Name = "Pending Brand Manager Questionnaire Approval")]
+        BMQuestionnaireApproval,
+
+        [Display(Name = "Pending Marketing Director Questionnaire Approval")]
+        MDQuestionnaireApproval,
+
+        [Display(Name = "Pending Questionnaire Execution")]
+        QuestionnaireExecution,
+
+        [Display(Name = "CRU Supervisor Result Verification")]
+        CRUSVerification,
+
+        [Display(Name = "CRU Manager Result Verification")]
+        CRUMVerification,
+
+        [Display(Name = "CPT Coordinator Result Verification")]
+        CPTCVerification,
+
         [Display(Name = "Pending Brand Manager Decision")]
         BMDecision,
 

@@ -37,7 +37,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         {
             if (User.Identity.IsAuthenticated && User.IsInRole("Marketing Director"))
             {
-                 var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval).ToList();
+                 var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval && b.BReview == true).ToList();
                 var model = new List<CPTRequestViewModel>();
 
                 foreach (var item in requests)
@@ -168,7 +168,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <returns>CPTRequest, Details view</returns>
 
         // GET: CPTRequest/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult PendingRequestsDetails(int? id)
         {
             if (id == null)
             {
@@ -194,6 +194,37 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 RequestStatus = request.RequestStatus,
                 BReviewRequest = request.BReviewRequest,  
                 SubmittedByName = request.Employee.FullName,
+                BReview = request.BReview,
+                BrandManagerName = db.BrandManagers.Find(request.BReviewRequest).FullName,
+            };
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            return View(model);
+        }
+
+        public ActionResult SubmittedRequestsDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CPTRequest request = db.CPTRequests.Find(id);
+            if (request == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new CPTRequestViewModel
+            {
+                Id = request.RequestID,
+                RequestTitle = request.RequestTitle,
+                ProductDivision = request.ProductDivision,
+                Justification = request.Justification,
+                LocationId = request.LocationId,
+                City = request.Location.City,
+                RequestDate = request.RequestDate ?? DateTime.Now.Date,
+                RequestStatus = request.RequestStatus,
+                BReviewRequest = request.BReviewRequest,
                 BReview = request.BReview,
                 BrandManagerName = db.BrandManagers.Find(request.BReviewRequest).FullName,
             };
@@ -406,7 +437,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
                 if (request.MReview == true)
                 {
-                    request.RequestStatus = RequestStatus.MDDecision;
+                    request.RequestStatus = RequestStatus.BMQuestionnaireApproval;
                 }
                 else if (request.MReview == false)
                 {

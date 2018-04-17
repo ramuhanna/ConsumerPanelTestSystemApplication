@@ -1,0 +1,201 @@
+﻿@model ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel
+
+@{
+    ViewBag.Title = "Request Details";
+}
+
+<h2> Request Details </h2>
+
+<div>
+    <h4>
+    @Html.DisplayFor(model => model.RequestTitle)
+</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDivision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDivision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmittedByName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmittedByName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Justification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Justification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestStatus)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.MDecisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MDecisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MReviewRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MReviewRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BEmployeeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BEmployeeId)
+        </dd>*@
+       
+        @*<dt>
+            @Html.DisplayNameFor(model => model.BDecisionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BDecisionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REmployeeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REmployeeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BDecisionMade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BDecisionMade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BDecisionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BDecisionDate)
+        </dd>       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MDecision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MDecision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MDecisionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MDecisionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MReview)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.LocationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocationId)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+@if (User.IsInRole("Marketing Director"))
+{       
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandManagerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandManagerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BReview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BReview)
+        </dd>
+
+}
+
+    </dl>
+</div>
+<p>
+@if (User.IsInRole("Marketing Director"))
+{
+    @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", null, new { @class = "btn btn-sm btn-default" })
+    
+    if (User.IsInRole("Marketing Director") && Model.MReview == null)
+    {
+        @Html.ActionLink("Review Request", "MarketingDirectorReview", new { id = Model.Id }, new { @class = "btn btn-sm btn-success" })
+    }
+}
+else
+{
+    @Html.ActionLink("Back to Pending Requests", "BrandManagerReviewIndex", null, new { @class = "btn btn-sm btn-default" })
+
+    if (User.IsInRole("Brand Manager") && Model.BReview == null)
+    {
+        @Html.ActionLink("Review Request", "BrandManagerReview", new { id = Model.Id }, new { @class = "btn btn-sm btn-success" })
+    }
+}
+
+</p>
