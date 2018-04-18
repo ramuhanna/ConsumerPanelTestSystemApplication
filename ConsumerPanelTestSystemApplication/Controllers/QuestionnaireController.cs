@@ -1,4 +1,10 @@
-﻿using ConsumerPanelTestSystemApplication.Models;
+﻿/*
+* Description: This controller contains the Index, Create, Edit and Details Actions for Questionnaire.
+* Author: R.M.
+* Due date: 18/04/2018
+*/
+
+using ConsumerPanelTestSystemApplication.Models;
 using ConsumerPanelTestSystemApplication.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
@@ -15,9 +21,16 @@ namespace ConsumerPanelTestSystemApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>  
+        /// The Index action is utilized in order to generate a list of the questionnaires. 
+        /// </summary>
+        /// <returns>Questionnaire, Index view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Questionnaire
         public ActionResult Index()
         {
+
             var questionnaires = db.Questionnaires.ToList();
 
             var model = new List<QuestionnaireViewModel>();
@@ -29,12 +42,23 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     StartDate = item.StartDate,
                     EndDate = item.EndDate,
                     ResponseQuantityRequired = item.ResponseQuantityRequired,
-                    Status = item.Status
+                    Status = item.Status,
+                    QuestionnaireTypeId = item.QuestionnaireTypeId
                 });
             }
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
             return View(model);
         }
 
+
+        /// <summary>  
+        /// The Details action allows the user to view the details of a questionnaire. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Questionnaire, Details view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Questionnaire/Details/5
         public ActionResult Details(int? id)
         {
@@ -55,12 +79,22 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 StartDate = questionnaire.StartDate,
                 EndDate = questionnaire.EndDate,
                 ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
-                Status = questionnaire.Status
+                Status = questionnaire.Status,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId,
             };
 
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
             return View(model);
         }
 
+
+        /// <summary>  
+        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Questionnaire, Create view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Questionnaire/Create
         public ActionResult Create(int? id)
         {
@@ -69,6 +103,15 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+
+        /// <summary>  
+        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns>Questionnaire, Create view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
         // POST: Questionnaire/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -109,6 +152,14 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
+
+        /// <summary>  
+        /// The Edit action allows the user to edit the questionnaire details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Questionnaire, Edit view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Questionnaire/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -128,7 +179,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 Id = questionnaire.QuestionnaireID,
                 StartDate = questionnaire.StartDate,
                 EndDate = questionnaire.EndDate,
-                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId
             };
 
             ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
@@ -136,6 +188,15 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
+
+        /// <summary>  
+        /// The Edit action allows the user to edit the questionnaire details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns>Questionnaire, Edit view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
         // POST: Questionnaire/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -149,7 +210,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     return HttpNotFound();
                 }
 
-                // Edit the location info
+                // Edit the questionnaire info
                 questionnaire.StartDate = model.StartDate;
                 questionnaire.EndDate = model.EndDate;
                 questionnaire.ResponseQuantityRequired = model.ResponseQuantityRequired;
@@ -164,40 +225,40 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        // GET: Questionnaire/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Questionnaire questionnaire = db.Questionnaires.Find(id);
-            if (questionnaire == null)
-            {
-                return HttpNotFound();
-            }
-            var model = new QuestionnaireViewModel
-            {
-                Id = questionnaire.QuestionnaireID,
-                StartDate = questionnaire.StartDate,
-                EndDate = questionnaire.EndDate,
-                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
-                Status = questionnaire.Status
-            };
+        //// GET: Questionnaire/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Questionnaire questionnaire = db.Questionnaires.Find(id);
+        //    if (questionnaire == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    var model = new QuestionnaireViewModel
+        //    {
+        //        Id = questionnaire.QuestionnaireID,
+        //        StartDate = questionnaire.StartDate,
+        //        EndDate = questionnaire.EndDate,
+        //        ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+        //        Status = questionnaire.Status
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        // POST: Questionnaire/Delete/5
-        [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Questionnaire questionnaire = db.Questionnaires.Find(id);
-            db.Questionnaires.Remove(questionnaire);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Questionnaire/Delete/5
+        //[HttpPost]
+        //[ActionName("Delete")]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Questionnaire questionnaire = db.Questionnaires.Find(id);
+        //    db.Questionnaires.Remove(questionnaire);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         //public ActionResult Survey (int? id)
         //{

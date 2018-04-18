@@ -64,6 +64,13 @@
 }
 
 </table>
+@if (User.IsInRole("Brand Manager"))
+{
+        @Ajax.ActionLink("Your Pending Requests", "BrandManagerReviewIndex", new AjaxOptions { UpdateTargetId = "BrandManagerReviewIndex", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+}
+
+...
+<div id="BrandManagerReviewIndex"></div>
 
 @section scripts
 {

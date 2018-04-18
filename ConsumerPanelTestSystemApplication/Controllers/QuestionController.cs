@@ -1,4 +1,10 @@
-﻿using ConsumerPanelTestSystemApplication.Models;
+﻿/*
+* Description: This controller contains the Index, Create and Details Actions for Questions.
+* Author: R.M.
+* Due date: 18/04/2018
+*/
+
+using ConsumerPanelTestSystemApplication.Models;
 using ConsumerPanelTestSystemApplication.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,9 +21,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>  
-        /// The Index action is utilized in order to generate a list of Questions. 
+        /// The Index action is utilized in order to generate a list of the questions. 
         /// </summary>
+        /// <returns>Question, Index view</returns>
 
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Question
         public ActionResult Index()
         {
@@ -29,39 +37,20 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 model.Add(new QuestionViewModel
                 {
                     Id = item.QuestionID,
-                    QuestionText = item.QuestionText
+                    QuestionText = item.QuestionText,
+                    ResponseType = item.ResponseType
                 });
             }
             return View(model);
         }
 
+
         /// <summary>  
-        /// The Details action is utilized in order to view the details of a specific question. 
+        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
         /// </summary>
+        /// <returns>Question, Create view</returns>
 
-        // GET: Question/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return HttpNotFound();
-            }
-
-            var model = new QuestionViewModel
-            {
-                Id = question.QuestionID,
-                QuestionText = question.QuestionText,
-            };
-
-            return View(model);
-        }
-
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Question/Create
         public ActionResult Create()
         {
@@ -80,9 +69,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The Create action allows for the addition of a new Question. 
+        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
         /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Question, Create view</returns>
 
+        [Authorize(Roles = "CPT Coordinator")]
         // POST: Question/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -93,7 +85,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 // Create the question from the model
                 var question = new Question
                 {
-                    QuestionText = model.QuestionText
+                    QuestionText = model.QuestionText,
+                    ResponseType = model.ResponseType
                 };
 
                 // Save the created question to the database
@@ -132,87 +125,13 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
-        //// GET: Question/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+        /// <summary>  
+        /// The Delete action is utilized in order to delete a question. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Question, Delete view</returns>
 
-        //    Question question = db.Questions.Find(id);
-        //    if (question == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    QuestionViewModel model = new QuestionViewModel
-        //    {
-        //        Id = question.QuestionID,
-        //        QuestionText = question.QuestionText
-        //    };
-
-        //    // Select all question types
-        //    var questionTypes = db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName);
-
-        //    // Fill in the model with the question types
-        //    var questionstypes = db.QuestionTypes.ToList();
-
-        //    return View(model);
-        //}
-
-        ///// <summary>  
-        ///// The Edit action allows the editing of a specific Question. 
-        ///// </summary>
-
-        //// POST: Question/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, QuestionViewModel model)
-        //{           
-        //    if (ModelState.IsValid)
-        //    {
-        //        var question = db.Questions.Find(id);
-        //        if (question == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-
-        //        // Edit the question info
-        //        question.QuestionText = model.QuestionText;
-
-        //        db.Entry(question).State = EntityState.Modified;
-        //        db.SaveChanges();
-
-        //        // Check if no type is selected
-        //        if (model.QuestionTypes.All(x => x.Selected == false))
-        //        {
-        //            ModelState.AddModelError("QuestionTypes", "Question should belong to at least one type.");
-        //            return View(model);
-        //        }
-
-        //        QuestionType questionType;
-        //        foreach (var item in model.QuestionTypes)
-        //        {
-        //            if (item.Selected)
-        //            {
-        //                questionType = new QuestionType
-        //                {
-        //                    QuestionID = question.QuestionID, // from question above
-        //                    QuestionnaireTypeID = int.Parse(item.Value) // from the model
-        //                };
-
-        //                db.QuestionTypes.Add(questionType);
-        //            }
-        //        }
-        //        db.SaveChanges();
-
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View();
-        //}
-
+        [Authorize(Roles = "CPT Coordinator")]
         // GET: Question/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -228,16 +147,20 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             var model = new QuestionViewModel
             {
                 Id = question.QuestionID,
-                QuestionText = question.QuestionText
+                QuestionText = question.QuestionText,
+                ResponseType = question.ResponseType
             };
 
             return View(model);
         }
 
         /// <summary>  
-        /// The Delete action removes a specific Question from the database. 
+        /// The Delete action is utilized in order to delete a question. 
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Question, Delete view</returns>
 
+        [Authorize(Roles = "CPT Coordinator")]
         // POST: Question/Delete/5
         [HttpPost]
         [ActionName("Delete")]

@@ -1,7 +1,7 @@
 ﻿/*
 * Description: This controller contains the Index, Create and Details Actions for CPTRequests.
 * Author: R.M.
-* Due date: 17/04/2018
+* Due date: 18/04/2018
 */
 
 using ConsumerPanelTestSystemApplication.Models;
@@ -164,6 +164,14 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
+
+        /// <summary>  
+        /// The BrandManagerReviewIndexPartial action is utilized in order to generate a list of the CPT Requests to be reviewed by the Brand Manager. 
+        /// </summary>
+        /// <returns>CPTRequest, Brand Manager Review Index Partial View</returns>
+
+        [Authorize(Roles = "Brand Manager")]
+        // GET: CPTRequest
         public PartialViewResult BrandManagerReviewIndexPartial()
         {
             var isBrandManager = User.IsInRole("Brand Manager");
@@ -193,10 +201,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
 
         /// <summary>  
-        /// The PendingRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
+        /// The PendingRequestsDetails action is utilized by the Marketing Director and Brand Manager in order to view the details of a specific CPT Request. 
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>CPTRequest, Details view</returns>
+        /// <returns>CPTRequest, PendingRequestsDetails view</returns>
 
         [Authorize(Roles = "Marketing Director, Brand Manager")]
         // GET: CPTRequest/PendingRequestsDetails/5
@@ -236,13 +244,13 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The PendingRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
+        /// The Details action is utilized by the CPT Coordinator in order to view the details of a specific CPT Request. 
         /// </summary>
         /// <param name="id"></param>
         /// <returns>CPTRequest, Details view</returns>
 
         [Authorize(Roles = "CPT Coordinator")]
-        // GET: CPTRequest/PendingRequestsDetails/5
+        // GET: CPTRequest/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -275,10 +283,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The SubmittedRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
+        /// The SubmittedRequestsDetails action is utilized by the Brand Manager and Requester users in order to view the details of a specific CPT Request. 
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>CPTRequest, Details view</returns>
+        /// <returns>CPTRequest, SubmittedRequestsDetails view</returns>
 
         [Authorize(Roles = "Brand Manager, Requester")]
         // GET: CPTRequest/SubmittedRequestsDetails/5
@@ -330,7 +338,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// The RequesterCreate action allows for the creation of a new CPT request by a requester user. 
         /// </summary>
         /// <param name="model"></param>
-        /// <returns>CPTRequest, Create view</returns>
+        /// <returns>CPTRequest, RequesterCreate view</returns>
 
         [Authorize(Roles = "Requester")]
         // POST: CPTRequest/RequesterCreate
@@ -584,7 +592,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="model"></param>
-        /// <returns>CPTRequest, Marketing Director BrandManagerReview view</returns>
+        /// <returns>CPTRequest, BrandManagerReview view</returns>
 
         [Authorize(Roles = "Brand Manager")]
         // POST: CPTRequest/BrandManagerReview/5

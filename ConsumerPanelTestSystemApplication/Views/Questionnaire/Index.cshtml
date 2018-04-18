@@ -1,14 +1,10 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel>
 
 @{
-    ViewBag.Title = "Questionnaire Index";
+    ViewBag.Title = "Questionnaire List";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Questionnaire List</h2>
 <table class="table">
     <tr>
         <th>
@@ -47,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.QuestionnaireTypeId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-sm btn-warning" }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-sm btn-warning" }) 
             @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-sm btn-info" })         </td>
     </tr>
 }

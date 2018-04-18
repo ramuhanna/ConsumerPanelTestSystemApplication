@@ -120,7 +120,7 @@
 }
 else
 {
-    @Html.ActionLink("Back to Pending Requests", "BrandManagerReviewIndex", null, new { @class = "btn btn-sm btn-default" })
+    @Html.ActionLink("Back to Pending Requests", "SubmittedRequestsIndex", null, new { @class = "btn btn-sm btn-default" })
 
     if (User.IsInRole("Brand Manager") && Model.BReview == null)
     {

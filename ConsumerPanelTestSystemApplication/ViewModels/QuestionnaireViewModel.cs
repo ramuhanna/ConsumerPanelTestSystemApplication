@@ -14,19 +14,25 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         [Display(Name = "Start Date")]
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "End Date")]
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Response Quantity Required")]
         public int ResponseQuantityRequired { get; set; }
 
         public QuestionnaireStatus Status { get; set; }
-
-        [Display(Name = "Questionnaire Type")]
+       
         public int? QuestionnaireTypeId { get; set; }
+         
+        [Display(Name = "Questionnaire Type")]
+        public string QuestionnaireTypeName { get; set; }
 
         public int? MEmployeeID { get; set; }
 

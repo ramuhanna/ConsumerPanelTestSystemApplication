@@ -32,9 +32,4 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<QuestionType> QuestionTypes { get; set; }
     }
 
-
-
-
-
-    //}
 }
