@@ -12,6 +12,15 @@ necessary forms ensure a seamless and refined process. In short, the application
 * Fast, high-quantity and synchronized data collection.
 * Rapid and accurate summary generation.
 
+## Users
+* Marketing Director
+* Brand Manager
+* Requester
+* CPT (Consumer Panel Test) Coordinator
+* CRU (Consumer Relations Unit) Manager
+* CRU Supervisor 
+* CRU Member
+
 ## Functions
 * Analysis of quantitative data.
 * Ability to enter and keep records of results, and use them for analysis purposes.
