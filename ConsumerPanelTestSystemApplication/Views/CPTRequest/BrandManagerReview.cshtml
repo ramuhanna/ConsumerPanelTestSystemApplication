@@ -1,21 +1,19 @@
 ﻿@model ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel
 
 @{
-    ViewBag.Title = "BrandManagerReview";
+    ViewBag.Title = "Review Request";
 }
 
-<h2>BrandManagerReview</h2>
+<h2>Review Request</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CPTRequestViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-
         
         <fieldset class="fieldset-border">
             <legend class="legend-border">Request Information</legend>
@@ -86,6 +84,8 @@
 
         </fieldset>
 
+        &nbsp;
+
         <fieldset class="fieldset-border">
             <legend class="legend-border">Request Details</legend>
             
@@ -126,7 +126,7 @@
 
 
         </fieldset>
-
+        &nbsp;
         <fieldset class="fieldset-border">
             <legend class="legend-border">Approval Information</legend>
 

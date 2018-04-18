@@ -631,7 +631,6 @@
     <Content Include="Views\CPTRequest\SubmittedRequestsIndex.cshtml" />
     <Content Include="Views\CPTRequest\MarketingDirectorReview.cshtml" />
     <Content Include="Views\CPTRequest\BrandManagerReviewIndex.cshtml" />
-    <Content Include="Views\Home\CPTRequests.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Question\Create.cshtml" />
@@ -646,6 +645,7 @@
     <Content Include="Views\Questionnaire\Index.cshtml" />
     <Content Include="Views\CPTRequest\SubmittedRequestsDetails.cshtml" />
     <Content Include="Views\CPTRequest\Details.cshtml" />
+    <Content Include="Views\Home\CPTRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel>
 
 @{
-    ViewBag.Title = "Request List";
+    ViewBag.Title = "Pending Requests";
 }
 
-<h2>Request List</h2>
+<h2>Pending Requests</h2>
+
+<h4>Requests to be reviewed.</h4>
 
 
 <table id="employeesTable" class="display" width="100%" cellspacing="0">
@@ -20,11 +22,12 @@
                 @Html.DisplayNameFor(model => model.ProductDivision)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequestStatus)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.SubmittedByName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestStatus)
+            </th>
+            <th></th>
         </tr>
     </thead>
 
@@ -49,11 +52,11 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("View Request Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
-
+                    @Html.ActionLink("View Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-xs btn-info" })
+                   &nbsp;
                     @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval)
                     {
-                        @Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
+                        @Html.ActionLink("Review Request", "MarketingDirectorReview", new { id = item.Id }, new { @class = "btn btn-xs btn-success" })
                     }
 
                 </td>

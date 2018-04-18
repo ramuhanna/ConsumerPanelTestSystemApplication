@@ -82,7 +82,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
-                    Status = QuestionnaireStatus.BMQuestionnaireApproval,
+                    Status = QuestionnaireStatus.QuestionnaireCreation,
                     ResponseQuantityRequired = model.ResponseQuantityRequired,
                     QuestionnaireTypeId = model.QuestionnaireTypeId
                 };
@@ -100,7 +100,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.SelectQuestionnaires.Add(sq);
                 db.SaveChanges();
 
-                return RedirectToAction("Create", "Survey", questionnaire.QuestionnaireTypeId);
+                //return RedirectToAction("Create", "Survey", questionnaire.QuestionnaireTypeId);
+                return RedirectToAction("Index");
             }
 
             ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");

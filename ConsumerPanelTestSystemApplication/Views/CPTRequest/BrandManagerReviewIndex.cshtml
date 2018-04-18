@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel>
 
 @{
-    ViewBag.Title = "Brand Manager Pending Requests";
+    ViewBag.Title = "Pending Requests";
 }
 
 <h2>Pending Requests</h2>
@@ -44,11 +44,11 @@
                     @Html.DisplayFor(modelItem => item.RequestStatus)
                 </td>
                 <td>
-                    @Html.ActionLink("View Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("View Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-xs btn-info" })
 
                     @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval)
                     {
-                        @Html.ActionLink("Review", "BrandManagerReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
+                        @Html.ActionLink("Review Request", "BrandManagerReview", new { id = item.Id }, new { @class = "btn btn-xs btn-success" })
                     }
                 </td>
             </tr>

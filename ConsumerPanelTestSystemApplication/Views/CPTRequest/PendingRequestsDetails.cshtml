@@ -12,171 +12,101 @@
 </h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RequestTitle)
-        </dt>
+        <fieldset class="fieldset-border">
+            <legend class="legend-border">Request Information</legend>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequestTitle)
-        </dd>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RequestTitle)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductDivision)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RequestTitle)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductDivision)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RequestDate)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SubmittedByName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RequestDate)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SubmittedByName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RequestStatus)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequestDate)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RequestStatus)
+                </dd>
+            </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequestDate)
-        </dd>
+        </fieldset>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Justification)
-        </dt>
+        <fieldset class="fieldset-border">
+            <legend class="legend-border">Request Details</legend>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductDivision)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Justification)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ProductDivision)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequestStatus)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Justification)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequestStatus)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Justification)
+                </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.MDecisionId)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MDecisionId)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+            </dl>
+        </fieldset>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MReviewRequest)
-        </dt>
+        @if (Model.BReview != null)
+        {
+            <fieldset class="fieldset-border">
+                <legend class="legend-border">Approval Information</legend>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BrandManagerName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MReviewRequest)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.BrandManagerName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BEmployeeId)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BReview)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BEmployeeId)
-        </dd>*@
-       
-        @*<dt>
-            @Html.DisplayNameFor(model => model.BDecisionId)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.BReview)
+                    </dd>
+                    
 
-        <dd>
-            @Html.DisplayFor(model => model.BDecisionId)
-        </dd>
+                    @if (Model.MReview != null)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.MReview)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.REmployeeId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REmployeeId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BDecisionMade)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BDecisionMade)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BDecisionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BDecisionDate)
-        </dd>       
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MDecision)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MDecision)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MDecisionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MDecisionDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MReview)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MReview)
-        </dd>*@
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.LocationId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LocationId)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-@if (User.IsInRole("Marketing Director"))
-{       
-        <dt>
-            @Html.DisplayNameFor(model => model.BrandManagerName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BrandManagerName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BReview)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BReview)
-        </dd>
-
-}
-
-    </dl>
+                        <dd>
+                            @Html.DisplayFor(model => model.MReview)
+                        </dd>
+                    }
+                </dl>
+            </fieldset>}
+   </dl>
 </div>
 <p>
 @if (User.IsInRole("Marketing Director"))

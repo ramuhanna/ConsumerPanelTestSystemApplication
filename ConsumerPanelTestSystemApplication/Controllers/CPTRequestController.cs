@@ -164,6 +164,33 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
+        public PartialViewResult BrandManagerReviewIndexPartial()
+        {
+            var isBrandManager = User.IsInRole("Brand Manager");
+            var user = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id;
+            var requests = db.CPTRequests.Where(b => b.BReviewRequest == user).ToList();
+
+            var model = new List<CPTRequestViewModel>();
+
+            foreach (var item in requests)
+            {
+
+                model.Add(new CPTRequestViewModel
+                {
+                    Id = item.RequestID,
+                    RequestTitle = item.RequestTitle,
+                    RequestDate = item.RequestDate,
+                    //ProductDivision = item.ProductDivision,
+                    RequestStatus = item.RequestStatus,
+                    SubmittedById = item.SubmittedById,
+                    SubmittedByName = item.Employee.FullName
+
+                });
+            }
+
+            return PartialView(model);
+        }
+
 
         /// <summary>  
         /// The PendingRequestsDetails action is utilized in order to view the details of a specific CPT Request. 
@@ -201,6 +228,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 SubmittedByName = request.Employee.FullName,
                 BReview = request.BReview,
                 BrandManagerName = db.BrandManagers.Find(request.BReviewRequest).FullName,
+                MReview = request.MReview
             };
 
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");

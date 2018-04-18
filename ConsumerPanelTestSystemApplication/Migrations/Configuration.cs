@@ -302,7 +302,10 @@ namespace ConsumerPanelTestSystemApplication.Migrations
                     ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = new DateTime(2018,1,21), SubmittedById = 7, LocationId = 7, BReview = true, BReviewRequest = 7},
                 new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
-                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,15), SubmittedById = 5, LocationId = 5, BReview = true, BReviewRequest = 5}
+                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,15), SubmittedById = 5, LocationId = 5, BReview = true, BReviewRequest = 5},
+
+                new CPTRequest { RequestTitle = "Sanita Giant Tissues Performance",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need to assess the performance and likability of the Giant Tissues in order to adjust product accordingly.", ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,28), SubmittedById = 15, LocationId = 5, BReview = true, BReviewRequest = 5, MReviewRequest = 2, MReview = true},
+                new CPTRequest { RequestTitle = "Bi-Annual Private Assessment",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need updated information on the product line's performance.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,2,28), SubmittedById = 17, LocationId = 1, BReview = true, BReviewRequest = 6, MReviewRequest = 2, MReview = true},
             };
 
             BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
@@ -322,29 +325,29 @@ namespace ConsumerPanelTestSystemApplication.Migrations
 
             var questions = new List<Question>
             {
-                new Question { QuestionText = "Did the product cause any rashes or discomforts?" },
-                new Question { QuestionText = "How much are you willing to pay for this product?" },
-                new Question { QuestionText = "What might make you purchase a competing product?" },
-                new Question { QuestionText = "Who goes and makes the purchase?" },
-                new Question { QuestionText = "For how many years have you been purchasing this product?" },
+                new Question { QuestionText = "Did the product cause any rashes or discomforts?", ResponseType = ResponseType.RadioButton },
+                new Question { QuestionText = "How much are you willing to pay for this product?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "What might make you purchase a competing product?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Who goes and makes the purchase?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "For how many years have you been purchasing this product?", ResponseType = ResponseType.TextBox },
 
-                new Question { QuestionText = "Do you use NAPCO products often? " },
-                new Question { QuestionText = "What is the most important factor for you when purchasing a product like this?" },
-                new Question { QuestionText = "What is your name?" },
-                new Question { QuestionText = "How old are you?" },
-                new Question { QuestionText = "What was your impression of the product after the trial period?" },
+                new Question { QuestionText = "Do you use NAPCO products often? " , ResponseType = ResponseType.RadioButton},
+                new Question { QuestionText = "What is the most important factor for you when purchasing a product like this?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "What is your name?", ResponseType = ResponseType.TextBox},
+                new Question { QuestionText = "How old are you?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "What was your impression of the product after the trial period?", ResponseType = ResponseType.TextBox },
 
-                new Question { QuestionText = "When choosing baby care products, is price an important factor for you?" },
-                new Question { QuestionText = "How willing would you be to try a new product?" },
-                new Question { QuestionText = "Do sales and discounts affect your purchase of a particular product?" },
-                new Question { QuestionText = "How strongly do you like this product?" },
-                new Question { QuestionText = "How many children do you have?" },
+                new Question { QuestionText = "When choosing baby care products, is price an important factor for you?", ResponseType = ResponseType.RadioButton },
+                new Question { QuestionText = "How willing would you be to try a new product?" , ResponseType = ResponseType.RadioButton},
+                new Question { QuestionText = "Do sales and discounts affect your purchase of a particular product?", ResponseType = ResponseType.RadioButton },
+                new Question { QuestionText = "How strongly do you like this product?", ResponseType = ResponseType.RadioButton },
+                new Question { QuestionText = "How many children do you have?", ResponseType = ResponseType.TextBox },
 
-                new Question { QuestionText = "What is the age of your youngest child?" },
-                new Question { QuestionText = "Where are you most likely to purchase this product?" },
-                new Question { QuestionText = "Are you willing to pay more for higher quality products?" },
-                new Question { QuestionText = "What do you know about this product?" },
-                new Question { QuestionText = "Where do you live?" },
+                new Question { QuestionText = "What is the age of your youngest child?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Where are you most likely to purchase this product?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Are you willing to pay more for higher quality products?", ResponseType = ResponseType.RadioButton },
+                new Question { QuestionText = "What do you know about this product?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Where do you live?", ResponseType = ResponseType.TextBox },
             };
             questions.ForEach(s => context.Questions.AddOrUpdate(p => p.QuestionText, s));
             context.SaveChanges();

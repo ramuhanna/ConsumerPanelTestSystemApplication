@@ -41,7 +41,18 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         public ActionResult CPTRequests()
         {
-            ViewBag.Message = "";
+            if (User.IsInRole("Marketing Director"))
+            {
+                RedirectToAction("MarketingDirectorReviewIndex");
+            }
+            else if (User.IsInRole("Brand Manager, Requester"))
+            {
+                RedirectToAction("SubmittedRequests");
+            }
+            else if (User.IsInRole("CPT Coordinator"))
+            {
+                RedirectToAction("CPTCoordinatorIndex");
+            }
             return View();
         }
 
