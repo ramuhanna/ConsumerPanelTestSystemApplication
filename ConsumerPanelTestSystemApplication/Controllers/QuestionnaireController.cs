@@ -143,8 +143,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.SelectQuestionnaires.Add(sq);
                 db.SaveChanges();
 
-                //return RedirectToAction("Create", "Survey", questionnaire.QuestionnaireTypeId);
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Survey", questionnaire.QuestionnaireTypeId);
+                //return RedirectToAction("Index");
             }
 
             ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
