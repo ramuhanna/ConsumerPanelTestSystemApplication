@@ -143,7 +143,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.SelectQuestionnaires.Add(sq);
                 db.SaveChanges();
 
-                return RedirectToAction("Create", "Survey", questionnaire.QuestionnaireTypeId);
+                return RedirectToAction("Survey", "Survey", new { id = sq.Questionnaire.QuestionnaireTypeId });
                 //return RedirectToAction("Index");
             }
 

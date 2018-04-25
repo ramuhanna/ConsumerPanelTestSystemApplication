@@ -18,7 +18,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id"></param> // The id used in the method is the QuestionnaireTypeId from the Questionnaire, in order to sort through the questions in the database.
         /// <returns>Survey, Index view</returns>
         // GET: Survey
-        public ActionResult Index(int? id)
+        public ActionResult Survey(int? id)
         {
             // Create the list of possible answers for questions
             // Each questions may have a different number of answers
@@ -33,44 +33,45 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 new AnswerViewModel { Id = 1, Text= "Strongly Disagree"},
             };
 
-            // Retreive QuestionId for questions with selected QuestionnaireTypeId
-            var questiontypes = from q in db.QuestionTypes
-                                where q.QuestionnaireTypeID == id
-                                select q.QuestionID;
+           
 
-            //// Retreive Questions based on questiontypes query???
-            //var questions = from q in db.Questions
-            //                where q.QuestionID == questiontypes
-            //                select q.QuestionId;
+            var questions = db.QuestionTypes.Where(p => p.QuestionnaireTypeID == id).Select(p => p.Question).ToList();
 
+            //var questions = new List<QuestionViewModel>
+
+            var model = new List<QuestionViewModel>();
 
             //Loop questions to retrieve relative response type.
             foreach (var item in questions)
             {
+
                 if (item.ResponseType == ResponseType.RadioButton)
-                {
-                    var model = new QuestionViewModel()
+                {               
+                    model.Add(new QuestionViewModel
                     {
                         Id = item.QuestionID,
                         QuestionText = item.QuestionText,
                         ResponseType = ResponseType.RadioButton,
                         PossibleAnswers = possibleAnswers
-                    };
+                    });
                 }
+
                 else if (item.ResponseType == ResponseType.RadioButton)
                 {
-                    var model = new QuestionViewModel()
+                    model.Add(new QuestionViewModel
                     {
                         Id = item.QuestionID,
                         QuestionText = item.QuestionText,
                         ResponseType = ResponseType.TextBox,
-                    };
+                    });
                 };
-            }
+            };              
 
-            var modell = new SurveyViewModel();
+            var model1 = new SurveyViewModel();
 
-            return View();
+            model1.Questions = model;
+
+            return View(model1);
         }
 
 
@@ -83,6 +84,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         //        // Save the questions with selected answers from the VM to your database
         //        foreach (var question in model.Questions)
         //        {
+        //            //new Response
         //            question.Id,
         //            question.SelectedAnswer,
         //            question.Input

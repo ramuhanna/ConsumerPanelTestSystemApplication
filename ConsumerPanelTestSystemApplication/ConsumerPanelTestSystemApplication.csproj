@@ -235,7 +235,6 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MarketingDirector.cs" />
-    <Compile Include="Models\ProductDivision.cs" />
     <Compile Include="Models\ProgressReport.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Questionnaire.cs" />
@@ -646,11 +645,11 @@
     <Content Include="Views\CPTRequest\Details.cshtml" />
     <Content Include="Views\Home\CPTRequests.cshtml" />
     <Content Include="Views\CPTRequest\BrandManagerReviewIndexPartial.cshtml" />
+    <Content Include="Views\Survey\Survey.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\SelectQuestionnaire\" />
-    <Folder Include="Views\Survey\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
