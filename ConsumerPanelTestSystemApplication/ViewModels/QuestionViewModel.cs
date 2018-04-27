@@ -27,7 +27,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public ResponseType ResponseType { get; set; }
 
         // Holds values of radio buttons
-        public int? SelectedAnswer { get; set; }
+        public int SelectedAnswer { get; set; }
 
         // Holds values of textboxes and textarea
         public string Input { get; set; }

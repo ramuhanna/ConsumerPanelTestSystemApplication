@@ -32,9 +32,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int AnswerID { get; set; }
+        public int ResponseId { get; set; }
 
-        public virtual Answer Answer { get; set; }
+        public virtual Response Response { get; set; }
 
         public virtual CRUMember CRUMember { get; set; }
 

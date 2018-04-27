@@ -126,6 +126,88 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
+        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
+        /// </summary>
+        /// <returns>Question, Create view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
+        // GET: Question/Create
+        public ActionResult QuestionCreate()
+        {
+            
+            var model = new QuestionViewModel();
+
+            // Select all question types
+            var questionTypes = db.QuestionnaireTypes.ToList().OrderBy(n => n.QuestionnaireTypeName);
+
+            // Fill in the model with the question types
+            foreach (var item in questionTypes)
+            {
+                model.QuestionTypes.Add(new SelectListItem { Value = item.QuestionnaireTypeID.ToString(), Text = item.QuestionnaireTypeName });
+            }
+
+            return View(model);
+        }
+
+        /// <summary>  
+        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Question, Create view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
+        // POST: Question/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult QuestionCreate(QuestionViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Create the question from the model
+                var question = new Question
+                {
+                    QuestionText = model.QuestionText,
+                    ResponseType = model.ResponseType
+                };
+
+                // Save the created question to the database
+                db.Questions.Add(question);
+                db.SaveChanges();
+
+                // Check if no type is selected
+                if (model.QuestionTypes.All(x => x.Selected == false))
+                {
+                    ModelState.AddModelError("QuestionTypes", "Question should belong to at least one type.");
+                    return View(model);
+                }
+
+                // Save data into QuestionType table
+                QuestionType questionType;
+                foreach (var item in model.QuestionTypes)
+                {
+                    if (item.Selected)
+                    {
+                        questionType = new QuestionType
+                        {
+                            QuestionID = question.QuestionID, // from question above
+                            QuestionnaireTypeID = int.Parse(item.Value) // from the model
+                        };
+
+                        db.QuestionTypes.Add(questionType);
+                    }
+                }
+                db.SaveChanges();
+
+                return RedirectToAction("CPTCoordinatorIndex", "CPTRequest");
+            }
+
+            // Something wrong if reached
+            return View(model);
+
+        }
+
+
+        /// <summary>  
         /// The Delete action is utilized in order to delete a question. 
         /// </summary>
         /// <param name="id"></param>

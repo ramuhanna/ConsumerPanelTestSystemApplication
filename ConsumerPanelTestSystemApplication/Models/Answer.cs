@@ -19,10 +19,10 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("Answer")]
     public partial class Answer
     {
-        public Answer()
-        {
-            EnterResults = new HashSet<EnterResult>();
-        }
+        //public Answer()
+        //{
+        //    EnterResults = new HashSet<EnterResult>();
+        //}
 
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -53,6 +53,5 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public virtual CRUSupervisor CRUSupervisor { get; set; }
 
-        public virtual ICollection<EnterResult> EnterResults { get; set; }
     }
 }

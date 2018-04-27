@@ -87,6 +87,38 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Marketing Director, Brand Manager")]
+        // GET: Questionnaire/ReviewDetails/5
+        public ActionResult ReviewDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            SelectQuestionnaire selectquestionnaire = db.SelectQuestionnaires.Where(s => s.RequestID == id).FirstOrDefault();
+
+            Questionnaire questionnaire = db.Questionnaires.Find(selectquestionnaire.QuestionnaireID);
+            if (questionnaire == null)
+            {
+                return HttpNotFound("There is no approved questionnaire created for this request.");
+            }
+
+            var model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                Status = questionnaire.Status,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId,
+                Location = selectquestionnaire.CPTRequest.Location
+            };
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View(model);
+        }
+
 
         /// <summary>  
         /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
@@ -125,7 +157,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
-                    Status = QuestionnaireStatus.QuestionnaireCreation,
+                    Status = QuestionnaireStatus.BMQuestionnaireApproval,
                     ResponseQuantityRequired = model.ResponseQuantityRequired,
                     QuestionnaireTypeId = model.QuestionnaireTypeId
                 };
@@ -133,7 +165,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 // Save the created course to the database
                 db.Questionnaires.Add(questionnaire);
                 db.SaveChanges();
-
+                
                 var sq = new SelectQuestionnaire
                 {
                     QuestionnaireID = questionnaire.QuestionnaireID,
@@ -143,13 +175,17 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.SelectQuestionnaires.Add(sq);
                 db.SaveChanges();
 
-                return RedirectToAction("Survey", "Survey", new { id = sq.Questionnaire.QuestionnaireTypeId });
+                if (questionnaire.Status == QuestionnaireStatus.BMQuestionnaireApproval)
+                {
+                    var request = db.CPTRequests.Where(r => r.RequestID == id).FirstOrDefault();
+                    request.RequestStatus = RequestStatus.BMQuestionnaireApproval;
+                }
+
+                return RedirectToAction("CreateSurvey", "Survey", new { id = sq.Questionnaire.QuestionnaireTypeId });
                 //return RedirectToAction("Index");
             }
-
             ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
             return View();
-
         }
 
 
@@ -225,53 +261,85 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
-        //// GET: Questionnaire/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Questionnaire questionnaire = db.Questionnaires.Find(id);
-        //    if (questionnaire == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    var model = new QuestionnaireViewModel
-        //    {
-        //        Id = questionnaire.QuestionnaireID,
-        //        StartDate = questionnaire.StartDate,
-        //        EndDate = questionnaire.EndDate,
-        //        ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
-        //        Status = questionnaire.Status
-        //    };
+        /// <summary>  
+        /// The Edit action allows the user to edit the questionnaire details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Questionnaire, Edit view</returns>
 
-        //    return View(model);
-        //}
+        [Authorize(Roles = "CPT Coordinator")]
+        // GET: Questionnaire/Edit/5
+        public ActionResult BrandManagerReviewQuestionnaire(int? id)
+        {
 
-        //// POST: Questionnaire/Delete/5
-        //[HttpPost]
-        //[ActionName("Delete")]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Questionnaire questionnaire = db.Questionnaires.Find(id);
-        //    db.Questionnaires.Remove(questionnaire);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        //public ActionResult Survey (int? id)
-        //{
-        //    var q = db.Questionnaires.Find(id); // questionnaire id
-        //    q.questio                       // question type id
-        //                                    // questions
-        //    return View();
-        //}
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
 
-        //[HttpPost]
-        //public ActionResult Survey(int? id)
-        //{
-        //    return View();
-        //}
+            QuestionnaireViewModel model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId
+            };
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+
+            return View(model);
+        }
+
+
+        /// <summary>  
+        /// The Edit action allows the user to edit the questionnaire details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns>Questionnaire, Edit view</returns>
+
+        [Authorize(Roles = "CPT Coordinator")]
+        // POST: Questionnaire/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BrandManagerReviewQuestionnaire(int? id, QuestionnaireViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Questionnaire questionnaire = db.Questionnaires.Find(id);
+                if (questionnaire == null)
+                {
+                    return HttpNotFound();
+                }
+               
+
+                // Edit the questionnaire info
+                questionnaire.StartDate = model.StartDate;
+                questionnaire.EndDate = model.EndDate;
+                questionnaire.ResponseQuantityRequired = model.ResponseQuantityRequired;
+                questionnaire.QuestionnaireTypeId = model.QuestionnaireTypeId;
+
+                db.Entry(questionnaire).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View();
+        }
+
+       
     }
 }

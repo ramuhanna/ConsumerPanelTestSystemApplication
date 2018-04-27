@@ -140,7 +140,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         {
             var isBrandManager = User.IsInRole("Brand Manager");
             var user = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id;
-            var requests = db.CPTRequests.Where(b => b.BReviewRequest == user).ToList();
+            var requests = db.CPTRequests.Where(b => b.BReviewRequest == user && b.SubmittedById != user).ToList();
 
             var model = new List<CPTRequestViewModel>();
 

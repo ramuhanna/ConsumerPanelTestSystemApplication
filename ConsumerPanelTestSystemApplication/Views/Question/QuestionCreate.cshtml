@@ -50,7 +50,7 @@
                     {
                         @Html.HiddenFor(m => Model.QuestionTypes[i].Value)
                         @Html.HiddenFor(m => Model.QuestionTypes[i].Text)
-                        @Html.CheckBoxFor(m => Model.QuestionTypes[i].Selected) 
+                        @Html.CheckBoxFor(m => Model.QuestionTypes[i].Selected)
                         <text>&nbsp;</text>
                         @Html.Label(Model.QuestionTypes[i].Text) <br />
                     }
@@ -68,5 +68,6 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-default" })
+    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-default" })*@
 </div>
+

@@ -44,5 +44,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [StringLength(200)]
         public string MComment { get; set; }
 
+        public Location Location { get; set; }
+
     }
 }

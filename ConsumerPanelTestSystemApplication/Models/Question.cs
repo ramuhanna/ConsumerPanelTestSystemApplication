@@ -24,6 +24,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             ContainQuestions = new HashSet<ContainQuestion>();
             EnterResults = new HashSet<EnterResult>();
             QuestionTypes = new HashSet<QuestionType>();
+            Responses = new HashSet<Response>();
         }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -48,6 +49,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<EnterResult> EnterResults { get; set; }
 
         public virtual ICollection<QuestionType> QuestionTypes { get; set; }
+
+        public virtual ICollection<Response> Responses { get; set; }
+
 
     }
 

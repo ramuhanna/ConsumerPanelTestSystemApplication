@@ -60,6 +60,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<QuestionnaireType> QuestionnaireTypes { get; set; }
         public virtual DbSet<Requester> Requesters { get; set; }
+        public virtual DbSet<Response> Responses { get; set; }
         public virtual DbSet<ResponsibleFor> ResponsibleFors { get; set; }
         public virtual DbSet<SelectQuestionnaire> SelectQuestionnaires { get; set; }
 
@@ -67,9 +68,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Answer>()
+            modelBuilder.Entity<Response>()
                 .HasMany(e => e.EnterResults)
-                .WithRequired(e => e.Answer)
+                .WithRequired(e => e.Response)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<BrandManager>()
@@ -304,9 +305,9 @@ namespace ConsumerPanelTestSystemApplication.Models
             //    });
         }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel> QuestionnaireViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel> QuestionnaireViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }
 
         //HACK When Creating views do not specify the ApplicationDbContext
         //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.CPTRequestViewModel> CPTRequestViewModels { get; set; }

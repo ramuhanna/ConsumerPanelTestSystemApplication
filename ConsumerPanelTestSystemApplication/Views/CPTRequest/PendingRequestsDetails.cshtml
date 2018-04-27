@@ -104,6 +104,7 @@
                             @Html.DisplayFor(model => model.MReview)
                         </dd>
                     }
+
                 </dl>
             </fieldset>}
    </dl>
@@ -127,5 +128,8 @@ else
         @Html.ActionLink("Review Request", "BrandManagerReview", new { id = Model.Id }, new { @class = "btn btn-sm btn-success" })
     }
 }
+
+    @Html.ActionLink("View Questionnaire Details", "ReviewDetails", "Questionnaire", new { id = Model.Id }, new { @class = "btn btn-sm btn-default" })
+
 
 </p>

@@ -26,6 +26,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             ContainQuestions = new HashSet<ContainQuestion>();
             ResponsibleFors = new HashSet<ResponsibleFor>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
+            Responses = new HashSet<Response>();
         }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -66,6 +67,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<ResponsibleFor> ResponsibleFors { get; set; }
 
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
+
+        public virtual ICollection<Response> Responses { get; set; }
+
     }
 
     /// <summary>  

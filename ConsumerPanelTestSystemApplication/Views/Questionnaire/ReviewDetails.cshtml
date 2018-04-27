@@ -1,0 +1,77 @@
+﻿@model ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel
+
+<div>
+    <h4>QuestionnaireViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseQuantityRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseQuantityRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireTypeName)
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.BEmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BEmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MComment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Ajax.ActionLink("View Questionnaire", "ViewQuestionnaire", new { id = Model.Id }, new AjaxOptions { UpdateTargetId = "BrandManagerReviewIndex", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+    @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }) |
+    @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", "CPTRequest")
+</p>
