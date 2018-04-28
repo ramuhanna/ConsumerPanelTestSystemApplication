@@ -34,6 +34,6 @@ necessary forms ensure a seamless and refined process. In short, the application
 
 ## Created With
 * Visual Studio - Version 15.5
-* MVC (version 5.2.3)
-* ASP.NET Entity Framework (version 6.1.3)
-* Microsoft Asp.Net Identity (version 2.2.1)
+* MVC - Version 5.2.3
+* ASP.NET Entity Framework - Version 6.1.3
+* Microsoft Asp.Net Identity - Version 2.2.1
