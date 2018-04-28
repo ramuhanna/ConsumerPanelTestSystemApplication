@@ -32,7 +32,8 @@ necessary forms ensure a seamless and refined process. In short, the application
 * Generation of progress reports between users.
 * Verification of result data on multiple levels.
 
-## Development Details
+## Created With
 * Visual Studio - Version 15.5
-* ASP.NET Framework - MVC 5.2.3
-* Microsoft SQL Server Management Studio - Version 14.0
+* MVC (version 5.2.3)
+* ASP.NET Entity Framework (version 6.1.3)
+* Microsoft Asp.Net Identity (version 2.2.1)
