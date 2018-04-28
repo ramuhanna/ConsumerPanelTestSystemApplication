@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseQuantityRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MEmployeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BEmployeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionnaireTitle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseQuantityRequired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionnaireTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MEmployeeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BEmployeeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionnaireTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+        </td>
+    </tr>
+}
+
+</table>

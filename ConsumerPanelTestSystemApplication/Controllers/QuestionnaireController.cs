@@ -51,6 +51,36 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "CRU Member")]
+        // GET: Questionnaire
+        public ActionResult CRUMemberIndex()
+        {
+            var questionnaires = db.Questionnaires.Where(q => q.Status == QuestionnaireStatus.QuestionnaireExecution ).ToList();
+
+            var model = new List<QuestionnaireViewModel>();
+            foreach (var item in questionnaires)
+            {
+                model.Add(new QuestionnaireViewModel
+                {
+                    Id = item.QuestionnaireID,
+                    StartDate = item.StartDate,
+                    EndDate = item.EndDate,
+                    ResponseQuantityRequired = item.ResponseQuantityRequired,
+                    Status = item.Status,
+                    QuestionnaireTypeId = item.QuestionnaireTypeId,
+                    QuestionnaireTypeName = item.QuestionnaireTypeName,
+                    QuestionnaireTitle = item.QuestionnaireTitle
+                });
+
+                var sq = db.SelectQuestionnaires.Where(s => s.QuestionnaireID == item.QuestionnaireID).FirstOrDefault();
+                var request = db.CPTRequests.Find(sq.RequestID);              
+
+            }
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View(model);
+        }
+
 
         /// <summary>  
         /// The Details action allows the user to view the details of a questionnaire. 
@@ -120,6 +150,39 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
 
+        [Authorize(Roles = "Marketing Director, Brand Manager")]
+        // GET: Questionnaire/ReviewDetailsPartial/5
+        public ActionResult ReviewDetailsPartial(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            SelectQuestionnaire selectquestionnaire = db.SelectQuestionnaires.Where(s => s.RequestID == id).FirstOrDefault();
+
+            Questionnaire questionnaire = db.Questionnaires.Find(selectquestionnaire.QuestionnaireID);
+            if (questionnaire == null)
+            {
+                return HttpNotFound("There is no approved questionnaire created for this request.");
+            }
+
+            var model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                Status = questionnaire.Status,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId,
+                Location = selectquestionnaire.CPTRequest.Location
+            };
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return PartialView(model);
+        }
+
+
         /// <summary>  
         /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
         /// </summary>
@@ -159,7 +222,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     EndDate = model.EndDate,
                     Status = QuestionnaireStatus.BMQuestionnaireApproval,
                     ResponseQuantityRequired = model.ResponseQuantityRequired,
-                    QuestionnaireTypeId = model.QuestionnaireTypeId
+                    QuestionnaireTypeId = model.QuestionnaireTypeId,
+                    QuestionnaireTypeName = model.QuestionnaireTypeName
                 };
 
                 // Save the created course to the database
@@ -178,10 +242,18 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 if (questionnaire.Status == QuestionnaireStatus.BMQuestionnaireApproval)
                 {
                     var request = db.CPTRequests.Where(r => r.RequestID == id).FirstOrDefault();
+                    request.QuestionnaireExist = true;
                     request.RequestStatus = RequestStatus.BMQuestionnaireApproval;
-                }
+                    db.Entry(request).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                return RedirectToAction("CreateSurvey", "Survey", new { id = sq.Questionnaire.QuestionnaireTypeId });
+                    questionnaire.QuestionnaireTitle = request.RequestTitle;
+                    db.Entry(questionnaire).State = EntityState.Modified;
+                    db.SaveChanges();
+                }               
+
+                return RedirectToAction("Details", "Questionnaire", new { id = questionnaire.QuestionnaireID});
+                //return RedirectToAction("CreateSurvey", "Survey", new { id = sq.Questionnaire.QuestionnaireTypeId });
                 //return RedirectToAction("Index");
             }
             ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");

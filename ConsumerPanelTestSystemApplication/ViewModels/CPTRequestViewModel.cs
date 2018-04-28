@@ -100,6 +100,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Responsible Brand Manager")]
         public string BrandManagerName { get; set; }
 
+        public Boolean QuestionnaireExist { get; set; }
+
 
     }
 }

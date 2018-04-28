@@ -85,6 +85,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public string BrandManagerName { get; set; }
 
+        public Boolean QuestionnaireExist { get; set; }
+
         public virtual BrandManager BrandManagerDecision { get; set; }
 
         public virtual BrandManager BrandManagerSubmitRequest { get; set; }

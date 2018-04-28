@@ -45,10 +45,8 @@
     <div class="form-group">
         <div>
             @*<input type="submit" value="Confirm" class="btn btn-default" />*@
-            @Html.ActionLink("Add New Question", "QuestionCreate", "Question", null,  new { @class = "btn btn-md btn-default" })
-            <div>
-                @Html.ActionLink("Back to Questionnaire Information", "Details", "Questionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-default" })
-            </div>
+            @Html.ActionLink("Add New Question", "QuestionCreate", "Question", null,  new { @class = "btn btn-md btn-primary" })
+            @Html.ActionLink("Confirm Questionnaire", "CPTCoordinatorIndex", "CPTRequest", null , new { @class = "btn btn-md btn-success" })
 
         </div>
     </div>

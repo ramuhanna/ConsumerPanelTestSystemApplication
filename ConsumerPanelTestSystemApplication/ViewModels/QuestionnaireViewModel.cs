@@ -46,5 +46,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public Location Location { get; set; }
 
+        public string QuestionnaireTitle { get; set; }
+
     }
 }

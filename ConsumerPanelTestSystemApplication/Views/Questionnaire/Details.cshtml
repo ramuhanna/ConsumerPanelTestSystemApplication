@@ -53,6 +53,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-sm btn-warning" }) |
-    @Html.ActionLink("Back to Questionnaire List", "Index", null, new { @class = "btn btn-sm btn-default" })
+    @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" }) 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-md btn-warning" }) 
+    @Html.ActionLink("Back to Request List", "CPTCoordinatorIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
 </p>

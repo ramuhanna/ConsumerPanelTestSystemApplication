@@ -652,6 +652,8 @@
     <Content Include="Views\Questionnaire\ReviewDetails.cshtml" />
     <Content Include="Views\Survey\CreateSurvey.cshtml" />
     <Content Include="Views\Question\QuestionCreate.cshtml" />
+    <Content Include="Views\Questionnaire\CRUMemberIndex.cshtml" />
+    <Content Include="Views\Questionnaire\ReviewDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

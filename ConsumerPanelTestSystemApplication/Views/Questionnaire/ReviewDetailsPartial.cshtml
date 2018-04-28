@@ -43,14 +43,6 @@
         <dd>
             @Html.DisplayFor(model => model.QuestionnaireTypeName)
         </dd>
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.BEmployeeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BEmployeeID)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.MEmployeeID)
@@ -58,6 +50,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.MEmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BEmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BEmployeeID)
         </dd>
 
         <dt>
@@ -76,12 +76,20 @@
             @Html.DisplayFor(model => model.MComment)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireTitle)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
- 
-    @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }) 
+
+    @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id })
 
     @if (User.IsInRole("Brand Manager"))
     {

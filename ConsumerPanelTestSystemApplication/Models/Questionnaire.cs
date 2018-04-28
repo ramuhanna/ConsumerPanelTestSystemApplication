@@ -54,6 +54,10 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int? QuestionnaireTypeId { get; set; }
 
+        public string QuestionnaireTypeName { get; set; }
+
+        public string QuestionnaireTitle { get; set; }
+
         public virtual ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
 
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
