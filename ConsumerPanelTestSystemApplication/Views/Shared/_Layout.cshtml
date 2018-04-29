@@ -24,11 +24,37 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>      
-                    <li>@Html.ActionLink("All Users", "AllUsers", "Home")</li>             
-                    <li>@Html.ActionLink("CPT Requests", "CPTRequests", "Home")</li>
-                    <li>@Html.ActionLink("Questionnaires", "Index", "Questionnaire")</li>
-                    <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>  
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("All Users", "AllUsers", "Home")</li>
+                    }
+                    
+                    @if (User.IsInRole("Marketing Director"))
+                    {
+                        <li>@Html.ActionLink("CPT Requests", "MarketingDirectorReviewIndex", "CPTRequest")</li>
+                    }
+                    else if (User.IsInRole("Brand Manager"))
+                    {
+                        <li>@Html.ActionLink("CPT Requests", "SubmittedRequestsIndex", "CPTRequest")</li>
+                    }
+                    else if (User.IsInRole("Requester"))
+                    {
+                        <li>@Html.ActionLink("CPT Requests", "SubmittedRequestsIndex", "CPTRequest")</li>
+                    }
+                    else if (User.IsInRole("CPT Coordinator"))
+                    {
+                        <li>@Html.ActionLink("CPT Requests", "CPTCoordinatorIndex", "CPTRequest")</li>
+                    }
+                    else if (User.IsInRole("CRU Supervisor"))
+                    {
+                        <li>@Html.ActionLink("Questionnaires", "CRUSupervisorIndex", "Questionnaire")</li>
+                    }
+                    else if (User.IsInRole("CRU Member"))
+                    {
+                        <li>@Html.ActionLink("Questionnaires", "CRUMemberIndex", "Questionnaire")</li>
+                    }
 
                 </ul>
                 @Html.Partial("_LoginPartial")

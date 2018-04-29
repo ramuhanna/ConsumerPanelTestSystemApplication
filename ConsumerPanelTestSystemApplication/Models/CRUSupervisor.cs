@@ -25,7 +25,9 @@ namespace ConsumerPanelTestSystemApplication.Models
             AssignWorks = new HashSet<AssignWork>();
             CRUMembers = new HashSet<CRUMember>();
             ProgressReports = new HashSet<ProgressReport>();
+            Questionnaires = new HashSet<Questionnaire>();
             ResponsibleFors = new HashSet<ResponsibleFor>();
+
         }
 
         //[Key]
@@ -34,7 +36,6 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public SupervisorRegion Region { get; set; }
         
-
         public virtual ICollection<Answer> Answers { get; set; }
 
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
@@ -44,6 +45,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         //public virtual Employee Employee { get; set; }
 
         public virtual ICollection<ProgressReport> ProgressReports { get; set; }
+
+        public virtual ICollection<Questionnaire> Questionnaires { get; set; }
 
         public virtual ICollection<ResponsibleFor> ResponsibleFors { get; set; }
         

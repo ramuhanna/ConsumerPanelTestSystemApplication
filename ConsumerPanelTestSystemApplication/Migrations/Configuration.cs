@@ -266,19 +266,21 @@ namespace ConsumerPanelTestSystemApplication.Migrations
                 }
             }
 
-            //HACK Use new DateTime() instead of DateTime.Parse()
             // Add CPT Requests from Requesters to the database.
             var requests = new List<CPTRequest>
             {
                 new CPTRequest { RequestTitle = "Feminine Care Product Campaign",  RequestStatus = RequestStatus.BMRequestApproval,
                     Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
                     ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,1,5), SubmittedById = 15, LocationId = 1, BReviewRequest = 6},
+
                 new CPTRequest { RequestTitle = "Bambi Jumbo Launch",  RequestStatus = RequestStatus.BMRequestApproval, SubmittedById = 15,
                     Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
                     ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = new DateTime(2018,02,10), LocationId = 2, BReviewRequest = 8},
+
                 new CPTRequest { RequestTitle = "Competition Analysis",  RequestStatus = RequestStatus.BMRequestApproval,
                     Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
                     ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = new DateTime(2018,01,21), SubmittedById = 17, LocationId = 3, BReviewRequest = 7},
+
                 new CPTRequest { RequestTitle = "Sanita Tissue Annual Assessment",  RequestStatus = RequestStatus.BMRequestApproval,
                     Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
                     ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,03,15), SubmittedById = 16, LocationId = 4, BReviewRequest = 5}
@@ -294,25 +296,32 @@ namespace ConsumerPanelTestSystemApplication.Migrations
                 new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
                     ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,1,5), SubmittedById = 6, LocationId = 3, BReview = true, BReviewRequest = 6},
+
                 new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
                     ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = new DateTime(2018,2,10), SubmittedById = 8, LocationId = 1, BReview = true, BReviewRequest = 8},
+
                 new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
                     ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = new DateTime(2018,1,21), SubmittedById = 7, LocationId = 7, BReview = true, BReviewRequest = 7},
+
                 new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
                     ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,15), SubmittedById = 5, LocationId = 5, BReview = true, BReviewRequest = 5},
 
+                // Add CPT Requests for CPT Coordinator Index.
                 new CPTRequest { RequestTitle = "Sanita Giant Tissues Performance",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need to assess the performance and likability of the Giant Tissues in order to adjust product accordingly.", ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,28), SubmittedById = 15, LocationId = 5, BReview = true, BReviewRequest = 5, MReviewRequest = 2, MReview = true},
+
                 new CPTRequest { RequestTitle = "Bi-Annual Private Assessment",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need updated information on the product line's performance.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,2,28), SubmittedById = 17, LocationId = 1, BReview = true, BReviewRequest = 6, MReviewRequest = 2, MReview = true},
+
+                 new CPTRequest { RequestTitle = "New Product Market Research",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need some preliminary research on the market's acceptance of the new product line.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,4,28), SubmittedById = 15, LocationId = 3, BReview = true, BReviewRequest = 6, MReviewRequest = 2, MReview = true},
             };
 
             BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
             context.SaveChanges();
 
 
-            // Add examples of questins.
+            // Add questionnaire types.
             var questionnairetypes = new List<QuestionnaireType>
             {
                 new QuestionnaireType { QuestionnaireTypeName = "Performance Tracking"},
@@ -323,6 +332,7 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             questionnairetypes.ForEach(s => context.QuestionnaireTypes.AddOrUpdate(p => p.QuestionnaireTypeName, s));
             context.SaveChanges();
 
+            // Add questions.
             var questions = new List<Question>
             {
                 new Question { QuestionText = "Did the product cause any rashes or discomforts?", ResponseType = ResponseType.RadioButton },
@@ -353,7 +363,7 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             context.SaveChanges();
 
 
-            // Seed question types.
+            // Add questions to question types.
             var questiontypes = new List<QuestionType>
             {
                 new QuestionType { QuestionID = 1, QuestionnaireTypeID = 3 },
@@ -388,6 +398,43 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             };
             questiontypes.ForEach(s => context.QuestionTypes.AddOrUpdate(p => new { p.QuestionID, p.QuestionnaireTypeID}, s));
             context.SaveChanges();
+
+
+            //// Add questionnaires for CPT Requests.
+            //var questionnaires = new List<Questionnaire>
+            //{
+            //    new Questionnaire { StartDate = new DateTime (2018,4,30), EndDate = new DateTime(2018,6,20) , ResponseQuantityRequired = 250, QuestionnaireTypeId = 3, Status = QuestionnaireStatus.BMQuestionnaireApproval},
+
+            //    new Questionnaire { StartDate = new DateTime (2018,5,10), EndDate = new DateTime(2018,5,30) , ResponseQuantityRequired = 150, QuestionnaireTypeId = 1, Status = QuestionnaireStatus.BMQuestionnaireApproval},
+                
+            //};
+            //questionnaires.ForEach(p => context.Questionnaires.AddOrUpdate(q => q.StartDate, p));
+            //context.SaveChanges();
+
+            ////Add select questionnaires to link questionnaires to requests.
+
+            //var selectquestionnaires = new List<SelectQuestionnaire>
+            //{
+            //     new SelectQuestionnaire { RequestID = 11, QuestionnaireID = 1, CPTEmployeeID = 3},
+
+            //     new SelectQuestionnaire { RequestID = 9, QuestionnaireID = 2, CPTEmployeeID = 3}
+            //};
+
+            //selectquestionnaires.ForEach(p => context.SelectQuestionnaires.AddOrUpdate(q => q.RequestID, p));
+            //context.SaveChanges();
+
+            //// Update requests with questionnaire information.
+            //var request9 = requests.Where(r => r.RequestID == 9).First();
+            //request9.QuestionnaireId = 2;
+            //request9.QuestionnaireExist = true;
+            //request9.RequestStatus = RequestStatus.BMQuestionnaireApproval;
+            //context.SaveChanges();
+
+            //var request11 = requests.Where(r => r.RequestID == 11).First();
+            //request11.QuestionnaireId = 1;
+            //request11.QuestionnaireExist = true;
+            //request11.RequestStatus = RequestStatus.BMQuestionnaireApproval;
+            //context.SaveChanges();
 
         }
     }

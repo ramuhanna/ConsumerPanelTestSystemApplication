@@ -24,6 +24,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         {
             AssignWorks = new HashSet<AssignWork>();
             EnterResults = new HashSet<EnterResult>();
+            Questionnaires = new HashSet<Questionnaire>();
             Responses = new HashSet<Response>();
         }
 
@@ -43,7 +44,9 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         //public virtual Employee Employee { get; set; }
 
-        public virtual ICollection<EnterResult> EnterResults { get; set; } 
+        public virtual ICollection<EnterResult> EnterResults { get; set; }
+
+        public virtual ICollection<Questionnaire> Questionnaires { get; set; }
 
         public virtual ICollection<Response> Responses { get; set; }
 

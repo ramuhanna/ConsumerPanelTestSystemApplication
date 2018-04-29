@@ -1,7 +1,13 @@
 ﻿@model ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel
 
+
+@{
+    ViewBag.Title = "Questionnaire Details";
+}
+
+<h2>Questionnaire Details</h2>
+
 <div>
-    <h4>QuestionnaireViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,37 +35,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuestionnaireTypeId)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.QuestionnaireTypeName)
         </dd>
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.BEmployeeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BEmployeeID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MEmployeeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MEmployeeID)
-        </dd>
-
+              
+       @if (Model.BComment != null)
+       {
         <dt>
             @Html.DisplayNameFor(model => model.BComment)
         </dt>
@@ -67,28 +51,44 @@
         <dd>
             @Html.DisplayFor(model => model.BComment)
         </dd>
+       }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MComment)
-        </dt>
+        @if (Model.MComment != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.MComment)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MComment)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MComment)
+            </dd>
+        }
+       
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
- 
-    @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }) 
+
+    @if (User.IsInRole("Brand Manager") && Model.BReviewQuestionnaire != true && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.BMQuestionnaireApproval)
+    {
+        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
+        @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+
+    }
+    else if (User.IsInRole("Marketing Director") && Model.BReviewQuestionnaire != true && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
+    {
+        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
+        
+        @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+    }
+
 
     @if (User.IsInRole("Brand Manager"))
     {
-        @Html.ActionLink("Back to Pending Requests", "SubmittedRequests", "CPTRequest")
+        @Html.ActionLink("Back to Pending Requests", "SubmittedRequestsIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
     }
     else
     {
-        @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", "CPTRequest")
+        @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
     }
 </p>

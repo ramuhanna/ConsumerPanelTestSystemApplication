@@ -1,13 +1,12 @@
 ﻿@model ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Questionnaire Details";
 }
 
-<h2>Details</h2>
+<h2>Questionnaire Details</h2>
 
 <div>
-    <h4>QuestionnaireViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,11 +34,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeId)
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.QuestionnaireTypeId)
+            @Html.DisplayFor(model => model.QuestionnaireTypeName)
         </dd>
 
         <dt>
@@ -48,12 +47,37 @@
 
         <dd>
             @Html.DisplayFor(model => model.Status)
-        </dd>        
+        </dd>   
+        
+        @if (Model.BComment != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.BComment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BComment)
+            </dd>
+        }
+
+        @if (Model.MComment != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.MComment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MComment)
+            </dd>
+        }     
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" }) 
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-md btn-warning" }) 
+    @if (Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.QuestionnaireCreation || Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.BMQuestionnaireApproval || Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-md btn-warning" })
+    }
     @Html.ActionLink("Back to Request List", "CPTCoordinatorIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
 </p>

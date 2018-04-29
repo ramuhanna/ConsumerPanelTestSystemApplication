@@ -52,43 +52,48 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("View Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-xs btn-info" })
+                    @Html.ActionLink("Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
                    &nbsp;
                     @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval)
                     {
-                        @Html.ActionLink("Review Request", "MarketingDirectorReview", new { id = item.Id }, new { @class = "btn btn-xs btn-success" })
+                        @Html.ActionLink("Review Request", "MarketingDirectorReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
                     }
 
-                </td>
-            </tr>
+                    @if (item.QuestionnaireExist == true && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMQuestionnaireApproval)
+                    {
+                        @Html.ActionLink("Questionnaire Details", "ReviewDetails", "Questionnaire", new { id = item.QuestionnaireId }, new { @class = "btn btn-sm btn-info" })
+                    }
+
+</td>
+    </tr>
         }
     </tbody>
 
-</table>
+ </table>
 
-@section scripts
-{
-    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.scroller.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
+                        @section scripts
+                        {
+                            <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+                            <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.scroller.min.js")"></script>
+                            <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
 
-    <script type="text/javascript">
-      $(document).ready( function () {
-          $('#employeesTable').DataTable(
-              {
-                  "columnDefs": [
-            { "orderable": true, "targets": -1 }
-                  ]
-              });
-      });
+                            <script type="text/javascript">
+                              $(document).ready( function () {
+                                  $('#employeesTable').DataTable(
+                                      {
+                                          "columnDefs": [
+                                    { "orderable": true, "targets": -1 }
+                                          ]
+                                      });
+                              });
 
 
-    </script>
-}
+                            </script>
+                        }
 
-@section styles
-{
-    <link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
-}
+                        @section styles
+                        {
+                            <link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />
+                            <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
+                            <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
+                        }

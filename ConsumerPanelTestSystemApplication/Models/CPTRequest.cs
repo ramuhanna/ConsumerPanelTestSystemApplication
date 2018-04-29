@@ -87,6 +87,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public Boolean QuestionnaireExist { get; set; }
 
+        public int? QuestionnaireId { get; set; }
+
         public virtual BrandManager BrandManagerDecision { get; set; }
 
         public virtual BrandManager BrandManagerSubmitRequest { get; set; }
@@ -98,6 +100,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual MarketingDirector MarketingDirectorReviewRequest { get; set; }
 
         public virtual Requester Requester { get; set; }
+
+        public virtual Questionnaire Questionnaire { get; set; }
 
         public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
 

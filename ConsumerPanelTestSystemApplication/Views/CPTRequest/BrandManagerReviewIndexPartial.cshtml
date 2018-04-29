@@ -158,6 +158,29 @@
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
+
+        <td>
+            @Html.ActionLink("View Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+
+            @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval)
+            {
+                @Html.ActionLink("Review Request", "BrandManagerReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
+            }
+
+            @if (item.QuestionnaireExist == true)
+                {
+                    if ((item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval) && (item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval) && (item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation))
+                    {
+                    @Html.ActionLink("Questionnaire Details", "ReviewDetails", "Questionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+                }
+                @*else if (User.IsInRole("Marketing Director") && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMQuestionnaireApproval)
+                {
+                    @Html.ActionLink("Questionnaire Details", "ReviewDetails", "Questionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+                }*@
+
+            }
+        </td>
+
     </tr>
 }
 

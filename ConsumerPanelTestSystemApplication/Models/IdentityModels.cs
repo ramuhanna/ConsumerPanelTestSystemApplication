@@ -105,7 +105,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<CPTCoordinator>()
                 .HasMany(e => e.SelectQuestionnaires)
-                .WithRequired(e => e.CPTCoordinator)
+                .WithOptional(e => e.CPTCoordinator)
                 .HasForeignKey(e => e.CPTEmployeeID)
                 .WillCascadeOnDelete(false);
 
@@ -121,7 +121,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<CPTRequest>()
                 .HasMany(e => e.SelectQuestionnaires)
-                .WithRequired(e => e.CPTRequest)
+                .WithOptional(e => e.CPTRequest)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CRUManager>()
@@ -149,7 +149,13 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CRUMember>()
-                .HasMany(e => e.EnterResults)
+                .HasMany(e => e.Questionnaires)
+                .WithRequired(e => e.CRUMember)
+                .HasForeignKey(e => e.CRUMEmployeeID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CRUMember>()
+                .HasMany(e => e.AssignWorks)
                 .WithRequired(e => e.CRUMember)
                 .HasForeignKey(e => e.CMEEmployeeID)
                 .WillCascadeOnDelete(false);
@@ -176,6 +182,12 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .HasMany(e => e.ProgressReports)
                 .WithRequired(e => e.CRUSupervisor)
                 .HasForeignKey(e => e.CSEmployeeID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CRUSupervisor>()
+                .HasMany(e => e.Questionnaires)
+                .WithRequired(e => e.CRUSupervisor)
+                .HasForeignKey(e => e.CRUSEmployeeID)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CRUSupervisor>()
@@ -285,7 +297,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<Questionnaire>()
                 .HasMany(e => e.SelectQuestionnaires)
-                .WithRequired(e => e.Questionnaire)
+                .WithOptional(e => e.Questionnaire)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Requester>()

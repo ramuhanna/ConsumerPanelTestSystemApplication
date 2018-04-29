@@ -129,20 +129,4 @@ else
     }
 }
 
-    @*@Html.ActionLink("View Questionnaire Details", "ReviewDetails", "Questionnaire", new { id = Model.Id }, new { @class = "btn btn-sm btn-default" })*@
-
-
-
-    @if (Model.QuestionnaireExist == true)
-    {
-        if (User.IsInRole("Brand Manager") && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation)
-        {
-            @Ajax.ActionLink("Questionnaire Details", "ReviewDetails", "Questionnaire", new AjaxOptions { UpdateTargetId = "ReviewDetails", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
-        }
-        else if (User.IsInRole("Marketing Director") && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation && Model.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMQuestionnaireApproval)
-        {
-            @Ajax.ActionLink("Questionnaire Details", "ReviewDetails", "Questionnaire", new AjaxOptions { UpdateTargetId = "ReviewDetails", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
-        }
-
-    }
 </p>

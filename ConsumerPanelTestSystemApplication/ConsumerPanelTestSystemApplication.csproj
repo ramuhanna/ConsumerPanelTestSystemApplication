@@ -654,10 +654,11 @@
     <Content Include="Views\Question\QuestionCreate.cshtml" />
     <Content Include="Views\Questionnaire\CRUMemberIndex.cshtml" />
     <Content Include="Views\Questionnaire\ReviewDetailsPartial.cshtml" />
+    <Content Include="Views\Questionnaire\ReviewQuestionnaire.cshtml" />
+    <Content Include="Views\Questionnaire\CRUSupervisorIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SelectQuestionnaire\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

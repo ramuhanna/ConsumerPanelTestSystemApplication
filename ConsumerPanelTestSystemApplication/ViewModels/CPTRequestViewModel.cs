@@ -102,6 +102,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public Boolean QuestionnaireExist { get; set; }
 
+        public int? QuestionnaireId { get; set; }
 
     }
 }

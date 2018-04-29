@@ -48,8 +48,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                         Id = item.RequestID,
                         RequestTitle = item.RequestTitle,
                         RequestDate = item.RequestDate,
-                        //REmployeeId = item.REmployeeId,
-                        //SubmittedById = item.SubmittedById,
+                        QuestionnaireExist = item.QuestionnaireExist,
+                        QuestionnaireId = item.QuestionnaireId,
                         ProductDivision = item.ProductDivision,
                         RequestStatus = item.RequestStatus,
                         SubmittedByName = item.Employee.FullName                                       
@@ -81,13 +81,15 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     model.Add(new CPTRequestViewModel
                     {
                         Id = item.RequestID,
+                        QuestionnaireId = item.QuestionnaireId,
                         RequestTitle = item.RequestTitle,
                         RequestDate = item.RequestDate,
                         //REmployeeId = item.REmployeeId,
                         //SubmittedById = item.SubmittedById,
                         ProductDivision = item.ProductDivision,
                         RequestStatus = item.RequestStatus,
-                        SubmittedByName = item.Employee.FullName
+                        SubmittedByName = item.Employee.FullName,
+                        QuestionnaireExist = item.QuestionnaireExist
                     });
                 }
                 return View(model);          
@@ -138,9 +140,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         // GET: CPTRequest
         public ActionResult BrandManagerReviewIndex()
         {
-            var isBrandManager = User.IsInRole("Brand Manager");
             var user = User.Identity.IsAuthenticated ? User.Identity.GetUserId<int>() : db.Users.First().Id;
-            var requests = db.CPTRequests.Where(b => b.BReviewRequest == user && b.SubmittedById != user).ToList();
+            var requests = db.CPTRequests.Where(b => b.BReviewRequest == user).ToList();
 
             var model = new List<CPTRequestViewModel>();
 
@@ -150,9 +151,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 model.Add(new CPTRequestViewModel
                 {
                     Id = item.RequestID,
+                    QuestionnaireId = item.QuestionnaireId,
+                    QuestionnaireExist = item.QuestionnaireExist,
                     RequestTitle = item.RequestTitle,
                     RequestDate = item.RequestDate,
-                    //ProductDivision = item.ProductDivision,
                     RequestStatus = item.RequestStatus,
                     SubmittedById = item.SubmittedById,
                     SubmittedByName = item.Employee.FullName
@@ -530,7 +532,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
                 if (request.MReview == true)
                 {
-                    request.RequestStatus = RequestStatus.BMQuestionnaireApproval;
+                    request.RequestStatus = RequestStatus.QuestionnaireCreation;
                 }
                 else if (request.MReview == false)
                 {

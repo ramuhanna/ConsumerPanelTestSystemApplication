@@ -46,11 +46,19 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int? BEmployeeID { get; set; }
 
+        public int? CRUSEmployeeID { get; set; }
+
+        public int? CRUMEmployeeID { get; set; }
+
         [StringLength(200)]
         public string BComment { get; set; }
 
         [StringLength(200)]
         public string MComment { get; set; }
+
+        public Boolean? BReviewQuestionnaire { get; set; }
+
+        public Boolean? MReviewQuestionnaire { get; set; }
 
         public int? QuestionnaireTypeId { get; set; }
 
@@ -67,6 +75,10 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<ContainQuestion> ContainQuestions { get; set; }
 
         public virtual MarketingDirector MarketingDirector { get; set; }
+
+        public virtual CRUSupervisor CRUSupervisor { get; set; }
+
+        public virtual CRUMember CRUMember { get; set; }
 
         public virtual ICollection<ResponsibleFor> ResponsibleFors { get; set; }
 

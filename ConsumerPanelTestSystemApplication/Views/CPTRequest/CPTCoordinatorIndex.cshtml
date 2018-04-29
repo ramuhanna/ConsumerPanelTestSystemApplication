@@ -48,12 +48,15 @@
                     @Html.DisplayFor(modelItem => item.RequestStatus)
                 </td>
                 <td>
-                    @Html.ActionLink("View Request Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
-                    @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.BMQuestionnaireApproval || item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.MDQuestionnaireApproval)
+                    @Html.ActionLink("Request Details", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+                    
+                    @if (item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval && item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation @*&& item.QuestionnaireExist == true*@)
                     {
-                        @Html.ActionLink("Questionnaire Details", "Details", "Questionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+                        @Html.ActionLink("Questionnaire Details", "Details", "Questionnaire", new { id = item.QuestionnaireId }, new { @class = "btn btn-sm btn-primary" })
                     }
-                    @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation)
+                   
+
+                    @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation && item.QuestionnaireExist != true)
                     {
                     @Html.ActionLink("Create Questionnaire", "Create", "Questionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
                     }

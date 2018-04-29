@@ -38,11 +38,31 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public int? BEmployeeID { get; set; }
 
+        public int? CRUSEmployeeID { get; set; }
+
+        [Display(Name = "CRU Supervisor Responsible")]     
+        public string CRUSEmployeeName { get; set; }
+
+        public string CRUMEmployeeID { get; set; }
+
+        [Display(Name = "CRU Member Responsible")]
+        public int? CRUMEmployeeName { get; set; }
+
+        [Display(Name = "Brand Manager Feedback")]
         [StringLength(200)]
+        [DataType(DataType.MultilineText)]
         public string BComment { get; set; }
 
+        [Display(Name = "Marketing Director Feedback")]
         [StringLength(200)]
+        [DataType(DataType.MultilineText)]
         public string MComment { get; set; }
+
+        [Display(Name = "Brand Manager Decision")]
+        public Boolean? BReviewQuestionnaire { get; set; }
+
+        [Display(Name = "Marketing Director Decision")]
+        public Boolean? MReviewQuestionnaire { get; set; }
 
         public Location Location { get; set; }
 
