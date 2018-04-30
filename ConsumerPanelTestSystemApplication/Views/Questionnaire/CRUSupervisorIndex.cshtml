@@ -1,35 +1,42 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    ViewBag.Title = "Pending Requests";
+}
+
+<h2>Pending Questionnaires</h2>
+
+<h4>Questionnaires to be executed.</h4>
+
 <table class="table">
-    <tr>       
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
-        </th>
+    <tr>              
         <th>
             @Html.DisplayNameFor(model => model.QuestionnaireTitle)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
+        </th>        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>    
         <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.QuestionnaireTitle)
         </td>
         <td>
-            @Html.ActionLink("Details", "CRUSupervisorDetails", new { id=item.Id }) |
+            @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
+        </td>        
+        
+        <td>
+        @if (item.CRUMEmployeeID == null)
+        {
+            @Html.ActionLink("Assign Questionnaire", "AssignQuestionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" })
+        }
+        else
+        {            
+                @Html.ActionLink("Questionnaire Details", "ExecutionDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })         
+        }
         </td>
     </tr>
 }

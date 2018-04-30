@@ -1,0 +1,88 @@
+﻿@model ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel
+
+
+@{
+    ViewBag.Title = "Questionnaire Execution Details";
+}
+
+<h2>Questionnaire Execution Details</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireTitle)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseQuantityRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseQuantityRequired)
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireTypeName)
+        </dd>       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CRUSEmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CRUSEmployeeName)
+        </dd>
+    
+        @if (Model.CRUMEmployeeID != null && User.IsInRole("CRU Supervisor"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.CRUMEmployeeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CRUMEmployeeName)
+            </dd>
+        }
+        
+
+    </dl>
+</div>
+<p>
+    @if (Model.CRUMEmployeeID == null && User.IsInRole("CRU Supervisor"))
+    {
+        @Html.ActionLink("Assign CRU Member", "AssignQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+    }
+
+    @if (User.IsInRole("CRU Supervisor"))
+    {
+        @Html.ActionLink("Back to Questionnaire List", "CRUSupervisorIndex", null, new { @class = "btn btn-md btn-default" })
+    }
+    else
+    {
+        @Html.ActionLink("Back to Questionnaire List", "CRUMemberIndex", null, new { @class = "btn btn-md btn-default" })
+    }
+</p>

@@ -44,16 +44,16 @@
                     @Html.DisplayFor(modelItem => item.RequestStatus)
                 </td>
                 <td>
-                    @Html.ActionLink("Request Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
 
                     @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval)
                     {
-                        @Html.ActionLink("Review Request", "BrandManagerReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
+                        @Html.ActionLink("Review", "BrandManagerReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
                     }
 
                     @if (item.QuestionnaireExist == true && (item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.BMRequestApproval) && (item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval) && (item.RequestStatus != ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation))
                         {
-                            @Html.ActionLink("Questionnaire Details", "ReviewDetails", "Questionnaire", new { id = item.QuestionnaireId }, new { @class = "btn btn-sm btn-info" })
+                            @Html.ActionLink("Questionnaire", "ReviewDetails", "Questionnaire", new { id = item.QuestionnaireId }, new { @class = "btn btn-sm btn-info" })
                         }                                                                    
           </td>
 </tr>

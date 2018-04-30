@@ -43,10 +43,10 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "CRU Supervisor Responsible")]     
         public string CRUSEmployeeName { get; set; }
 
-        public string CRUMEmployeeID { get; set; }
+        public int? CRUMEmployeeID { get; set; }
 
         [Display(Name = "CRU Member Responsible")]
-        public int? CRUMEmployeeName { get; set; }
+        public string CRUMEmployeeName { get; set; }
 
         [Display(Name = "Brand Manager Feedback")]
         [StringLength(200)]

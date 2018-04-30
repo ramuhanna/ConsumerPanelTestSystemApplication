@@ -78,7 +78,7 @@
     else if (User.IsInRole("Marketing Director") && Model.BReviewQuestionnaire != true && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
     {
         @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
-        
+
         @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
     }
 

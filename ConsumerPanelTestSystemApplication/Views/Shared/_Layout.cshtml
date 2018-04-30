@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Consumer Panel Test System</title>
+    <title style="font-size:32px">@ViewBag.Title - Consumer Panel Test System</title>
+    @Styles.Render("~/bundles/cssdatatables")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
@@ -26,11 +27,22 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>  
                     
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("All Users", "AllUsers", "Home")</li>
-                    }
-                    
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            All Users
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a> @Html.ActionLink("Employees", "Index", "Employee")</a></li>
+                            <li><a> @Html.ActionLink("Brand Managers", "Index", "BrandManager")</a></li>
+                            <li><a> @Html.ActionLink("Requesters", "Index", "Requester")</a></li>
+                            <li><a> @Html.ActionLink("CRU Supervisors", "Index", "CRUSupervisor")</a></li>
+                            <li><a> @Html.ActionLink("CRU Members", "Index", "CRUMember")</a></li>
+                        </ul>
+                    </li>
+                }
                     @if (User.IsInRole("Marketing Director"))
                     {
                         <li>@Html.ActionLink("CPT Requests", "MarketingDirectorReviewIndex", "CPTRequest")</li>
@@ -49,11 +61,11 @@
                     }
                     else if (User.IsInRole("CRU Supervisor"))
                     {
-                        <li>@Html.ActionLink("Questionnaires", "CRUSupervisorIndex", "Questionnaire")</li>
+                        <li>@Html.ActionLink("Pending Questionnaires", "CRUSupervisorIndex", "Questionnaire")</li>
                     }
                     else if (User.IsInRole("CRU Member"))
                     {
-                        <li>@Html.ActionLink("Questionnaires", "CRUMemberIndex", "Questionnaire")</li>
+                        <li>@Html.ActionLink("Pending Questionnaires", "CRUMemberIndex", "Questionnaire")</li>
                     }
 
                 </ul>
@@ -71,6 +83,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jsdatatables")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -113,8 +113,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     City = crumember.City,
                     Region = crumember.Region,
                     CRUSupervisorId = crumember.CRUSupervisorId,
-                    //CRUSupervisorName
-                Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
+                    CRUSupervisorName = db.CRUSupervisors.Find(crumember.CRUSupervisorId).FullName,
+
+                    Roles = string.Join(" ", UserManager.GetRoles(id).ToArray())
                 };
 
                 var result = db.Employees.Where(s => s.Id == 1);
@@ -130,8 +131,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         // GET: CRUMember/Create
         public ActionResult Create()
-        {
-           
+        {          
             return View();
         }
 
@@ -171,11 +171,10 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     }
                 }
 
-                var supervisorid = from s in db.CRUSupervisors
-                                   where s.Region == crumember.Region
-                                   select s.Id;
+                var supervisorid = db.CRUSupervisors.Where(s => s.Region == crumember.Region).Select(s => s.Id).First();
+                crumember.CRUSupervisorId = supervisorid;
 
-                crumember.CRUSupervisorId = supervisorid.First();
+                var userResult = UserManager.Update(crumember);
                 db.SaveChanges();
             }
             else

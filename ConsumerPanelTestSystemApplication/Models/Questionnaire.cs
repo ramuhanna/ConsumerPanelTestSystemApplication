@@ -50,6 +50,10 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public int? CRUMEmployeeID { get; set; }
 
+        public string CRUSEmployeeName { get; set; }
+
+        public string CRUMEmployeeName { get; set; }
+
         [StringLength(200)]
         public string BComment { get; set; }
 
@@ -85,6 +89,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
 
         public virtual ICollection<Response> Responses { get; set; }
+
+        public virtual Employee Employee { get; set; }
 
     }
 

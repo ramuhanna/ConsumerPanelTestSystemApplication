@@ -1,17 +1,16 @@
 ﻿@model ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Questionnaire";
 }
 
-<h2>Create</h2>
+<h2>Create New Questionnaire</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>QuestionnaireViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -55,5 +54,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Questionnaire List", "Index", null, new { @class = "btn btn-sm btn-default" })
+    @Html.ActionLink("Back to Request List", "CPTCoordinatorIndex", "CPTRequest", null, new { @class = "btn btn-sm btn-default" })
 </div>

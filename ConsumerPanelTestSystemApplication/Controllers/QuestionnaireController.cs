@@ -67,7 +67,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     Status = item.Status,
                     QuestionnaireTypeId = item.QuestionnaireTypeId,
                     QuestionnaireTypeName = item.QuestionnaireTypeName,
-                    QuestionnaireTitle = item.QuestionnaireTitle
+                    QuestionnaireTitle = item.QuestionnaireTitle,
+                    CRUMEmployeeID = item.CRUMEmployeeID
                 });
 
                 var sq = db.SelectQuestionnaires.Where(s => s.QuestionnaireID == item.QuestionnaireID).FirstOrDefault();
@@ -186,6 +187,92 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
 
+        [Authorize(Roles = "CRU Supervisor, CRU Member")]
+        // GET: Questionnaire/ExecutionDetails/5
+        public ActionResult ExecutionDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                QuestionnaireTitle = questionnaire.QuestionnaireTitle,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                Status = questionnaire.Status,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId,
+                QuestionnaireTypeName = questionnaire.QuestionnaireTypeName,               
+                CRUSEmployeeID = questionnaire.CRUSEmployeeID,
+                CRUSEmployeeName = db.CRUSupervisors.Find(questionnaire.CRUSEmployeeID).FullName,
+            };
+
+            if (questionnaire.CRUMEmployeeID != null)
+            {
+                model.CRUMEmployeeID = questionnaire.CRUMEmployeeID;
+                model.CRUMEmployeeName = db.CRUMembers.Find(questionnaire.CRUMEmployeeID).FullName;
+            }
+
+            var list = db.Employees.ToList().Select(e => new { e.Id, e.FullName });
+            ViewBag.EmployeeId = new SelectList(list, "Id", "FullName");
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View(model);    
+        }
+
+
+        [Authorize(Roles = "CRU Supervisor, CRU Member")]
+        // GET: Questionnaire/ExecutionDetails/5
+        public ActionResult ExecutionDetailsPartial(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                QuestionnaireTitle = questionnaire.QuestionnaireTitle,
+                StartDate = questionnaire.StartDate,
+                EndDate = questionnaire.EndDate,
+                ResponseQuantityRequired = questionnaire.ResponseQuantityRequired,
+                Status = questionnaire.Status,
+                QuestionnaireTypeId = questionnaire.QuestionnaireTypeId,
+                QuestionnaireTypeName = questionnaire.QuestionnaireTypeName,
+                CRUSEmployeeID = questionnaire.CRUSEmployeeID,
+                CRUSEmployeeName = db.CRUSupervisors.Find(questionnaire.CRUSEmployeeID).FullName,
+            };
+
+            if (questionnaire.CRUMEmployeeID != null)
+            {
+                model.CRUMEmployeeID = questionnaire.CRUMEmployeeID;
+                model.CRUMEmployeeName = db.CRUMembers.Find(questionnaire.CRUMEmployeeID).FullName;
+            }
+
+            var list = db.Employees.ToList().Select(e => new { e.Id, e.FullName });
+            ViewBag.EmployeeId = new SelectList(list, "Id", "FullName");
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return PartialView(model);
+        }
+
+
         /// <summary>  
         /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
         /// </summary>
@@ -220,7 +307,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 // Create the location from the model
                 var questionnaire = new Questionnaire
                 {
-                    StartDate = model.StartDate,
+                    StartDate = model.StartDate, 
                     EndDate = model.EndDate,
                     Status = QuestionnaireStatus.BMQuestionnaireApproval,
                     ResponseQuantityRequired = model.ResponseQuantityRequired,
@@ -463,6 +550,87 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 }
             }
             return View();
-        }      
+        }
+
+
+        /// <summary>  
+        /// The Edit action allows the user to edit the questionnaire details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Questionnaire, AssignQuestionnaire view</returns>
+
+        [Authorize(Roles = "CRU Supervisor")]
+        // GET: Questionnaire/Edit/5
+        public ActionResult AssignQuestionnaire(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            QuestionnaireViewModel model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+                CRUMEmployeeID = questionnaire.CRUMEmployeeID,
+                CRUMEmployeeName = questionnaire.CRUMEmployeeName
+            };
+
+            //if (questionnaire.CRUMEmployeeID != null)
+            //{
+            //    model.CRUMEmployeeID = questionnaire.CRUMEmployeeID;
+            //    model.CRUMEmployeeName = db.CRUMembers.Find(questionnaire.CRUMEmployeeID).FullName;
+            //}
+            //var list = db.Employees.ToList().Where(e=> e.Type == EmployeeType.CRUMember).Select(e => new { e.Id, e.FullName });
+            var list = db.CRUMembers.ToList().Where(m => m.Region == questionnaire.CRUSupervisor.Region);
+            ViewBag.EmployeeId = new SelectList(list, "Id", "FullName");
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View(model);
+        }
+
+
+        /// <summary>  
+        /// The Edit action allows the user to edit the questionnaire details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns>Questionnaire, Edit view</returns>
+
+        [Authorize(Roles = "CRU Supervisor")]
+        // POST: Questionnaire/AssignQuestionnaire/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AssignQuestionnaire(int id, QuestionnaireViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var questionnaire = db.Questionnaires.Find(id);
+                if (questionnaire == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Assign CRU Member.
+                questionnaire.CRUMEmployeeID = model.CRUMEmployeeID;
+                questionnaire.CRUMEmployeeName = model.CRUMEmployeeName;             
+
+                db.Entry(questionnaire).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("CRUSupervisorIndex");
+            }
+            var Supervisor = db.CRUSupervisors.Where(s => s.Id == model.CRUSEmployeeID).First();
+            var list = db.CRUMembers.ToList().Where(m => m.Region == Supervisor.Region);
+            ViewBag.EmployeeId = new SelectList(list, "Id", "FullName");
+
+            ViewBag.QuestionnaireTypeId = new SelectList(db.QuestionnaireTypes, "QuestionnaireTypeId", "QuestionnaireTypeName");
+            return View();
+        }
     }
 }

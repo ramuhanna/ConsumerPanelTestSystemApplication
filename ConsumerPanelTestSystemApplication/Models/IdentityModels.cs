@@ -150,7 +150,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<CRUMember>()
                 .HasMany(e => e.Questionnaires)
-                .WithRequired(e => e.CRUMember)
+                .WithOptional(e => e.CRUMember)
                 .HasForeignKey(e => e.CRUMEmployeeID)
                 .WillCascadeOnDelete(false);
 
@@ -186,7 +186,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
             modelBuilder.Entity<CRUSupervisor>()
                 .HasMany(e => e.Questionnaires)
-                .WithRequired(e => e.CRUSupervisor)
+                .WithOptional(e => e.CRUSupervisor)
                 .HasForeignKey(e => e.CRUSEmployeeID)
                 .WillCascadeOnDelete(false);
 
@@ -228,6 +228,12 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .HasMany(e => e.SubmittedCPTRequests)
                 .WithOptional(e => e.Employee)
                 .HasForeignKey(e => e.SubmittedById)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.SubmittedQuestionnaires)
+                .WithOptional(e => e.Employee)
+                .HasForeignKey(e => e.CRUSEmployeeID)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Location>()
