@@ -295,26 +295,26 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
-                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,1,5), SubmittedById = 6, LocationId = 3, BReview = true, BReviewRequest = 6},
+                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,1,5), SubmittedById = 6, LocationId = 3, BReview = Review.Approved, BReviewRequest = 6},
 
                 new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
-                    ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = new DateTime(2018,2,10), SubmittedById = 8, LocationId = 1, BReview = true, BReviewRequest = 8},
+                    ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = new DateTime(2018,2,10), SubmittedById = 8, LocationId = 1, BReview = Review.Approved, BReviewRequest = 8},
 
                 new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
-                    ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = new DateTime(2018,1,21), SubmittedById = 7, LocationId = 7, BReview = true, BReviewRequest = 7},
+                    ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = new DateTime(2018,1,21), SubmittedById = 7, LocationId = 7, BReview = Review.Approved, BReviewRequest = 7},
 
                 new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "The annual performance on the Sanita tissue product needs to be assessed for quality purposes.",
-                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,15), SubmittedById = 5, LocationId = 5, BReview = true, BReviewRequest = 5},
+                    ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,15), SubmittedById = 5, LocationId = 5, BReview = Review.Approved, BReviewRequest = 5},
 
                 // Add CPT Requests for CPT Coordinator Index.
-                new CPTRequest { RequestTitle = "Sanita Giant Tissues Performance",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need to assess the performance and likability of the Giant Tissues in order to adjust product accordingly.", ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,28), SubmittedById = 15, LocationId = 5, BReview = true, BReviewRequest = 5, MReviewRequest = 2, MReview = true},
+                new CPTRequest { RequestTitle = "Sanita Giant Tissues Performance",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need to assess the performance and likability of the Giant Tissues in order to adjust product accordingly.", ProductDivision = BrandManagerProductDivision.FamilyCare, RequestDate = new DateTime(2018,3,28), SubmittedById = 15, LocationId = 5, BReview = Review.Approved, BReviewRequest = 5, MReviewRequest = 2, MReview = Review.Approved},
 
-                new CPTRequest { RequestTitle = "Bi-Annual Private Assessment",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need updated information on the product line's performance.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,2,28), SubmittedById = 17, LocationId = 1, BReview = true, BReviewRequest = 6, MReviewRequest = 2, MReview = true},
+                new CPTRequest { RequestTitle = "Bi-Annual Private Assessment",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need updated information on the product line's performance.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,2,28), SubmittedById = 17, LocationId = 1, BReview = Review.Approved, BReviewRequest = 6, MReviewRequest = 2, MReview = Review.Approved},
 
-                 new CPTRequest { RequestTitle = "New Product Market Research",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need some preliminary research on the market's acceptance of the new product line.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,4,28), SubmittedById = 15, LocationId = 3, BReview = true, BReviewRequest = 6, MReviewRequest = 2, MReview = true},
+                 new CPTRequest { RequestTitle = "New Product Market Research",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need some preliminary research on the market's acceptance of the new product line.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,4,28), SubmittedById = 15, LocationId = 3, BReview = Review.Approved, BReviewRequest = 6, MReviewRequest = 2, MReview = Review.Approved},
             };
 
             BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
@@ -411,17 +411,17 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             questionnaires.ForEach(p => context.Questionnaires.AddOrUpdate(q => q.StartDate, p));
             context.SaveChanges();
 
-            //Add select questionnaires to link questionnaires to requests.
+            ////Add select questionnaires to link questionnaires to requests.
 
-            var selectquestionnaires = new List<SelectQuestionnaire>
-            {
-                 new SelectQuestionnaire { RequestID = 11, QuestionnaireID = 1, CPTEmployeeID = 3},
+            //var selectquestionnaires = new List<SelectQuestionnaire>
+            //{
+            //     new SelectQuestionnaire { RequestID = 11, QuestionnaireID = 1, CPTEmployeeID = 3},
 
-                 new SelectQuestionnaire { RequestID = 9, QuestionnaireID = 2, CPTEmployeeID = 3}
-            };
+            //     new SelectQuestionnaire { RequestID = 9, QuestionnaireID = 2, CPTEmployeeID = 3}
+            //};
 
-            selectquestionnaires.ForEach(p => context.SelectQuestionnaires.AddOrUpdate(q => q.RequestID, p));
-            context.SaveChanges();
+            //selectquestionnaires.ForEach(p => context.SelectQuestionnaires.AddOrUpdate(q => q.RequestID, p));
+            //context.SaveChanges();
 
             //// Update requests with questionnaire information.
             //var request9 = requests.Where(r => r.RequestID == 9).First();

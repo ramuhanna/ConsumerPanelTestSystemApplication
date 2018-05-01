@@ -17,7 +17,7 @@
         @Html.ActionLink("Submit New Request", "RequesterCreate", null, new { @class = "btn btn-md btn-primary" })
     }
 </p>
-<table id="submittedRequestsTable" class="table">
+<table id="RequestsTable" class="table table-hover table-striped">
     <thead>
         <tr>
             <th>
@@ -27,41 +27,38 @@
                 @Html.DisplayNameFor(model => model.RequestDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequestStatus)
+                @Html.DisplayNameFor(model => model.ProductDivision)
             </th>
             <th>
-             @Html.DisplayNameFor(model => model.ProductDivision)    
-            </th>
+                @Html.DisplayNameFor(model => model.RequestStatus)
+            </th>            
             <th></th>
         </tr>
     </thead>
 
-    
-@foreach (var item in Model)
-{
-    <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestStatus)
-            </td>
-           
-            <td>                
-                @Html.DisplayFor(modelItem => item.ProductDivision)
-            </td>
 
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDivision)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestStatus)
+                </td>
 
-            
-            <td>
-                @Html.ActionLink("Request Details", "SubmittedRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
-        </tr>
-    </tbody>
-}
+                <td>
+                    @Html.ActionLink("Request Details", "SubmittedRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+            </tr>
+        </tbody>
+    }
 
 </table>
 @*@if (User.IsInRole("Brand Manager"))
@@ -80,21 +77,20 @@
 
     <script type="text/javascript">
       $(document).ready( function () {
-          $('#submittedRequestsTable').DataTable();
-      });
-
-      $('#employeesTable').dataTable({
-          "columnDefs": [
+          $('#RequestsTable').DataTable(
+              {
+                  "columnDefs": [
             { "orderable": false, "targets": -1 }
-          ]
+                  ]
+              });
       });
 
-    </script>
+</script>
 }
 
 @section styles
 {
-    <link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />
+    @*<link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />*@
     <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
 } 

@@ -64,7 +64,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Column(TypeName = "date")]
         public DateTime? BDecisionDate { get; set; }
 
-        public bool? BReview { get; set; }
+        public Review? BReview { get; set; }
 
         [StringLength(100)]
         public string MDecision { get; set; }
@@ -72,7 +72,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Column(TypeName = "date")]
         public DateTime? MDecisionDate { get; set; }
 
-        public bool? MReview { get; set; }
+        public Review? MReview { get; set; }
 
         public int? SubmittedById { get; set; }
 
@@ -159,5 +159,10 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         [Display(Name = "Request Rejected")]
         Rejected
+    }
+
+    public enum Review
+    {
+        Approved, Rejected
     }
 }

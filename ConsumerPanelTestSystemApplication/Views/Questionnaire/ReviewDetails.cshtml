@@ -10,7 +10,7 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt style="text-align:left">
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
 
@@ -18,7 +18,7 @@
             @Html.DisplayFor(model => model.StartDate)
         </dd>
 
-        <dt>
+        <dt style="text-align:left">
             @Html.DisplayNameFor(model => model.EndDate)
         </dt>
 
@@ -26,7 +26,7 @@
             @Html.DisplayFor(model => model.EndDate)
         </dd>
 
-        <dt>
+        <dt style="text-align:left">
             @Html.DisplayNameFor(model => model.ResponseQuantityRequired)
         </dt>
 
@@ -34,7 +34,7 @@
             @Html.DisplayFor(model => model.ResponseQuantityRequired)
         </dd>
 
-        <dt>
+        <dt style="text-align:left">
             @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
         </dt>
 
@@ -44,7 +44,7 @@
               
        @if (Model.BComment != null)
        {
-        <dt>
+        <dt style="text-align:left">
             @Html.DisplayNameFor(model => model.BComment)
         </dt>
 
@@ -55,7 +55,7 @@
 
         @if (Model.MComment != null)
         {
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.MComment)
             </dt>
 
@@ -67,28 +67,38 @@
 
     </dl>
 </div>
-<p>
-
-    @if (User.IsInRole("Brand Manager") && Model.BReviewQuestionnaire != true && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.BMQuestionnaireApproval)
-    {
-        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
-        @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
-
-    }
-    else if (User.IsInRole("Marketing Director") && Model.BReviewQuestionnaire != true && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
-    {
-        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
-
-        @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
-    }
-
-
+<div class="form-actions no-color col-md-offset-2">
     @if (User.IsInRole("Brand Manager"))
     {
-        @Html.ActionLink("Back to Pending Requests", "SubmittedRequestsIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
+        @Html.ActionLink("Back to Pending Requests", "BrandManagerReviewIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
+
     }
     else
     {
         @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
     }
-</p>
+
+    @if (User.IsInRole("Brand Manager") && Model.BReviewQuestionnaire != ConsumerPanelTestSystemApplication.Models.Review.Approved && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.BMQuestionnaireApproval)
+    {
+        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-info" })
+        
+    }
+
+@if (User.IsInRole("Brand Manager") && Model.BReviewQuestionnaire != ConsumerPanelTestSystemApplication.Models.Review.Approved && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.BMQuestionnaireApproval)
+{
+
+    @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+
+}
+
+@if (User.IsInRole("Marketing Director") && Model.BReviewQuestionnaire != ConsumerPanelTestSystemApplication.Models.Review.Approved && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
+{
+        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-info" })
+}
+
+@if (User.IsInRole("Marketing Director") && Model.BReviewQuestionnaire != ConsumerPanelTestSystemApplication.Models.Review.Approved && Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
+{
+    @Html.ActionLink("Review", "ReviewQuestionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+}
+</div>
+

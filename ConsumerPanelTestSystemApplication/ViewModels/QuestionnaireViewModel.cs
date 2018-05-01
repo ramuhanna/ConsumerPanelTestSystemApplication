@@ -59,10 +59,10 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public string MComment { get; set; }
 
         [Display(Name = "Brand Manager Decision")]
-        public Boolean? BReviewQuestionnaire { get; set; }
+        public Review? BReviewQuestionnaire { get; set; }
 
         [Display(Name = "Marketing Director Decision")]
-        public Boolean? MReviewQuestionnaire { get; set; }
+        public Review? MReviewQuestionnaire { get; set; }
 
         public Location Location { get; set; }
 

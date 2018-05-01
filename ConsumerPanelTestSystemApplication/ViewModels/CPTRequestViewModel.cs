@@ -71,7 +71,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public DateTime? BDecisionDate { get; set; }
 
         [Display(Name = "Brand Manager Decision")]
-        public bool? BReview { get; set; }
+        public Review? BReview { get; set; }
 
         //[Display(Name = "Marketing Director Decision")]
         [StringLength(100)]
@@ -83,7 +83,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public DateTime? MDecisionDate { get; set; }
 
         [Display(Name = "Marketing Director Decision")]
-        public bool? MReview { get; set; }
+        public Review? MReview { get; set; }
 
         //[Required]
         [Display(Name = "Execution location(s)")]

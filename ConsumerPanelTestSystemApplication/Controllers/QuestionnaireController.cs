@@ -496,7 +496,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.SaveChanges();
 
                 // Change questionaire and request status.
-                if (questionnaire.BReviewQuestionnaire == true)
+                if (questionnaire.BReviewQuestionnaire == Review.Approved)
                 {
                     questionnaire.Status = QuestionnaireStatus.MDQuestionnaireApproval;
                 }
@@ -512,7 +512,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 };
                 
 
-                if (questionnaire.MReviewQuestionnaire == true)
+                if (questionnaire.MReviewQuestionnaire == Review.Approved)
                 {
                     questionnaire.Status = QuestionnaireStatus.QuestionnaireExecution;
                     db.Entry(questionnaire).State = EntityState.Modified;
@@ -525,7 +525,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                         db.SaveChanges();
                     }
                 }
-                else if (questionnaire.MReviewQuestionnaire == false)
+                else if (questionnaire.MReviewQuestionnaire == Review.Rejected)
                 {
                     questionnaire.Status = QuestionnaireStatus.BMQuestionnaireApproval;
                     db.Entry(questionnaire).State = EntityState.Modified;
@@ -542,7 +542,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
                 if (User.IsInRole("Brand Manager"))
                 {
-                    return RedirectToAction("SubmittedRequestsIndex", "CPTRequest");
+                    return RedirectToAction("BrandManagerReviewIndex", "CPTRequest");
                 }
                 else if (User.IsInRole("Marketing Director"))
                 {

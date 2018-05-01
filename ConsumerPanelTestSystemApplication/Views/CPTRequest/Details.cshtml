@@ -4,7 +4,7 @@
     ViewBag.Title = "Request Details";
 }
 
-<h2>Requests Details</h2>
+<h2>Request Details</h2>
 
 <div>
     <h4>
@@ -13,10 +13,10 @@
     <hr />
     
     <fieldset class="fieldset-border">
-        <legend class="legend-border">Request Information</legend>
+        <legend class="legend-border">&nbsp;Request Information</legend>
 
         <dl class="dl-horizontal">
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.RequestTitle)
             </dt>
 
@@ -24,7 +24,7 @@
                 @Html.DisplayFor(model => model.RequestTitle)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.RequestDate)
             </dt>
 
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(model => model.RequestDate)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.RequestStatus)
             </dt>
 
@@ -44,10 +44,10 @@
     </fieldset>
 
     <fieldset class="fieldset-border">
-        <legend class="legend-border">Request Details</legend>
+        <legend class="legend-border">&nbsp;Request Details</legend>
         <dl class="dl-horizontal">
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.ProductDivision)
             </dt>
 
@@ -55,7 +55,7 @@
                 @Html.DisplayFor(model => model.ProductDivision)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.Justification)
             </dt>
 
@@ -63,7 +63,7 @@
                 @Html.DisplayFor(model => model.Justification)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.City)
             </dt>
 
@@ -74,6 +74,6 @@
     </fieldset>
 
 </div>
-<p>
-    @Html.ActionLink("Back to Approved Requests", "CPTCoordinatorIndex", null, new { @class = "btn btn-sm btn-default" })
-</p>
+<div class="form-actions no-color col-md-offset-2">
+    @Html.ActionLink("Back to Approved Requests", "CPTCoordinatorIndex", null, new { @class = "btn btn-md btn-default" })
+    </div>

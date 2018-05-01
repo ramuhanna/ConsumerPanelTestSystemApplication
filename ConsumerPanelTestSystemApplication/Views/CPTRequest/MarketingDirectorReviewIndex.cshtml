@@ -9,7 +9,7 @@
 <h4>Requests to be reviewed.</h4>
 
 
-<table id="requestsTable" class="display" width="100%" cellspacing="0">
+<table id="RequestsTable" class="table table-hover table-striped">
     <thead>
         <tr>
             <th>
@@ -43,7 +43,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductDivision)
-                </td>                
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SubmittedByName)
                 </td>
@@ -53,7 +53,7 @@
 
                 <td>
                     @Html.ActionLink("Details", "PendingRequestsDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
-                   &nbsp;
+                    &nbsp;
                     @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.MDRequestApproval)
                     {
                         @Html.ActionLink("Review", "MarketingDirectorReview", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
@@ -64,12 +64,12 @@
                         @Html.ActionLink("Questionnaire", "ReviewDetails", "Questionnaire", new { id = item.QuestionnaireId }, new { @class = "btn btn-sm btn-info" })
                     }
 
-</td>
-    </tr>
+                </td>
+            </tr>
         }
     </tbody>
 
- </table>
+</table>
 
                         @section scripts
                         {
@@ -77,23 +77,23 @@
                             <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.scroller.min.js")"></script>
                             <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
 
-                            <script type="text/javascript">
-                              $(document).ready( function () {
-                                  $('#requestsTable').DataTable(
-                                      {
-                                          "columnDefs": [
-                                    { "orderable": true, "targets": -1 }
-                                          ]
-                                      });
-                              });
+                           <script type="text/javascript">
+      $(document).ready( function () {
+          $('#RequestsTable').DataTable(
+              {
+                  "columnDefs": [
+            { "orderable": false, "targets": -1 }
+                  ]
+              });
+      });
 
 
-                            </script>
+</script>
                         }
 
                         @section styles
                         {
-                            <link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />
+                            @*<link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />*@
                             <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
                             <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
                         }

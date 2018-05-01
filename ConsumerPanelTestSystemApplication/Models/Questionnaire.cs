@@ -60,9 +60,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(200)]
         public string MComment { get; set; }
 
-        public Boolean? BReviewQuestionnaire { get; set; }
+        public Review? BReviewQuestionnaire { get; set; }
 
-        public Boolean? MReviewQuestionnaire { get; set; }
+        public Review? MReviewQuestionnaire { get; set; }
 
         public int? QuestionnaireTypeId { get; set; }
 

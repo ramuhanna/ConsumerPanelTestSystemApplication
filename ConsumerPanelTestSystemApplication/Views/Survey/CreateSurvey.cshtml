@@ -3,16 +3,14 @@
 @model ConsumerPanelTestSystemApplication.Controllers.SurveyViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "View Survey";
 }
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <h2>
-        @Html.DisplayNameFor(model => model.Questions)
-    </h2>
+    <h2> View Survey </h2>
     <table class="table">
         @for (int i = 0; i < Model.Questions.Count(); i++)
         {
@@ -47,7 +45,6 @@
         @if (User.IsInRole("CPT Coordinator"))
         {
             @Html.ActionLink("Add New Question", "QuestionCreate", "Question", null, new { @class = "btn btn-md btn-primary" })
-            @Html.ActionLink("Confirm Questionnaire", "CPTCoordinatorIndex", "CPTRequest", null, new { @class = "btn btn-md btn-success" })
         }
 
 

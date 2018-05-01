@@ -13,10 +13,10 @@
     <hr />
     <dl class="dl-horizontal">
         <fieldset class="fieldset-border">
-            <legend class="legend-border">Request Information</legend>
+            <legend class="legend-border">&nbsp; Request Information</legend>
 
             <dl class="dl-horizontal">
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.RequestTitle)
                 </dt>
 
@@ -24,7 +24,7 @@
                     @Html.DisplayFor(model => model.RequestTitle)
                 </dd>
 
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.RequestDate)
                 </dt>
 
@@ -32,7 +32,7 @@
                     @Html.DisplayFor(model => model.RequestDate)
                 </dd>
 
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.RequestStatus)
                 </dt>
 
@@ -44,9 +44,9 @@
         </fieldset>
 
         <fieldset class="fieldset-border">
-            <legend class="legend-border">Request Details</legend>
+            <legend class="legend-border">&nbsp; Request Details</legend>
             <dl class="dl-horizontal">
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.ProductDivision)
                 </dt>
 
@@ -54,7 +54,7 @@
                     @Html.DisplayFor(model => model.ProductDivision)
                 </dd>
 
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.Justification)
                 </dt>
 
@@ -62,7 +62,7 @@
                     @Html.DisplayFor(model => model.Justification)
                 </dd>
 
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.City)
                 </dt>
 
@@ -75,9 +75,9 @@
         @if (Model.BReview != null)
         {
             <fieldset class="fieldset-border">
-                <legend class="legend-border">Approval Information</legend>
+                <legend class="legend-border">&nbsp; Approval Information</legend>
                 <dl class="dl-horizontal">
-                    <dt>
+                    <dt style="text-align:left">
                         @Html.DisplayNameFor(model => model.BrandManagerName)
                     </dt>
 
@@ -85,7 +85,7 @@
                         @Html.DisplayFor(model => model.BrandManagerName)
                     </dd>
 
-                    <dt>
+                    <dt style="text-align:left">
                         @Html.DisplayNameFor(model => model.BReview)
                     </dt>
 
@@ -96,7 +96,7 @@
 
                     @if (Model.MReview != null)
                     {
-                        <dt>
+                        <dt style="text-align:left">
                             @Html.DisplayNameFor(model => model.MReview)
                         </dt>
 
@@ -109,24 +109,24 @@
             </fieldset>}
    </dl>
 </div>
-<p>
-@if (User.IsInRole("Marketing Director"))
-{
-    @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", null, new { @class = "btn btn-sm btn-default" })
-    
-    if (User.IsInRole("Marketing Director") && Model.MReview == null)
+<div class="form-actions no-color col-md-offset-2">
+    @if (User.IsInRole("Marketing Director"))
     {
-        @Html.ActionLink("Review Request", "MarketingDirectorReview", new { id = Model.Id }, new { @class = "btn btn-sm btn-success" })
-    }
-}
-else
-{
-    @Html.ActionLink("Back to Pending Requests", "SubmittedRequestsIndex", null, new { @class = "btn btn-sm btn-default" })
+        @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", null, new { @class = "btn btn-md btn-default" })
 
-    if (User.IsInRole("Brand Manager") && Model.BReview == null)
+        if (User.IsInRole("Marketing Director") && Model.MReview == null)
+        {
+            @Html.ActionLink("Review Request", "MarketingDirectorReview", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+        }
+    }
+    else
     {
-        @Html.ActionLink("Review Request", "BrandManagerReview", new { id = Model.Id }, new { @class = "btn btn-sm btn-success" })
-    }
-}
+        @Html.ActionLink("Back to Pending Requests", "BrandManagerReviewIndex", null, new { @class = "btn btn-md btn-default" })
 
-</p>
+        if (User.IsInRole("Brand Manager") && Model.BReview == null)
+        {
+            @Html.ActionLink("Review Request", "BrandManagerReview", new { id = Model.Id }, new { @class = "btn btn-md btn-success" })
+        }
+    }
+
+    </div>

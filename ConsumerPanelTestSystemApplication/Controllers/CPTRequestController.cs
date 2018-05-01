@@ -38,7 +38,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                 var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval && b.BReview == true).ToList();
+                 var requests = db.CPTRequests.Where(b => b.RequestStatus != RequestStatus.BMRequestApproval && b.BReview == Review.Approved).ToList();
                 var model = new List<CPTRequestViewModel>();
 
                 foreach (var item in requests)
@@ -435,7 +435,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     REmployeeId = model.REmployeeId,
                     BDecisionMade = model.BDecisionMade,
                     BDecisionDate = model.BDecisionDate,
-                    BReview = true,
+                    BReview = Review.Approved,
                     MDecision = model.MDecision,
                     MDecisionDate = model.MDecisionDate,
                     MReview = model.MReview,
@@ -530,11 +530,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 request.MReview = model.MReview;
                 request.MReviewRequest = 2;
 
-                if (request.MReview == true)
+                if (request.MReview == Review.Approved)
                 {
                     request.RequestStatus = RequestStatus.QuestionnaireCreation;
                 }
-                else if (request.MReview == false)
+                else if (request.MReview == Review.Rejected)
                 {
                     request.RequestStatus = RequestStatus.Rejected;
                 }
@@ -612,11 +612,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 // Review the request.
                 request.BReview = model.BReview;
 
-                if (request.BReview == true)
+                if (request.BReview == Review.Approved)
                 {
                     request.RequestStatus = RequestStatus.MDRequestApproval;
                 }
-                else if (request.BReview == false)
+                else if (request.BReview == Review.Rejected)
                 {
                     request.RequestStatus = RequestStatus.Rejected;
                 }

@@ -158,7 +158,7 @@
 
             <div>
                 @Html.LabelFor(model => model.MReview, htmlAttributes: new { @class = "control-label col-sm-pull-2" })
-                @Html.EditorFor(model => model.MReview)
+                @Html.EnumDropDownListFor(model => model.MReview)
                 @Html.HiddenFor(model => model.MReview)
             </div>
 
@@ -256,9 +256,10 @@
         </div>*@
         &nbsp;
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="form-actions no-color col-md-offset-2">
+                @Html.ActionLink("Back to Pending Requests", "MarketingDirectorReviewIndex", null, new { @class = "btn btn-md btn-default" })
+
                 <input type="submit" value="Submit" class="btn btn-md btn-success" />
-                @Html.ActionLink("Back to List", "MarketingDirectorReviewIndex", null, new { @class = "btn btn-md btn-default" })
             </div>         
         </div>
     </div>
