@@ -27,11 +27,46 @@ textarea {
     background-color: #18246d;
     border-color:  #18246d;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 17px;
+    vertical-align: text-bottom;
+}
+
+thead{
+    font-size: 17px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    text-align:left;
+    color: darkblue;
 }
 
 .navbar-inverse .navbar-text {
-  color: #000000;
+  color: aliceblue;
+}
+
+.navbar-inverse .navbar-brand {
+    color: aliceblue;
+    font-size: 30px;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color: aliceblue;
+}
+
+h2{
+   margin-top: 35px;
+   margin-bottom: 20px;
+}
+
+.navbar {
+    z-index: 1000;
+    min-height: 65px;
+    margin-bottom: 40px;
+    border-width: 6px;
+}
+
+.body-content{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    background-color: #fdfdff
 }
 
 fieldset.fieldset-border {
@@ -40,18 +75,15 @@ fieldset.fieldset-border {
     margin: 0 0 1.5em 0;
 }
 
+table-striped{
+
+}
+
 legend.fieldset-border {
     width: inherit;
     padding: 5px 10px;
     border-bottom: none;
 }
-
-/*.btn-primary 
-{
-  color: #fff;
-  background-color: #b60f47;
-  border-color: #b60f47;
-}*/
 
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -712,12 +744,12 @@ fieldset:disabled a.btn {
   margin-top: 0.5rem;
 }
 
-.btn-default
+/*.btn-default
 {
   color: #000;
   background-color: #cdcdcd;
   border-color: #cdcdcd;
-}
+}*/
 
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,

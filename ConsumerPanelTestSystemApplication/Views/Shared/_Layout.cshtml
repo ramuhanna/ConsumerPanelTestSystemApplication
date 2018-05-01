@@ -23,9 +23,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>  
+                   
                     
                 @if (User.IsInRole("Admin"))
                 {
@@ -42,22 +40,39 @@
                             <li><a> @Html.ActionLink("CRU Members", "Index", "CRUMember")</a></li>
                         </ul>
                     </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Add New User
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a> @Html.ActionLink("New Employee", "Create", "Employee")</a></li>
+                            <li><a> @Html.ActionLink("New Brand Manager", "Create", "BrandManager")</a></li>
+                            <li><a> @Html.ActionLink("New Requester", "Create", "Requester")</a></li>
+                            <li><a> @Html.ActionLink("New CRU Supervisor", "Create", "CRUSupervisor")</a></li>
+                            <li><a> @Html.ActionLink("New CRU Member", "Create", "CRUMember")</a></li>
+                        </ul>
+                    </li>
                 }
                     @if (User.IsInRole("Marketing Director"))
                     {
-                        <li>@Html.ActionLink("CPT Requests", "MarketingDirectorReviewIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Pending Requests", "MarketingDirectorReviewIndex", "CPTRequest")</li>
                     }
                     else if (User.IsInRole("Brand Manager"))
                     {
-                        <li>@Html.ActionLink("CPT Requests", "SubmittedRequestsIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Pending Requests", "BrandManagerReviewIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Submitted Requests", "SubmittedRequestsIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Submit New Request", "BrandManagerCreate", "CPTRequest")</li>
                     }
                     else if (User.IsInRole("Requester"))
                     {
-                        <li>@Html.ActionLink("CPT Requests", "SubmittedRequestsIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Submitted Requests", "SubmittedRequestsIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Submit New Request", "RequesterCreate", "CPTRequest")</li>
                     }
                     else if (User.IsInRole("CPT Coordinator"))
                     {
-                        <li>@Html.ActionLink("CPT Requests", "CPTCoordinatorIndex", "CPTRequest")</li>
+                        <li>@Html.ActionLink("Approved Requests", "CPTCoordinatorIndex", "CPTRequest")</li>
                     }
                     else if (User.IsInRole("CRU Supervisor"))
                     {
@@ -77,7 +92,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Consumer Panel Test System</p>
+            <p style="color:darkblue" > <strong>&copy; @DateTime.Now.Year - Consumer Panel Test System </strong></p>
         </footer>
     </div>
 

@@ -9,12 +9,12 @@
 <p>
     @if (User.IsInRole("Brand Manager"))
     {
-        @Html.ActionLink("Submit New Request", "BrandManagerCreate", null, new { @class = "btn btn-sm btn-primary" }) 
+        @Html.ActionLink("Submit New Request", "BrandManagerCreate", null, new { @class = "btn btn-md btn-primary" }) 
     }
 
     else
     {
-        @Html.ActionLink("Submit New Request", "RequesterCreate", null, new { @class = "btn btn-sm btn-primary" })
+        @Html.ActionLink("Submit New Request", "RequesterCreate", null, new { @class = "btn btn-md btn-primary" })
     }
 </p>
 <table id="submittedRequestsTable" class="table">
@@ -64,13 +64,13 @@
 }
 
 </table>
-@if (User.IsInRole("Brand Manager"))
+@*@if (User.IsInRole("Brand Manager"))
 {
         @Ajax.ActionLink("Your Pending Requests", "BrandManagerReviewIndex", new AjaxOptions { UpdateTargetId = "BrandManagerReviewIndex", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
-}
+}*@
 
-...
-<div id="BrandManagerReviewIndex"></div>
+
+@*<div id="BrandManagerReviewIndex"></div>*@
 
 @section scripts
 {

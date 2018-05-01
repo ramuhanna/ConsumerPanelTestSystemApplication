@@ -16,7 +16,7 @@
         <legend class="legend-border">Request Information</legend>
 
         <dl class="dl-horizontal">
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.RequestTitle)
             </dt>
 
@@ -24,7 +24,7 @@
                 @Html.DisplayFor(model => model.RequestTitle)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.RequestDate)
             </dt>
 
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(model => model.RequestDate)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.RequestStatus)
             </dt>
 
@@ -46,7 +46,7 @@
     <fieldset class="fieldset-border">
         <legend class="legend-border">Request Details</legend>
         <dl class="dl-horizontal">
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.ProductDivision)
             </dt>
 
@@ -54,7 +54,7 @@
                 @Html.DisplayFor(model => model.ProductDivision)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.Justification)
             </dt>
 
@@ -62,7 +62,7 @@
                 @Html.DisplayFor(model => model.Justification)
             </dd>
 
-            <dt>
+            <dt style="text-align:left">
                 @Html.DisplayNameFor(model => model.City)
             </dt>
 
@@ -77,7 +77,7 @@
         <fieldset class="fieldset-border">
             <legend class="legend-border">Approval Information</legend>
             <dl class="dl-horizontal">
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.BrandManagerName)
                 </dt>
 
@@ -85,18 +85,18 @@
                     @Html.DisplayFor(model => model.BrandManagerName)
                 </dd>
 
-                <dt>
+                <dt style="text-align:left">
                     @Html.DisplayNameFor(model => model.BReview)
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.BReview)
                 </dd>
-                }
+                
 
                 @if (Model.MReview != null)
                 {
-                    <dt>
+                    <dt style="text-align:left">
                         @Html.DisplayNameFor(model => model.MReview)
                     </dt>
 
@@ -105,11 +105,11 @@
                     </dd>
                 }
             </dl>
-        </fieldset>}
-
+        </fieldset>
+    }
 
     </div>
 
 <p>
-    @Html.ActionLink("Back to Submitted Requests", "SubmittedRequestsIndex", null, new { @class = "btn btn-sm btn-default"})
+    @Html.ActionLink("Back to Submitted Requests", "SubmittedRequestsIndex", null, new { @class = "btn btn-md btn-default"})
 </p>
