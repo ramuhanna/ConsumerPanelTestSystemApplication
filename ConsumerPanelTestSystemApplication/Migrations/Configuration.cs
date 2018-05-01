@@ -400,28 +400,28 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             context.SaveChanges();
 
 
-            //// Add questionnaires for CPT Requests.
-            //var questionnaires = new List<Questionnaire>
-            //{
-            //    new Questionnaire { StartDate = new DateTime (2018,4,30), EndDate = new DateTime(2018,6,20) , ResponseQuantityRequired = 250, QuestionnaireTypeId = 3, Status = QuestionnaireStatus.BMQuestionnaireApproval},
+            // Add questionnaires for CPT Requests.
+            var questionnaires = new List<Questionnaire>
+            {
+                new Questionnaire { StartDate = new DateTime (2018,4,30), EndDate = new DateTime(2018,6,20) , ResponseQuantityRequired = 250, QuestionnaireTypeId = 3, Status = QuestionnaireStatus.BMQuestionnaireApproval},
 
-            //    new Questionnaire { StartDate = new DateTime (2018,5,10), EndDate = new DateTime(2018,5,30) , ResponseQuantityRequired = 150, QuestionnaireTypeId = 1, Status = QuestionnaireStatus.BMQuestionnaireApproval},
-                
-            //};
-            //questionnaires.ForEach(p => context.Questionnaires.AddOrUpdate(q => q.StartDate, p));
-            //context.SaveChanges();
+                new Questionnaire { StartDate = new DateTime (2018,5,10), EndDate = new DateTime(2018,5,30) , ResponseQuantityRequired = 150, QuestionnaireTypeId = 1, Status = QuestionnaireStatus.BMQuestionnaireApproval},
 
-            ////Add select questionnaires to link questionnaires to requests.
+            };
+            questionnaires.ForEach(p => context.Questionnaires.AddOrUpdate(q => q.StartDate, p));
+            context.SaveChanges();
 
-            //var selectquestionnaires = new List<SelectQuestionnaire>
-            //{
-            //     new SelectQuestionnaire { RequestID = 11, QuestionnaireID = 1, CPTEmployeeID = 3},
+            //Add select questionnaires to link questionnaires to requests.
 
-            //     new SelectQuestionnaire { RequestID = 9, QuestionnaireID = 2, CPTEmployeeID = 3}
-            //};
+            var selectquestionnaires = new List<SelectQuestionnaire>
+            {
+                 new SelectQuestionnaire { RequestID = 11, QuestionnaireID = 1, CPTEmployeeID = 3},
 
-            //selectquestionnaires.ForEach(p => context.SelectQuestionnaires.AddOrUpdate(q => q.RequestID, p));
-            //context.SaveChanges();
+                 new SelectQuestionnaire { RequestID = 9, QuestionnaireID = 2, CPTEmployeeID = 3}
+            };
+
+            selectquestionnaires.ForEach(p => context.SelectQuestionnaires.AddOrUpdate(q => q.RequestID, p));
+            context.SaveChanges();
 
             //// Update requests with questionnaire information.
             //var request9 = requests.Where(r => r.RequestID == 9).First();

@@ -27,7 +27,7 @@ textarea {
     background-color: #18246d;
     border-color:  #18246d;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     vertical-align: text-bottom;
 }
 
@@ -44,7 +44,7 @@ thead{
 
 .navbar-inverse .navbar-brand {
     color: aliceblue;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .navbar-inverse .navbar-nav > li > a{
