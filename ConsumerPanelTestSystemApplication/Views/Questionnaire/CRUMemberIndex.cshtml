@@ -1,79 +1,82 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResponseQuantityRequired)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MEmployeeID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BEmployeeID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BComment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MComment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTitle)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResponseQuantityRequired)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MEmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BEmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTitle)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-        </td>
-    </tr>
+@{
+    ViewBag.Title = "Pending Requests";
 }
 
+<h2>Pending Questionnaires</h2>
+
+<h4>Questionnaires to be executed.</h4>
+
+<table id="QuestionnairesTable" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionnaireTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionnaireTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Execution Details", "ExecutionDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+
+                    @Html.ActionLink("Conduct Survey", "ConductSurvey", "Survey", new { id = item.QuestionnaireTypeId }, new { @class = "btn btn-sm btn-success" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.scroller.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
+
+    <script type="text/javascript">
+      $(document).ready( function () {
+          $('#QuestionnairesTable').DataTable(
+              {
+                  "columnDefs": [
+            { "orderable": false, "targets": -1 }
+                  ]
+              });
+      });
+
+    </script>
+}
+
+@section styles
+{
+    @*<link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />*@
+    <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
+}

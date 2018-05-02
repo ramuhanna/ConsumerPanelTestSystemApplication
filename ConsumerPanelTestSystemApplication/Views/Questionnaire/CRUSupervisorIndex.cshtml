@@ -1,44 +1,73 @@
 ﻿@model IEnumerable<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel>
 
 @{
-    ViewBag.Title = "Pending Requests";
+    ViewBag.Title = "Pending Questionnaires";
 }
 
 <h2>Pending Questionnaires</h2>
 
 <h4>Questionnaires to be executed.</h4>
 
-<table class="table">
-    <tr>              
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
-        </th>        
-        <th></th>
-    </tr>
+<table id="QuestionnairesTable" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionnaireTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionnaireTypeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>    
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
-        </td>        
-        
-        <td>
-        @if (item.CRUMEmployeeID == null)
+    <tbody>
+        @foreach (var item in Model)
         {
-            @Html.ActionLink("Assign Questionnaire", "AssignQuestionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" })
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionnaireTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionnaireTypeName)
+                </td>
+
+                <td>
+                    @if (item.CRUMEmployeeID == null)
+                {
+                        @Html.ActionLink("Assign Questionnaire", "AssignQuestionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-warning" })
+                    }                   
+                        @Html.ActionLink("Questionnaire Details", "ExecutionDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })                   
+                </td>
+            </tr>
         }
-        else
-        {            
-                @Html.ActionLink("Questionnaire Details", "ExecutionDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })         
-        }
-        </td>
-    </tr>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.scroller.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
+
+    <script type="text/javascript">
+      $(document).ready( function () {
+          $('#QuestionnairesTable').DataTable(
+              {
+                  "columnDefs": [
+            { "orderable": false, "targets": -1 }
+                  ]
+              });
+      });
+
+    </script>
 }
 
-</table>
+@section styles
+{
+    @*<link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />*@
+    <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
+}
+
+
