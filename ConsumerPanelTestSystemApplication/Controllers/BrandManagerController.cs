@@ -1,7 +1,7 @@
 ﻿/*
 * Description: This controller contains the Index, Create, Delete, Edit and Details Actions for Brand Manager users.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 using ConsumerPanelTestSystemApplication.Models;
@@ -61,7 +61,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Index action is utilized in order to generate a list of Brand Manager users. 
         /// </summary>
-
+        /// <returns>MarketingDirectorReviewIndex View</returns>
         // GET: BrandManager
         public ActionResult Index()
         {
@@ -85,7 +85,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Details action displays the details of a specific Brand Manager user.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Details View</returns>
         // GET: BrandManager/Details/5
         public ActionResult Details(int id)
         {
@@ -122,6 +123,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
         }
 
+        /// <summary>  
+        /// The Create action allows the creation of a new Brand Manager user.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Create View</returns>
         // GET: BrandManager/Create
         public ActionResult Create()
         {
@@ -131,7 +137,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows the creation of a new Brand Manager user.
         /// </summary>
-
+        /// <param name="model">BrandManagerViewModel as a parameter</param>
+        /// <returns>Create View</returns>
         // POST: BrandManager/Create
         [HttpPost]
         public ActionResult Create(BrandManagerViewModel model)
@@ -175,6 +182,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Edit action permits updating a Brand Manager user's details.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Edit View</returns>
         // GET: BrandManager/Edit/5
         public ActionResult Edit(int id)
         {
@@ -207,7 +219,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Edit action permits updating a Brand Manager user's details.
         /// </summary>
-       
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <param name="model">BrandManagerViewModel as a parameter</param>
+        /// <returns>Edit View</returns>
         // POST: BrandManager/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -248,6 +262,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Delete action removes a Brand Manager user from the database.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // GET: BrandManager/Delete/5
         public ActionResult Delete(int id)
         {
@@ -279,7 +298,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action removes a Brand Manager user from the database.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // POST: BrandManager/Delete/5
         [HttpPost]
         [ActionName("Delete")]

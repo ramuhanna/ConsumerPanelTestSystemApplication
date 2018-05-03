@@ -1,7 +1,7 @@
 /*
-* Description: This file contains the Enter Result.
+* Description: This file contains the EnterResult. class
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -34,7 +34,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ResponseId { get; set; }
 
-        public virtual Response Response { get; set; }
+        public virtual Survey Survey { get; set; }
 
         public virtual CRUMember CRUMember { get; set; }
 

@@ -1,4 +1,10 @@
-﻿using ConsumerPanelTestSystemApplication.Controllers;
+﻿/*
+* Description: This file contains the QuestionViewModel class.
+* Author: R.M.
+* Due date: 05/05/2018
+*/
+
+using ConsumerPanelTestSystemApplication.Controllers;
 using ConsumerPanelTestSystemApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +15,10 @@ using System.Web.Mvc;
 
 namespace ConsumerPanelTestSystemApplication.ViewModels
 {
+    /// <summary>
+    /// Question view model based on the Question model and used by the Question controller.
+    /// </summary>
+
     public class QuestionViewModel
     {
         public QuestionViewModel()
@@ -23,21 +33,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Question Text")]
         public string QuestionText { get; set; }
 
-        [Display(Name = "Response Type")]
-        public ResponseType ResponseType { get; set; }
-
         // Holds values of radio buttons
         public int SelectedAnswer { get; set; }
-
-        // Holds values of textboxes and textarea
-        public string Input { get; set; }
-
-        //[Display(Name = "Questionnaire Type(s)")]
-        //public int QuestionnaireTypeID { get; set; }
-
-        //public string QuestionnaireTypeName { get; set; }
-
-        //public int QuestionTypeId { get; set; }
 
         // Holds radio buttons answers
         public List<AnswerViewModel> PossibleAnswers { get; set; }

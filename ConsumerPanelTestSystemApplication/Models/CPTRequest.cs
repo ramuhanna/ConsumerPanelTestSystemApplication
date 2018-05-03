@@ -1,7 +1,7 @@
 /*
 * Description: This file contains the CPT Request class and the RequestStatus enum.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -135,6 +135,9 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         [Display(Name = "Pending Marketing Director Questionnaire Approval")]
         MDQuestionnaireApproval,
+
+        [Display(Name = "Pending Questionnaire Modification")]
+        QuestionnaireModification,
 
         [Display(Name = "Pending Questionnaire Execution")]
         QuestionnaireExecution,

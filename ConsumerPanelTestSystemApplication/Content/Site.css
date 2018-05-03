@@ -129,8 +129,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #b60f47;
-  border-color: #b60f47;
+  background-color: #cd6899;
+  border-color: #cd6899;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -201,8 +201,8 @@ fieldset:disabled a.btn {
 
 .btn-success:hover {
   color: #fff;
-  background-color: #b00f5c;
-  border-color: #b00f5c;
+  background-color: #b35883;
+  border-color: #b35883;
 }
 
 .btn-success:focus, .btn-success.focus {
@@ -237,8 +237,8 @@ fieldset:disabled a.btn {
 
 .btn-info:hover {
   color: #fff;
-  background-color: #7ea9db;
-  border-color: #7ea9db;
+  background-color: #5374a4;
+  border-color: #5374a4;
 }
 
 .btn-info:focus, .btn-info.focus {
@@ -273,8 +273,8 @@ fieldset:disabled a.btn {
 
 .btn-warning:hover {
   color: #fff;
-  background-color: #5434be;
-  border-color: #5434be;
+  background-color: #9385c3;
+  border-color: #9385c3;
 }
 
 .btn-warning:focus, .btn-warning.focus {
@@ -309,8 +309,8 @@ fieldset:disabled a.btn {
 
 .btn-danger:hover {
   color: #fff;
-  background-color: #C71C22;
-  border-color: #C71C22;
+  background-color: #ec6767;
+  border-color: #ec6767;
 }
 
 .btn-danger:focus, .btn-danger.focus {

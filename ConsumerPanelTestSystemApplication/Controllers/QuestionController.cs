@@ -1,7 +1,7 @@
 ﻿/*
-* Description: This controller contains the Index, Create and Details Actions for Questions.
+* Description: This controller contains the Index, Create, QuestionCreate and Details Actions for Questions.
 * Author: R.M.
-* Due date: 18/04/2018
+* Due date: 05/05/2018
 */
 
 using ConsumerPanelTestSystemApplication.Models;
@@ -38,7 +38,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     Id = item.QuestionID,
                     QuestionText = item.QuestionText,
-                    ResponseType = item.ResponseType
                 });
             }
             return View(model);
@@ -71,7 +70,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">QuestionViewModel as the parameter.</param>
         /// <returns>Question, Create view</returns>
 
         [Authorize(Roles = "CPT Coordinator")]
@@ -86,7 +85,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 var question = new Question
                 {
                     QuestionText = model.QuestionText,
-                    ResponseType = model.ResponseType
                 };
 
                 // Save the created question to the database
@@ -126,12 +124,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
+        /// The QuestionCreate action allows for the creation of a new question by the CPT Coordinator user through a survey. 
         /// </summary>
-        /// <returns>Question, Create view</returns>
+        /// <returns>Question, QuestionCreate view</returns>
 
         [Authorize(Roles = "CPT Coordinator")]
-        // GET: Question/Create
+        // GET: Question/QuestionCreate
         public ActionResult QuestionCreate()
         {
             
@@ -150,13 +148,13 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The Create action allows for the creation of a new question by the CPT Coordinator user. 
+        /// The QuestionCreate action allows for the creation of a new question by the CPT Coordinator user through a survey. 
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns>Question, Create view</returns>
+        /// <param name="model">QuestionViewModel as the parameter.</param>
+        /// <returns>Question, QuestionCreate view</returns>
 
         [Authorize(Roles = "CPT Coordinator")]
-        // POST: Question/Create
+        // POST: Question/QuestionCreate
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult QuestionCreate(QuestionViewModel model)
@@ -167,7 +165,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 var question = new Question
                 {
                     QuestionText = model.QuestionText,
-                    ResponseType = model.ResponseType
                 };
 
                 // Save the created question to the database
@@ -210,9 +207,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action is utilized in order to delete a question. 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">QuestionId as the parameter</param>
         /// <returns>Question, Delete view</returns>
-
         [Authorize(Roles = "CPT Coordinator")]
         // GET: Question/Delete/5
         public ActionResult Delete(int? id)
@@ -230,7 +226,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             {
                 Id = question.QuestionID,
                 QuestionText = question.QuestionText,
-                ResponseType = question.ResponseType
             };
 
             return View(model);
@@ -239,7 +234,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action is utilized in order to delete a question. 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">QuestionId as the parameter</param>
         /// <returns>Question, Delete view</returns>
 
         [Authorize(Roles = "CPT Coordinator")]

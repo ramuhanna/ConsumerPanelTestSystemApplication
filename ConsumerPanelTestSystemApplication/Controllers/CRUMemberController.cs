@@ -1,7 +1,7 @@
 ﻿/*
 * Description: This controller contains the Index, Create, Delete, Edit and Details Actions for CRU Member users.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 
@@ -62,7 +62,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Index action is utilized in order to generate a list of CRU Member users. 
         /// </summary>
-
+        /// <returns>MarketingDirectorReviewIndex View</returns>
         // GET: CRUMember
         public ActionResult Index()
         {
@@ -87,7 +87,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Details action displays the details of a specific CRU Member user.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Details View</returns>
         // GET: CRUMember/Details/5
         public ActionResult Details(int id)
         {
@@ -129,6 +130,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
         }
 
+        /// <summary>  
+        /// The Create action allows the creation of a new CRU Member user.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Create View</returns>
         // GET: CRUMember/Create
         public ActionResult Create()
         {          
@@ -138,7 +144,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows the creation of a new CRU Member user.
         /// </summary>
-
+        /// <param name="model">CRUMemberViewModel as a parameter</param>
+        /// <returns>Create View</returns>
         // POST: CRUMember/Create
         [HttpPost]
         public ActionResult Create(CRUMemberViewModel model)
@@ -185,6 +192,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Edit action permits updating a CRU Member user's details.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Edit View</returns>
         // GET: CRUMember/Edit/5
         public ActionResult Edit(int id)
         {
@@ -219,7 +231,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Edit action permits updating a CRU Member user's details.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <param name="model">CRUMemberViewModel as a parameter</param>
+        /// <returns>Edit View</returns>
         // POST: CRUMember/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, CRUMemberViewModel model)
@@ -261,6 +275,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Delete action removes a CRU Member user from the database.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // GET: CRUMember/Delete/5
         public ActionResult Delete(int id)
         {
@@ -293,7 +312,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action removes a CRU Member user from the database.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // POST: CRUMember/Delete/5
         [HttpPost]
         [ActionName("Delete")]

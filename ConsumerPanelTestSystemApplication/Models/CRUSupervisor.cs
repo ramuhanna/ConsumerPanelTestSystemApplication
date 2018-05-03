@@ -1,7 +1,7 @@
 /*
 * Description: This file contains the CRU Supervisor class and the SupervisorRegion enum.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models

@@ -1,4 +1,6 @@
-﻿using ConsumerPanelTestSystemApplication.Models;
+﻿
+
+using ConsumerPanelTestSystemApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +10,10 @@ using System.Web;
 
 namespace ConsumerPanelTestSystemApplication.ViewModels
 {
+    /// <summary>
+    /// Questionnaire view model based on the Questionnaire model and used by the Questionnaire controller.
+    /// </summary>
+
     public class QuestionnaireViewModel
     {
         public int Id { get; set; }

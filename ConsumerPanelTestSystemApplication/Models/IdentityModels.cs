@@ -60,7 +60,7 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<QuestionnaireType> QuestionnaireTypes { get; set; }
         public virtual DbSet<Requester> Requesters { get; set; }
-        public virtual DbSet<Response> Responses { get; set; }
+        public virtual DbSet<Survey> Surveys { get; set; }
         public virtual DbSet<ResponsibleFor> ResponsibleFors { get; set; }
         public virtual DbSet<SelectQuestionnaire> SelectQuestionnaires { get; set; }
 
@@ -68,9 +68,9 @@ namespace ConsumerPanelTestSystemApplication.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Response>()
+            modelBuilder.Entity<Survey>()
                 .HasMany(e => e.EnterResults)
-                .WithRequired(e => e.Response)
+                .WithOptional(e => e.Survey)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<BrandManager>()
@@ -322,6 +322,8 @@ namespace ConsumerPanelTestSystemApplication.Models
             //        m.MapRightKey("LocationID");
             //    });
         }
+
+        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.AssignWorkViewModel> AssignWorkViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel> QuestionnaireViewModels { get; set; }
 

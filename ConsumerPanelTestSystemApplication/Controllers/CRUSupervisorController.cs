@@ -1,7 +1,7 @@
 ﻿/*
-* Description: This controller contains the Index, Create, Delete, Edit and Details Actions for CRU Suoervisor users.
+* Description: This controller contains the Index, Create, Delete, Edit and Details Actions for CRU Supervisor users.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 using ConsumerPanelTestSystemApplication.Models;
@@ -62,7 +62,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Index action is utilized in order to generate a list of CRU Supervisor users. 
         /// </summary>
-
+        /// <returns>MarketingDirectorReviewIndex View</returns>
         // GET: CRUSupervisor
         public ActionResult Index()
         {
@@ -86,7 +86,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Details action displays the details of a specific CRU Supervisor user.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Details View</returns>
         // GET: CRUSupervisor/Details/5
         public ActionResult Details(int id)
         {
@@ -123,6 +124,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
         }
 
+        /// <summary>  
+        /// The Create action allows the creation of a new CRU Supervisor user.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Create View</returns>
         // GET: CRUSupervisor/Create
         public ActionResult Create()
         {
@@ -132,7 +138,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows the creation of a new CRU Supervisor user.
         /// </summary>
-
+        /// <param name="model">CRUSupervisorViewModel as a parameter</param>
+        /// <returns>Create View</returns>
         // POST: CRUSupervisor/Create
         [HttpPost]
         public ActionResult Create(CRUSupervisorViewModel model)
@@ -175,7 +182,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
             return View();
         }
-      
+
+        /// <summary>  
+        /// The Edit action permits updating a CRU Supervisor user's details.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Edit View</returns>
         // GET: CRUSupervisor/Edit/5
         public ActionResult Edit(int id)
         {
@@ -208,7 +220,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Edit action permits updating a CRU Supervisor user's details.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <param name="model">CRUSupervisorViewModel as a parameter</param>
+        /// <returns>Edit View</returns>
         // POST: CRUSupervisor/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, CRUSupervisorViewModel model)
@@ -248,6 +262,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Delete action removes a CRU Supervisor user from the database.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // GET: CRUSupervisor/Delete/5
         public ActionResult Delete(int id)
         {
@@ -279,7 +298,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action removes a CRU Supervisor user from the database.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // POST: CRUSupervisor/Delete/5
         [HttpPost]
         [ActionName("Delete")]

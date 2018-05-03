@@ -1,7 +1,7 @@
 /*
 * Description: This file contains the Questionnaire class and the QuestionnaireStatus enum.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -26,7 +26,6 @@ namespace ConsumerPanelTestSystemApplication.Models
             ContainQuestions = new HashSet<ContainQuestion>();
             ResponsibleFors = new HashSet<ResponsibleFor>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
-            Responses = new HashSet<Response>();
         }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -88,8 +87,6 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public virtual ICollection<SelectQuestionnaire> SelectQuestionnaires { get; set; }
 
-        public virtual ICollection<Response> Responses { get; set; }
-
         public virtual Employee Employee { get; set; }
 
     }
@@ -108,6 +105,9 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         [Display(Name = "Pending Marketing Director Questionnaire Approval")]
         MDQuestionnaireApproval,
+
+        [Display(Name = "Pending Questionnaire Modification")]
+        QuestionnaireModification,
 
         [Display(Name = "Pending Questionnaire Execution")]
         QuestionnaireExecution,

@@ -1,7 +1,7 @@
 /*
 * Description: This file contains the CRU Member class.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -25,7 +25,6 @@ namespace ConsumerPanelTestSystemApplication.Models
             AssignWorks = new HashSet<AssignWork>();
             EnterResults = new HashSet<EnterResult>();
             Questionnaires = new HashSet<Questionnaire>();
-            Responses = new HashSet<Response>();
         }
 
         //[Key]
@@ -47,8 +46,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual ICollection<EnterResult> EnterResults { get; set; }
 
         public virtual ICollection<Questionnaire> Questionnaires { get; set; }
-
-        public virtual ICollection<Response> Responses { get; set; }
 
     }
 }

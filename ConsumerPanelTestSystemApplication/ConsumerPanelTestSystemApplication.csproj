@@ -211,7 +211,6 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\RequesterController.cs" />
-    <Compile Include="Controllers\SelectQuestionnaireController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,12 +240,12 @@
     <Compile Include="Models\QuestionnaireType.cs" />
     <Compile Include="Models\QuestionType.cs" />
     <Compile Include="Models\Requester.cs" />
-    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\ResponsibleFor.cs" />
     <Compile Include="Models\SelectQuestionnaire.cs" />
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AssignWorkViewModel.cs" />
     <Compile Include="ViewModels\BrandManagerViewModel.cs" />
     <Compile Include="ViewModels\CPTRequestViewModel.cs" />
     <Compile Include="ViewModels\CRUMemberViewModel.cs" />
@@ -256,7 +255,6 @@
     <Compile Include="ViewModels\QuestionnaireViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RequesterViewModel.cs" />
-    <Compile Include="ViewModels\ResponseViewModel.cs" />
     <Compile Include="ViewModels\SelectQuestionnaireViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -660,7 +658,6 @@
     <Content Include="Views\CPTRequest\SubmittedRequestsDetails.cshtml" />
     <Content Include="Views\CPTRequest\Details.cshtml" />
     <Content Include="Views\Home\CPTRequests.cshtml" />
-    <Content Include="Views\CPTRequest\BrandManagerReviewIndexPartial.cshtml" />
     <Content Include="Views\Survey\ConductSurvey.cshtml" />
     <Content Include="Views\Questionnaire\ReviewDetails.cshtml" />
     <Content Include="Views\Survey\CreateSurvey.cshtml" />
@@ -670,8 +667,8 @@
     <Content Include="Views\Questionnaire\ReviewQuestionnaire.cshtml" />
     <Content Include="Views\Questionnaire\CRUSupervisorIndex.cshtml" />
     <Content Include="Views\Questionnaire\ExecutionDetails.cshtml" />
+    <Content Include="Views\Questionnaire\AssignQuestionnaire1.cshtml" />
     <Content Include="Views\Questionnaire\AssignQuestionnaire.cshtml" />
-    <Content Include="Views\Questionnaire\ExecutionDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

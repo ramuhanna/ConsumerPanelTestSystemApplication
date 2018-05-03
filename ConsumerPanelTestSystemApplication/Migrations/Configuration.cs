@@ -87,10 +87,10 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add Marketing Director user.
             var mdUser = new MarketingDirector
             {
-                UserName = "MDUN",
-                Email = "MD@G.COM",
-                FirstName = "MDFN",
-                LastName = "MDLN",
+                UserName = "mdun",
+                Email = "md@gmail.com",
+                FirstName = "Rola",
+                LastName = "Aref",
                 PhoneNumber = "0512345678",
                 Country = EmployeeCountry.SaudiArabia,
                 City = EmployeeCity.Dammam,
@@ -107,10 +107,10 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add CPT Coordinator user.
             var cptUser = new CPTCoordinator
             {
-                UserName = "CPTUN",
-                Email = "CPT@G.COM",
-                FirstName = "CPTFN",
-                LastName = "CPTLN",
+                UserName = "cptun",
+                Email = "cpt@gmail.com",
+                FirstName = "Carla",
+                LastName = "Attiah",
                 PhoneNumber = "0512345678",
                 Country = EmployeeCountry.Lebanon,
                 City = EmployeeCity.Beirut,
@@ -127,8 +127,8 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add CRU Manager user.
             var crumUser = new CRUManager
             {
-                UserName = "CRUMTUN",
-                Email = "CRUM@G.COM",
+                UserName = "crumun",
+                Email = "crum@gmail.com",
                 FirstName = "CRUMFN",
                 LastName = "CRUMLN",
                 PhoneNumber = "0512345698",
@@ -148,16 +148,16 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add Brand Managers to the database.          
             var brandmanagers = new List<BrandManager>
             {
-                new BrandManager { UserName = "BMUN1", Email ="BM1@g.com", FirstName ="BM1", LastName ="BM11",
+                new BrandManager { UserName = "bmun1", Email ="bm1@gmail.com", FirstName ="Ehab", LastName ="Mohamed",
                     PhoneNumber = "0513146789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Type = EmployeeType.BrandManager, ProductDivision = BrandManagerProductDivision.FamilyCare},
-                new BrandManager { UserName = "BMUN2", Email ="BM2@g.com", FirstName ="BM2", LastName ="BM22",
+                new BrandManager { UserName = "bmun2", Email ="bm2@gmail.com", FirstName ="Lama", LastName ="Hafez",
                     PhoneNumber = "0518946789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Type = EmployeeType.BrandManager, ProductDivision = BrandManagerProductDivision.FeminineCare},
-                new BrandManager { UserName = "BMUN3", Email ="BM3@g.com", FirstName ="BM3", LastName ="BM33",
+                new BrandManager { UserName = "bmun3", Email ="bm3@gmail.com", FirstName ="Maryam", LastName ="Mahfouz",
                     PhoneNumber = "0574146789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Type = EmployeeType.BrandManager, ProductDivision = BrandManagerProductDivision.HouseholdItems},
-                new BrandManager { UserName = "BMUN4", Email ="BM4@g.com", FirstName ="BM4", LastName ="BM44",
+                new BrandManager { UserName = "bmun4", Email ="bm4@gmail.com", FirstName ="Mahmoud", LastName ="Shawqy",
                     PhoneNumber = "0574145789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Type = EmployeeType.BrandManager, ProductDivision = BrandManagerProductDivision.BabyCare}
             };
@@ -180,13 +180,13 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add CRU Supervisors to the database.
             var crusupervisors = new List<CRUSupervisor>
             {
-                new CRUSupervisor { UserName = "crus1", Email ="crus1@g.com", FirstName ="CRUS1", LastName ="Supervisor11",
+                new CRUSupervisor { UserName = "crus1", Email ="crus1@gmail.com", FirstName ="Manal", LastName ="Mahmoud",
                     PhoneNumber = "0513456789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Region = SupervisorRegion.EasternRegion, Type = EmployeeType.CRUSupervisor},
-                new CRUSupervisor { UserName = "crus2", Email ="crus2@g.com", FirstName ="CRUS2", LastName ="Supervisor22",
+                new CRUSupervisor { UserName = "crus2", Email ="crus2@gmail.com", FirstName ="Lamees", LastName ="Gazzaz",
                     PhoneNumber = "0523456654", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
                     Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUSupervisor},
-                new CRUSupervisor { UserName = "crus3", Email ="crus3@g.com", FirstName ="CRUS3", LastName ="Supervisor33",
+                new CRUSupervisor { UserName = "crus3", Email ="crus3@gmail.com", FirstName ="Hala", LastName ="Muhammad",
                     PhoneNumber = "0533452589", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
                     Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUSupervisor}
             };
@@ -209,13 +209,13 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add CRU Members to the database.
             var crumembers = new List<CRUMember>
             {
-                new CRUMember { UserName = "crum1", Email ="crum1@g.com", FirstName ="CRUM1", LastName ="Member11",
+                new CRUMember { UserName = "crum1", Email ="crum1@gmail.com", FirstName ="Hala", LastName ="Farouq",
                     PhoneNumber = "0509637789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 10},
-                new CRUMember { UserName = "crum2", Email ="crum2@g.com", FirstName ="CRUM2", LastName ="Member22",
+                new CRUMember { UserName = "crum2", Email ="crum2@gmail.com", FirstName ="Dalal", LastName ="Ahmed",
                     PhoneNumber = "0508547789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
                     Region = SupervisorRegion.EasternRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 9},
-                new CRUMember { UserName = "crum3", Email ="crum3@g.com", FirstName ="CRUM3", LastName ="Member33",
+                new CRUMember { UserName = "crum3", Email ="crum3@gmail.com", FirstName ="Dalia", LastName ="Rami",
                     PhoneNumber = "0589047789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
                     Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 11},
             };
@@ -238,16 +238,16 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add Requesters to the database.
             var requesters = new List<Requester>
             {
-                new Requester { UserName = "REQUN", Email = "REQ@G.COM", FirstName = "REQFN", LastName = "REQLN",
+                new Requester { UserName = "requn1", Email = "requn1@gmail.com", FirstName = "Ramy", LastName = "REQLN",
                     PhoneNumber = "0541236985", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Madina,
                     Department = Department.RD, Position = "Vice President of Research and Development", Type = EmployeeType.Requester},
-                new Requester { UserName = "REQUN1", Email ="REQ1@g.com", FirstName ="REQ1", LastName ="REQ11",
+                new Requester { UserName = "requn2", Email ="requn2@gmail.com", FirstName ="George", LastName ="Khalifa",
                     PhoneNumber = "0509689789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
                     Department = Department.Production, Position = "Assisstant Production Supervisor", Type = EmployeeType.Requester},
-                new Requester { UserName = "REQUN2", Email ="REQ2@g.com", FirstName ="REQ2", LastName ="REQ22",
+                new Requester { UserName = "requn3", Email ="requn3@gmail.com", FirstName ="Tony", LastName ="Taleed",
                     PhoneNumber = "0509637019", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
                     Department = Department.QAQC, Position = "Quality Assurance Head", Type = EmployeeType.Requester},
-                new Requester { UserName = "REQUN3", Email ="REQ3@g.com", FirstName ="REQ3", LastName ="REQ33",
+                new Requester { UserName = "requn4", Email ="requn4@gmail.com", FirstName ="Sami", LastName ="Shahid",
                     PhoneNumber = "0509685789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Dammam,
                     Department = Department.Sales, Position = "Regional Sales Supervisor", Type = EmployeeType.Requester},
             };
@@ -295,14 +295,14 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             {
                 new CPTRequest { RequestTitle = "Feminine Care Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We need some market research in the western regions on the perfomance of feminine care products.",
-                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,1,5), SubmittedById = 6, LocationId = 3, BReview = Review.Approved, BReviewRequest = 6},
+                    ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,1,5), SubmittedById = 6, LocationId = 1, BReview = Review.Approved, BReviewRequest = 6},
 
                 new CPTRequest { RequestTitle = "Bambi Market Analysis",  RequestStatus = RequestStatus.MDRequestApproval,
                     Justification = "We need to get national feedback on the regular Bambi performance to evaluate any neccessary changes.",
                     ProductDivision = BrandManagerProductDivision.BabyCare, RequestDate = new DateTime(2018,2,10), SubmittedById = 8, LocationId = 1, BReview = Review.Approved, BReviewRequest = 8},
 
                 new CPTRequest { RequestTitle = "Tracking Tests for new Sanita Aluminum",  RequestStatus = RequestStatus.MDRequestApproval,
-                    Justification = "We want to see how Orenex is performaing in the market, particularly within the Eastern region.",
+                    Justification = "We want to see how Orenex is performing in the market, particularly within the Eastern region.",
                     ProductDivision = BrandManagerProductDivision.HouseholdItems, RequestDate = new DateTime(2018,1,21), SubmittedById = 7, LocationId = 7, BReview = Review.Approved, BReviewRequest = 7},
 
                 new CPTRequest { RequestTitle = "Sanita Market Positioning",  RequestStatus = RequestStatus.MDRequestApproval,
@@ -314,7 +314,7 @@ namespace ConsumerPanelTestSystemApplication.Migrations
 
                 new CPTRequest { RequestTitle = "Bi-Annual Private Assessment",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need updated information on the product line's performance.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,2,28), SubmittedById = 17, LocationId = 1, BReview = Review.Approved, BReviewRequest = 6, MReviewRequest = 2, MReview = Review.Approved},
 
-                 new CPTRequest { RequestTitle = "New Product Market Research",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need some preliminary research on the market's acceptance of the new product line.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,4,28), SubmittedById = 15, LocationId = 3, BReview = Review.Approved, BReviewRequest = 6, MReviewRequest = 2, MReview = Review.Approved},
+                 new CPTRequest { RequestTitle = "New Product Market Research",  RequestStatus = RequestStatus.QuestionnaireCreation, Justification = "We need some preliminary research on the market's acceptance of the new product line.", ProductDivision = BrandManagerProductDivision.FeminineCare, RequestDate = new DateTime(2018,4,28), SubmittedById = 15, LocationId = 1, BReview = Review.Approved, BReviewRequest = 6, MReviewRequest = 2, MReview = Review.Approved},
             };
 
             BMrequests.ForEach(s => context.CPTRequests.AddOrUpdate(p => p.RequestTitle, s));
@@ -335,29 +335,24 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             // Add questions.
             var questions = new List<Question>
             {
-                new Question { QuestionText = "Did the product cause any rashes or discomforts?", ResponseType = ResponseType.RadioButton },
-                new Question { QuestionText = "How much are you willing to pay for this product?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "What might make you purchase a competing product?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "Who goes and makes the purchase?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "For how many years have you been purchasing this product?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Did the product cause any rashes or discomforts?"},
+                new Question { QuestionText = "Are you willing to spend a higher price than the standard for this product?"},
+                new Question { QuestionText = "Are you likely to purchase a competing product?", },
+                new Question { QuestionText = "Is price is an important factor when making your decision.", },
+                new Question { QuestionText = "Is quality is an important factor when purchasing a product like this?"},
 
-                new Question { QuestionText = "Do you use NAPCO products often? " , ResponseType = ResponseType.RadioButton},
-                new Question { QuestionText = "What is the most important factor for you when purchasing a product like this?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "What is your name?", ResponseType = ResponseType.TextBox},
-                new Question { QuestionText = "How old are you?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "What was your impression of the product after the trial period?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Do you use NAPCO products often? "},
+                new Question { QuestionText = "Would you say you are satisfied with your experience with the product?"},
+                new Question { QuestionText = "Do you purchase NAPCO Products frequently?"},
+                new Question { QuestionText = "How likely is it that you would recommend us to a friend/colleague?"},
+                new Question { QuestionText = "Was your impression positive of the product after the trial period?"},
 
-                new Question { QuestionText = "When choosing baby care products, is price an important factor for you?", ResponseType = ResponseType.RadioButton },
-                new Question { QuestionText = "How willing would you be to try a new product?" , ResponseType = ResponseType.RadioButton},
-                new Question { QuestionText = "Do sales and discounts affect your purchase of a particular product?", ResponseType = ResponseType.RadioButton },
-                new Question { QuestionText = "How strongly do you like this product?", ResponseType = ResponseType.RadioButton },
-                new Question { QuestionText = "How many children do you have?", ResponseType = ResponseType.TextBox },
-
-                new Question { QuestionText = "What is the age of your youngest child?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "Where are you most likely to purchase this product?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "Are you willing to pay more for higher quality products?", ResponseType = ResponseType.RadioButton },
-                new Question { QuestionText = "What do you know about this product?", ResponseType = ResponseType.TextBox },
-                new Question { QuestionText = "Where do you live?", ResponseType = ResponseType.TextBox },
+                new Question { QuestionText = "Have you used this product?" },
+                new Question { QuestionText = "How willing would you be to try a new product?"},
+                new Question { QuestionText = "Do sales and discounts affect your purchase of a particular product?"},
+                new Question { QuestionText = "Have you used this product?" },
+                new Question { QuestionText = "Are you willing to pay more for higher quality products?"},
+                
             };
             questions.ForEach(s => context.Questions.AddOrUpdate(p => p.QuestionText, s));
             context.SaveChanges();
@@ -394,22 +389,63 @@ namespace ConsumerPanelTestSystemApplication.Migrations
                 new QuestionType { QuestionID = 9, QuestionnaireTypeID = 2 },
                 new QuestionType { QuestionID = 9, QuestionnaireTypeID = 3 },
                 new QuestionType { QuestionID = 9, QuestionnaireTypeID = 4 },
-                new QuestionType { QuestionID = 10, QuestionnaireTypeID = 3 }
+                new QuestionType { QuestionID = 10, QuestionnaireTypeID = 3 },
+
+                new QuestionType { QuestionID = 11, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 11, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 12, QuestionnaireTypeID = 3 },
+                new QuestionType { QuestionID = 12, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 13, QuestionnaireTypeID = 2 },
+
+                new QuestionType { QuestionID = 13, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 14, QuestionnaireTypeID = 1 },
+                new QuestionType { QuestionID = 14, QuestionnaireTypeID = 4 },
+                new QuestionType { QuestionID = 15, QuestionnaireTypeID = 2 },
+                new QuestionType { QuestionID = 15, QuestionnaireTypeID = 4 }
             };
             questiontypes.ForEach(s => context.QuestionTypes.AddOrUpdate(p => new { p.QuestionID, p.QuestionnaireTypeID}, s));
             context.SaveChanges();
 
 
-            // Add questionnaires for CPT Requests.
-            var questionnaires = new List<Questionnaire>
+            // Add Additional CRU Members to the database.
+            var crumembers2 = new List<CRUMember>
             {
-                new Questionnaire { StartDate = new DateTime (2018,4,30), EndDate = new DateTime(2018,6,20) , ResponseQuantityRequired = 250, QuestionnaireTypeId = 3, Status = QuestionnaireStatus.BMQuestionnaireApproval},
-
-                new Questionnaire { StartDate = new DateTime (2018,5,10), EndDate = new DateTime(2018,5,30) , ResponseQuantityRequired = 150, QuestionnaireTypeId = 1, Status = QuestionnaireStatus.BMQuestionnaireApproval},
-
+                new CRUMember { UserName = "crum4", Email ="crum4@gmail.com", FirstName ="Hana", LastName ="Mohammed",
+                    PhoneNumber = "0509637789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
+                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 9},
+                new CRUMember { UserName = "crum5", Email ="crum5@gmail.com", FirstName ="Layla", LastName ="Hani",
+                    PhoneNumber = "0508547789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Jeddah,
+                    Region = SupervisorRegion.WesternRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 9},
+                new CRUMember { UserName = "crum6", Email ="crum6@gmail.com", FirstName ="Sara", LastName ="Ahmed",
+                    PhoneNumber = "0589047789", Country = EmployeeCountry.SaudiArabia, City = EmployeeCity.Riyadh,
+                    Region = SupervisorRegion.CentralRegion, Type = EmployeeType.CRUMember, CRUSupervisorId = 11},
             };
-            questionnaires.ForEach(p => context.Questionnaires.AddOrUpdate(q => q.StartDate, p));
-            context.SaveChanges();
+
+            foreach (var crumember in crumembers2)
+            {
+                if (userManager.FindByName(crumember.UserName) == null)
+                {
+                    userManager.Create(crumember, "crum123");
+                }
+
+                var usertemp = userManager.FindByName(crumember.UserName);
+                if (!userManager.IsInRole(usertemp.Id, roles[7]))
+                {
+                    userManager.AddToRole(usertemp.Id, roles[7]);
+                }
+            }
+
+
+            //// Add questionnaires for CPT Requests.
+            //var questionnaires = new List<Questionnaire>
+            //{
+            //    new Questionnaire { StartDate = new DateTime (2018,4,30), EndDate = new DateTime(2018,6,20) , ResponseQuantityRequired = 250, QuestionnaireTypeId = 3, Status = QuestionnaireStatus.BMQuestionnaireApproval},
+
+            //    new Questionnaire { StartDate = new DateTime (2018,5,10), EndDate = new DateTime(2018,5,30) , ResponseQuantityRequired = 150, QuestionnaireTypeId = 1, Status = QuestionnaireStatus.BMQuestionnaireApproval},
+
+            //};
+            //questionnaires.ForEach(p => context.Questionnaires.AddOrUpdate(q => q.StartDate, p));
+            //context.SaveChanges();
 
             ////Add select questionnaires to link questionnaires to requests.
 

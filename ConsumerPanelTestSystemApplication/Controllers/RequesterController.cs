@@ -1,7 +1,7 @@
 ﻿/*
 * Description: This controller contains the Index, Create, Delete, Edit and Details Actions for Requester users.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 using ConsumerPanelTestSystemApplication.Models;
@@ -61,7 +61,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Index action is utilized in order to generate a list of Requester users. 
         /// </summary>
-       
+        /// <returns>MarketingDirectorReviewIndex View</returns>
         // GET: Requester
         public ActionResult Index()
         {
@@ -86,7 +86,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Details action displays the details of a specific Requester user.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Details View</returns>
         // GET: Requester/Details/5
         public ActionResult Details(int id)
         {
@@ -124,6 +125,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
         }
 
+        /// <summary>  
+        /// The Create action allows the creation of a new Requester user.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Create View</returns>
         // GET: Requester/Create
         public ActionResult Create()
         {
@@ -133,7 +139,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows the creation of a new Requester user.
         /// </summary>
-
+        /// <param name="model">RequesterViewModel as a parameter</param>
+        /// <returns>Create View</returns>
         // POST: Requester/Create
         [HttpPost]
         public ActionResult Create(RequesterViewModel model)
@@ -178,6 +185,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Edit action permits updating a Requester user's details.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Edit View</returns>
         // GET: Requester/Edit/5
         public ActionResult Edit(int id)
         {
@@ -211,7 +223,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Edit action permits updating a Requester user's details.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <param name="model">RequesterViewModel as a parameter</param>
+        /// <returns>Edit View</returns>
         // POST: Requester/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, RequesterViewModel model)
@@ -252,6 +266,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Delete action removes a Requester user from the database.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // GET: Requester/Delete/5
         public ActionResult Delete(int id)
         {
@@ -284,7 +303,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action removes a Requester user from the database.
         /// </summary>
-        
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // POST: Requester/Delete/5
         [HttpPost]
         [ActionName("Delete")]

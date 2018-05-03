@@ -1,7 +1,7 @@
 /*
 * Description: This file contains the AssignWork class.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -20,25 +20,16 @@ namespace ConsumerPanelTestSystemApplication.Models
     [Table("AssignWork")]
     public partial class AssignWork
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CSEmployeeID { get; set; }
+        public int AssignWorkId { get; set; }
+      
+        public int? CSEmployeeID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CMEEmployeeID { get; set; }
-
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int QuestionnaireID { get; set; }
+        public int? CMEEmployeeID { get; set; }
+       
+        public int? QuestionnaireID { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime AssignmentDate { get; set; }
-
-        public int? PercentageAssigned { get; set; }
+        public DateTime? AssignmentDate { get; set; }
 
         public virtual CRUMember CRUMember { get; set; }
 

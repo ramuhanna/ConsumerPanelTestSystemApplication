@@ -1,7 +1,7 @@
 ﻿/*
 * Description: This controller contains the Index, Create, Delete, Edit and Details Actions for Employee users.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 
@@ -62,7 +62,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Index action is utilized in order to generate a list of Employee users. 
         /// </summary>
-     
+        /// <returns>MarketingDirectorReviewIndex View</returns>
         public ActionResult Index()
         {
             var users = db.Employees.ToList();
@@ -89,7 +89,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Details action displays the details of a specific Employee user.
         /// </summary>
-    
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Details View</returns>
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
@@ -127,6 +128,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         }
 
+        /// <summary>  
+        /// The Create action allows the creation of a new Employee user.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Create View</returns>
         // GET: Employee/Create
         public ActionResult Create()
         {
@@ -137,7 +143,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows the creation of a new Employee user.
         /// </summary>
-
+        /// <param name="model">EmployeeViewModel as a parameter</param>
+        /// <returns>Create View</returns>
         // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -203,6 +210,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             
         }
 
+        /// <summary>  
+        /// The Edit action permits updating an Employee user's details.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Edit View</returns>
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
@@ -247,7 +259,9 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Edit action permits updating an Employee user's details.
         /// </summary>
-       
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <param name="model">EmployeeViewModel as a parameter</param>
+        /// <returns>Edit View</returns>
         // POST: Employee/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -307,6 +321,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Delete action removes an Employee user from the database.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // GET: Employee/Delete/5
         public ActionResult Delete(int id)
         {
@@ -338,7 +357,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action removes an Employee user from the database.
         /// </summary>
-
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // POST: Employee/Delete/5
         [HttpPost]
         [ActionName("Delete")]

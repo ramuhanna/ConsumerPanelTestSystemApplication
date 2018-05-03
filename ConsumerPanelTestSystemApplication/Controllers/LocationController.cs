@@ -1,7 +1,7 @@
 ﻿/*
 * Description: This controller contains the Index, Create, Delete, Edit and Details Actions for Locations.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 using AutoMapper;
@@ -22,10 +22,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        
         /// <summary>  
         /// The Index action is utilized in order to generate a list of Locations. 
         /// </summary>
-
+        /// <returns>Index View</returns>
         // GET: Location
         public ActionResult Index()
         {
@@ -44,10 +45,12 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
-        /// <summary>  
-        /// The Details action is utilized in order to view the details of a specific Location. 
-        /// </summary>
 
+        /// <summary>  
+        /// The Details action displays the details of a specific location.
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Details View</returns>
         // GET: Location/Details/5
         public ActionResult Details(int? id)
         {
@@ -72,6 +75,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
         }
 
+        /// <summary>  
+        /// The Create action allows for the addition of a new Location. 
+        /// </summary>
+        /// <param name="id">Employee Id as a parameter</param>
+        /// <returns>Create View</returns>
         // GET: Location/Create
         public ActionResult Create()
         {
@@ -81,7 +89,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Create action allows for the addition of a new Location. 
         /// </summary>
-
+        /// <param name="model">LocationViewModel as a parameter</param>
+        /// <returns>Create View</returns>
         // POST: Location/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -108,6 +117,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             }
         }
 
+        /// <summary>  
+        /// The Edit action permits updating a Location's details.
+        /// </summary>
+        /// <param name="id">Location Id as a parameter</param>
+        /// <returns>Edit View</returns>
         // GET: Location/Edit/5
         public ActionResult Edit(int? id)
         {           
@@ -133,9 +147,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         }
 
         /// <summary>  
-        /// The Edit action allows the editing of a specific Location. 
+        /// The Edit action permits updating a Location's details.
         /// </summary>
-
+        /// <param name="id">Location Id as a parameter</param>
+        /// <param name="model">LocationViewModel as a parameter</param>
+        /// <returns>Edit View</returns>
         // POST: Location/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -162,6 +178,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View();
         }
 
+        /// <summary>  
+        /// The Delete action removes a specific Location from the database. 
+        /// </summary>
+        /// <param name="id">Location Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // GET: Location/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -187,7 +208,8 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Delete action removes a specific Location from the database. 
         /// </summary>
-
+        /// <param name="id">Location Id as a parameter</param>
+        /// <returns>Delete View</returns>
         // POST: Location/Delete/5
         [HttpPost]
         [ActionName("Delete")]

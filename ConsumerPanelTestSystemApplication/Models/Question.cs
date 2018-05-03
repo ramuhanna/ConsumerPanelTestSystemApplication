@@ -1,7 +1,7 @@
 /*
 * Description: This file contains the Question class.
 * Author: R.M.
-* Due date: 21/03/2018
+* Due date: 05/05/2018
 */
 
 namespace ConsumerPanelTestSystemApplication.Models
@@ -24,7 +24,6 @@ namespace ConsumerPanelTestSystemApplication.Models
             ContainQuestions = new HashSet<ContainQuestion>();
             EnterResults = new HashSet<EnterResult>();
             QuestionTypes = new HashSet<QuestionType>();
-            Responses = new HashSet<Response>();
         }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -33,8 +32,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         [Required]
         [StringLength(150)]
         public string QuestionText { get; set; }
-
-        public ResponseType ResponseType { get; set; }
 
         // Holds values of radio buttons
         public int? SelectedAnswer { get; set; }
@@ -50,14 +47,7 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public virtual ICollection<QuestionType> QuestionTypes { get; set; }
 
-        public virtual ICollection<Response> Responses { get; set; }
-
 
     }
-
-    public enum ResponseType
-    {
-        RadioButton,
-        TextBox
-    }
+ 
 }
