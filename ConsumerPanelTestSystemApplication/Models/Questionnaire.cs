@@ -21,7 +21,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     {
         public Questionnaire()
         {
-            AdditionalQuestions = new HashSet<AdditionalQuestion>();
             AssignWorks = new HashSet<AssignWork>();
             ContainQuestions = new HashSet<ContainQuestion>();
             ResponsibleFors = new HashSet<ResponsibleFor>();
@@ -68,8 +67,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         public string QuestionnaireTypeName { get; set; }
 
         public string QuestionnaireTitle { get; set; }
-
-        public virtual ICollection<AdditionalQuestion> AdditionalQuestions { get; set; }
 
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
 

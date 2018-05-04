@@ -21,7 +21,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     {
         public CPTRequest()
         {
-            ExecutionLocations = new HashSet<ExecutionLocation>();
             ProgressReports = new HashSet<ProgressReport>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
             //Locations = new HashSet<Location>();
@@ -102,8 +101,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual Requester Requester { get; set; }
 
         public virtual Questionnaire Questionnaire { get; set; }
-
-        public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
 
         public virtual ICollection<ProgressReport> ProgressReports { get; set; }
 

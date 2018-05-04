@@ -55,6 +55,10 @@
                         </ul>
                     </li>
                 }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Locations", "Index", "Location")</li>
+                    }
                     @if (User.IsInRole("Marketing Director"))
                     {
                         <li>@Html.ActionLink("Pending Requests", "MarketingDirectorReviewIndex", "CPTRequest")</li>

@@ -21,7 +21,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     {
         public Location()
         {
-            ExecutionLocations = new HashSet<ExecutionLocation>();
             CPTRequests = new HashSet<CPTRequest>();
         }
 
@@ -33,8 +32,6 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         [Required]
         public SupervisorRegion Region { get; set; }
-
-        public virtual ICollection<ExecutionLocation> ExecutionLocations { get; set; }
 
         public virtual ICollection<CPTRequest> CPTRequests { get; set; }
     }

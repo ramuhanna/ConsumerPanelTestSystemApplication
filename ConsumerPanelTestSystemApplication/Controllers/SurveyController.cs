@@ -203,17 +203,17 @@ namespace ConsumerPanelTestSystemApplication.Controllers
 
         public int Id { get; set; }
 
-        public string Title { get; set; }
-
-        public virtual Questionnaire Questionnaire { get; set; }
-
-        public string ResponseInput { get; set; }
+        public string Title { get; set; }    
 
         public int? ResponseScore { get; set; }
 
         public int? QuestionnaireId { get; set; }
 
-        public int QuestionId { get; set; }
+        public int? QuestionId { get; set; }
+
+        public decimal? Grade { get; set; }
+
+        public virtual Questionnaire Questionnaire { get; set; }
 
         public List<QuestionViewModel> Questions { get; set; }
     }

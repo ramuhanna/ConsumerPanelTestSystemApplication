@@ -22,17 +22,17 @@ namespace ConsumerPanelTestSystemApplication.Models
             EnterResults = new HashSet<EnterResult>();
         }
 
-        public int Id { get; set; }
+        public int SurveyId { get; set; }
 
         public string Title { get; set; }
-
-        public string ResponseInput { get; set; }
 
         public int? ResponseScore { get; set; }
 
         public int? QuestionnaireId { get; set; }
 
-        public int QuestionId { get; set; }
+        public int? QuestionId { get; set; }
+
+        public decimal? Grade { get; set; }
 
         public virtual Questionnaire Questionnaire { get; set; }
 

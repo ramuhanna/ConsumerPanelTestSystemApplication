@@ -22,15 +22,12 @@ namespace ConsumerPanelTestSystemApplication.Models
     {
         public CPTCoordinator()
         {
-            Answers = new HashSet<Answer>();
             SelectQuestionnaires = new HashSet<SelectQuestionnaire>();
         }
 
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public int EmployeeID { get; set; }
-
-        public virtual ICollection<Answer> Answers { get; set; }
 
         //public virtual Employee Employee { get; set; }
 

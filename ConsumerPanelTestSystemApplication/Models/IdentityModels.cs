@@ -39,8 +39,6 @@ namespace ConsumerPanelTestSystemApplication.Models
             return new ApplicationDbContext();
         }
 
-        public virtual DbSet<AdditionalQuestion> AdditionalQuestions { get; set; }
-        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<AssignWork> AssignWorks { get; set; }
         public virtual DbSet<BrandManager> BrandManagers { get; set; }
         public virtual DbSet<ContainQuestion> ContainQuestions { get; set; }
@@ -51,7 +49,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         public virtual DbSet<CRUSupervisor> CRUSupervisors { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EnterResult> EnterResults { get; set; }
-        public virtual DbSet<ExecutionLocation> ExecutionLocations { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<MarketingDirector> MarketingDirectors { get; set; }
         public virtual DbSet<ProgressReport> ProgressReports { get; set; }
@@ -96,23 +93,12 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .WithOptional(e => e.BrandManager)
                 .HasForeignKey(e => e.BEmployeeID)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CPTCoordinator>()
-                .HasMany(e => e.Answers)
-                .WithRequired(e => e.CPTCoordinator)
-                .HasForeignKey(e => e.CPTEmployeeID)
-                .WillCascadeOnDelete(false);
-
+         
             modelBuilder.Entity<CPTCoordinator>()
                 .HasMany(e => e.SelectQuestionnaires)
                 .WithOptional(e => e.CPTCoordinator)
                 .HasForeignKey(e => e.CPTEmployeeID)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CPTRequest>()
-                .HasMany(e => e.ExecutionLocations)
-                .WithRequired(e => e.CPTRequest)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false);    
 
             modelBuilder.Entity<CPTRequest>()
                 .HasMany(e => e.ProgressReports)
@@ -123,13 +109,7 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .HasMany(e => e.SelectQuestionnaires)
                 .WithOptional(e => e.CPTRequest)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CRUManager>()
-                .HasMany(e => e.Answers)
-                .WithRequired(e => e.CRUManager)
-                .HasForeignKey(e => e.CMAEmployeeID)
-                .WillCascadeOnDelete(false);
-
+         
             modelBuilder.Entity<CRUManager>()
                 .HasMany(e => e.ProgressReports)
                 .WithRequired(e => e.CRUManager)
@@ -159,13 +139,7 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .WithRequired(e => e.CRUMember)
                 .HasForeignKey(e => e.CMEEmployeeID)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CRUSupervisor>()
-                .HasMany(e => e.Answers)
-                .WithRequired(e => e.CRUSupervisor)
-                .HasForeignKey(e => e.CSEmployeeID)
-                .WillCascadeOnDelete(false);
-
+        
             modelBuilder.Entity<CRUSupervisor>()
                 .HasMany(e => e.AssignWorks)
                 .WithRequired(e => e.CRUSupervisor)
@@ -236,11 +210,6 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .HasForeignKey(e => e.CRUSEmployeeID)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Location>()
-                .HasMany(e => e.ExecutionLocations)
-                .WithRequired(e => e.Location)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<MarketingDirector>()
                 .HasMany(e => e.MFinalizedRequests)
                 .WithOptional(e => e.MarketingDirectorDecision)
@@ -282,11 +251,6 @@ namespace ConsumerPanelTestSystemApplication.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Questionnaire>()
-                .HasMany(e => e.AdditionalQuestions)
-                .WithRequired(e => e.Questionnaire)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Questionnaire>()
                 .HasMany(e => e.AssignWorks)
                 .WithRequired(e => e.Questionnaire)
                 .WillCascadeOnDelete(false);
@@ -323,7 +287,7 @@ namespace ConsumerPanelTestSystemApplication.Models
             //    });
         }
 
-        public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.AssignWorkViewModel> AssignWorkViewModels { get; set; }
+        //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.AssignWorkViewModel> AssignWorkViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<ConsumerPanelTestSystemApplication.ViewModels.QuestionnaireViewModel> QuestionnaireViewModels { get; set; }
 

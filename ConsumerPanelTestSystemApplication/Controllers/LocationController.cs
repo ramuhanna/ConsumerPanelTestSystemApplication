@@ -22,12 +22,13 @@ namespace ConsumerPanelTestSystemApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        
+
         /// <summary>  
         /// The Index action is utilized in order to generate a list of Locations. 
         /// </summary>
         /// <returns>Index View</returns>
         // GET: Location
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var locations = db.Locations.ToList();
@@ -52,6 +53,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id">Employee Id as a parameter</param>
         /// <returns>Details View</returns>
         // GET: Location/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -81,6 +83,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id">Employee Id as a parameter</param>
         /// <returns>Create View</returns>
         // GET: Location/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -92,6 +95,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="model">LocationViewModel as a parameter</param>
         /// <returns>Create View</returns>
         // POST: Location/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LocationViewModel model)
@@ -123,6 +127,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id">Location Id as a parameter</param>
         /// <returns>Edit View</returns>
         // GET: Location/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {           
             if (id == null)
@@ -153,6 +158,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="model">LocationViewModel as a parameter</param>
         /// <returns>Edit View</returns>
         // POST: Location/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, LocationViewModel model)
@@ -184,6 +190,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id">Location Id as a parameter</param>
         /// <returns>Delete View</returns>
         // GET: Location/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -211,6 +218,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id">Location Id as a parameter</param>
         /// <returns>Delete View</returns>
         // POST: Location/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)

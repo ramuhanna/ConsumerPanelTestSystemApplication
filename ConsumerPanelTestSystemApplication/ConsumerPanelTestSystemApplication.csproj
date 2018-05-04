@@ -215,10 +215,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdditionalQuestion.cs" />
-    <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\AssignWork.cs" />
     <Compile Include="Models\BrandManager.cs" />
     <Compile Include="Models\ContainQuestion.cs" />
@@ -229,7 +228,6 @@
     <Compile Include="Models\CRUSupervisor.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EnterResult.cs" />
-    <Compile Include="Models\ExecutionLocation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

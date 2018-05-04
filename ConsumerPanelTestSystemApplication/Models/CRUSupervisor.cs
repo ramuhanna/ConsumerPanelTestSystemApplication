@@ -21,7 +21,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     {
         public CRUSupervisor()
         {
-            Answers = new HashSet<Answer>();
             AssignWorks = new HashSet<AssignWork>();
             CRUMembers = new HashSet<CRUMember>();
             ProgressReports = new HashSet<ProgressReport>();
@@ -36,8 +35,6 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public SupervisorRegion Region { get; set; }
         
-        public virtual ICollection<Answer> Answers { get; set; }
-
         public virtual ICollection<AssignWork> AssignWorks { get; set; }
 
         public virtual ICollection<CRUMember> CRUMembers { get; set; }

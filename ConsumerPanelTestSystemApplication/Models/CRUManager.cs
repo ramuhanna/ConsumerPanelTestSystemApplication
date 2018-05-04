@@ -21,7 +21,6 @@ namespace ConsumerPanelTestSystemApplication.Models
     {
         public CRUManager()
         {
-            Answers = new HashSet<Answer>();
             ProgressReports = new HashSet<ProgressReport>();
             ResponsibleFors = new HashSet<ResponsibleFor>();
         }
@@ -29,8 +28,6 @@ namespace ConsumerPanelTestSystemApplication.Models
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public int EmployeeID { get; set; }
-
-        public virtual ICollection<Answer> Answers { get; set; }
 
         //public virtual Employee Employee { get; set; }
 
