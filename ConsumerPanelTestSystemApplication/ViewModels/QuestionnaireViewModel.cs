@@ -34,7 +34,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public int ResponseQuantityRequired { get; set; }
 
         public QuestionnaireStatus Status { get; set; }
-       
+
+        [Display(Name = "Questionnaire Type")]
         public int? QuestionnaireTypeId { get; set; }
          
         [Display(Name = "Questionnaire Type")]
