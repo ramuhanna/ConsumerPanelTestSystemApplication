@@ -235,7 +235,7 @@ namespace ConsumerPanelTestSystemApplication.Migrations
             }
 
 
-            // Add Requesters to the database.
+            //// Add Requesters to the database.
             var requesters = new List<Requester>
             {
                 new Requester { UserName = "requn1", Email = "requn1@gmail.com", FirstName = "Ramy", LastName = "REQLN",
