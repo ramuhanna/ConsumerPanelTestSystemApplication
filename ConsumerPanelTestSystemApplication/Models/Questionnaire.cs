@@ -62,6 +62,8 @@ namespace ConsumerPanelTestSystemApplication.Models
 
         public Review? MReviewQuestionnaire { get; set; }
 
+        public Review? ConfirmResubmission { get; set; }
+
         public int? QuestionnaireTypeId { get; set; }
 
         public string QuestionnaireTypeName { get; set; }

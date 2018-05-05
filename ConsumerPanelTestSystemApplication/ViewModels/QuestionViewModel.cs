@@ -34,7 +34,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public string QuestionText { get; set; }
 
         // Holds values of radio buttons
-        public int SelectedAnswer { get; set; }
+        public int? SelectedAnswer { get; set; }
 
         // Holds radio buttons answers
         public List<AnswerViewModel> PossibleAnswers { get; set; }

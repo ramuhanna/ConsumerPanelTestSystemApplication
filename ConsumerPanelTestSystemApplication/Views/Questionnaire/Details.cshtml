@@ -75,12 +75,19 @@
 </div>
 <div class="form-actions no-color col-md-offset-2">
     @Html.ActionLink("Back to Request List", "CPTCoordinatorIndex", "CPTRequest", null, new { @class = "btn btn-md btn-default" })
-    
-    @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
-    
-    @if (Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.QuestionnaireCreation || Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.BMQuestionnaireApproval || Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.MDQuestionnaireApproval)
+        
+
+    @if (Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.QuestionnaireCreation || Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.QuestionnaireModification)
     {
+        @Html.ActionLink("View Survey", "CreateSurvey", "Survey", new { id = Model.QuestionnaireTypeId }, new { @class = "btn btn-md btn-success" })
+
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-md btn-warning" })
+
     }
-    
+
+    @if (Model.Status == ConsumerPanelTestSystemApplication.Models.QuestionnaireStatus.QuestionnaireModification)
+    {
+        @Html.ActionLink("Confirm Resubmission", "ConfirmResubmission", "Questionnaire", new { id = Model.Id }, new { @class = "btn btn-md btn-warning" })
+    }
+
     </div>

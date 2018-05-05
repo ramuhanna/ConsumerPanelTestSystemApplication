@@ -243,6 +243,7 @@
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AnswerViewModel.cs" />
     <Compile Include="ViewModels\AssignWorkViewModel.cs" />
     <Compile Include="ViewModels\BrandManagerViewModel.cs" />
     <Compile Include="ViewModels\CPTRequestViewModel.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RequesterViewModel.cs" />
     <Compile Include="ViewModels\SelectQuestionnaireViewModel.cs" />
+    <Compile Include="ViewModels\SurveyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -551,6 +553,13 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="index.md" />
+    <Content Include="docfx.json" />
+    <Content Include="articles\toc.md" />
+    <Content Include="articles\intro.md" />
+    <Content Include="api\index.md" />
+    <Content Include="api\.gitignore" />
+    <Content Include=".gitignore" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -656,7 +665,7 @@
     <Content Include="Views\CPTRequest\SubmittedRequestsDetails.cshtml" />
     <Content Include="Views\CPTRequest\Details.cshtml" />
     <Content Include="Views\Home\CPTRequests.cshtml" />
-    <Content Include="Views\Survey\ConductSurvey.cshtml" />
+    <Content Include="Views\Survey\ConductSurvey1.cshtml" />
     <Content Include="Views\Questionnaire\ReviewDetails.cshtml" />
     <Content Include="Views\Survey\CreateSurvey.cshtml" />
     <Content Include="Views\Question\QuestionCreate.cshtml" />
@@ -667,9 +676,13 @@
     <Content Include="Views\Questionnaire\ExecutionDetails.cshtml" />
     <Content Include="Views\Questionnaire\AssignQuestionnaire1.cshtml" />
     <Content Include="Views\Questionnaire\AssignQuestionnaire.cshtml" />
+    <Content Include="toc.yml" />
+    <Content Include="Views\Questionnaire\ConfirmResubmission.cshtml" />
+    <Content Include="Views\Survey\ConductSurvey.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="docs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -709,7 +722,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\docfx.console.2.35.4\build\docfx.console.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\docfx.console.2.35.4\build\docfx.console.targets'))" />
   </Target>
+  <Import Project="..\packages\docfx.console.2.35.4\build\docfx.console.targets" Condition="Exists('..\packages\docfx.console.2.35.4\build\docfx.console.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

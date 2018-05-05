@@ -24,60 +24,42 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="id">QuestionnaireTypeId from the Questionnaire is the parameter, in order to sort through the questions in the database.</param> 
         /// <param name="qid">QuestionnaireId from the Questionnaire is the parameter in order to link the saved response to its questionnaire.</param> 
         /// <returns>Survey, ConductSurvey view</returns>
-        //    // GET: ConductSurvey
-        //    public ActionResult ConductSurvey(int? id, int qid)
-        //    {
-        //        // Create the list of possible answers for questions
-        //        // Each questions may have a different number of answers
-        //        // In this case all questions have 5 possible answers
+            // GET: ConductSurvey
+        public ActionResult ConductSurvey(int? id /*int qid*/)
+        {
+            // Create the list of possible answers for questions
+            // Each questions may have a different number of answers
+            // In this case all questions have 5 possible answers
 
-        //        var possibleAnswers = new List<AnswerViewModel>
-        //        {
-        //            new AnswerViewModel { Id = 1, Text= "Strongly Agree"},
-        //            new AnswerViewModel { Id = 2, Text= "Agree"},
-        //            new AnswerViewModel { Id = 3, Text= "Neutral"},
-        //            new AnswerViewModel { Id = 4, Text= "Disagree"},
-        //            new AnswerViewModel { Id = 5, Text= "Strongly Disagree"},
-        //        };        
+            var possibleAnswers = new List<AnswerViewModel>
+                {
+                    new AnswerViewModel { Id = 1, Text= "Strongly Agree"},
+                    new AnswerViewModel { Id = 2, Text= "Agree"},
+                    new AnswerViewModel { Id = 3, Text= "Neutral"},
+                    new AnswerViewModel { Id = 4, Text= "Disagree"},
+                    new AnswerViewModel { Id = 5, Text= "Strongly Disagree"},
+                };
 
-        //        var questions = db.QuestionTypes.Where(p => p.QuestionnaireTypeID == id).Select(p => p.Question).ToList();
+            var questions = db.QuestionTypes.Where(p => p.QuestionnaireTypeID == id).Select(p => p.Question).ToList();
+            var model = new List<QuestionViewModel>();
 
-        //        //var questions = new List<QuestionViewModel>
+            foreach (var item in questions)
+            {
+                model.Add(new QuestionViewModel
+                {
+                    Id = item.QuestionID,
+                    QuestionText = item.QuestionText,
+                    PossibleAnswers = possibleAnswers,
+                });
+            }
 
-        //        var model = new List<QuestionViewModel>();
+            var modelx = new SurveyViewModel();
 
-        //        //Loop questions to retrieve relative response type.
-        //        foreach (var item in questions)
-        //        {
+            modelx.Questions = model;
 
-        //            if (item.ResponseType == ResponseType.RadioButton)
-        //            {               
-        //                model.Add(new QuestionViewModel
-        //                {
-        //                    Id = item.QuestionID,
-        //                    QuestionText = item.QuestionText,
-        //                    ResponseType = ResponseType.RadioButton,
-        //                    PossibleAnswers = possibleAnswers,                       
-        //                });
-        //            }
+            return View(modelx);
 
-        //            else if (item.ResponseType == ResponseType.TextBox)
-        //            {
-        //                model.Add(new QuestionViewModel
-        //                {
-        //                    Id = item.QuestionID,
-        //                    QuestionText = item.QuestionText,
-        //                    ResponseType = ResponseType.TextBox,
-        //                });
-        //            };
-        //        };              
-
-        //        var model1 = new SurveyViewModel();
-
-        //        model1.Questions = model;
-
-        //        return View(model1);
-        //    }
+        }
 
 
         /// <summary>  
@@ -86,46 +68,82 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <param name="qid">QuestionnaireId from the Questionnaire is the parameter in order to link the saved response to its questionnaire.</param> 
         /// <param name="model">SurveyViewModel as the parameter.</param> 
         /// <returns>Survey, ConductSurvey view</returns>
-        //    [HttpPost]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult ConductSurvey(int qid, SurveyViewModel model)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConductSurvey(/*int qid,*/ SurveyViewModel model)
+        {
+            decimal sum = 0;
+            int count = 0;
+            if (ModelState.IsValid)
+            {
+                //Questionnaire questionnaire = db.Questionnaires.Find(qid);
+                //if (questionnaire == null)
+                //{
+                //    return HttpNotFound();
+                //}
+
+                foreach (var question in model.Questions)
+                {
+                    if (question.SelectedAnswer.HasValue)
+                    {
+                        count++;
+                        sum = sum + question.SelectedAnswer.Value;
+                    }
+                }
+
+                var survey = new Survey
+                {
+                    SurveyId = model.Id,
+                    Grade = sum,
+                };
+                foreach (var question in model.Questions)
+                {
+                    model.Id = question.Id;
+                    model.ResponseScore = question.SelectedAnswer;
+                }
+
+                db.Surveys.Add(survey);
+                db.SaveChanges();
+                return RedirectToAction("CRUMemberIndex", "Questionnaire");
+            }
+
+            return View(model);
+            //return RedirectToAction("CRUMemberIndex", "Questionnaire");
+        }
+
+        //if (ModelState.IsValid)
+        //{
+        //    // Save the questions with selected answers from the ViewModel to your database.
+        //    foreach (var question in model.Questions)
         //    {
-        //        if (ModelState.IsValid)
+        //        if (question.ResponseType == ResponseType.RadioButton)
         //        {
-        //            // Save the questions with selected answers from the ViewModel to your database.
-        //            foreach (var question in model.Questions)
+        //            var survey = new Survey
         //            {
-        //                if (question.ResponseType == ResponseType.RadioButton)
-        //                {
-        //                    var survey = new Survey
-        //                    {
-        //                        QuestionnaireId = qid,
-        //                        QuestionId = model.QuestionId,
-        //                        ResponseScore = model.ResponseScore,
-        //                    };
-        //                    db.Surveys.Add(survey);
-        //                    db.SaveChanges();
-        //                }
-        //                else if (question.ResponseType == ResponseType.TextBox)
-        //                {
-        //                    var survey1 = new Survey
-        //                    {
-        //                        QuestionnaireId = qid,
-        //                        QuestionId = model.Id,
-        //                        ResponseInput = model.ResponseInput,
-        //                    };
-        //                    db.Surveys.Add(survey1);
-        //                    db.SaveChanges();
-        //                }
-
-        //            }                     
-
-        //            return View(model);
+        //                QuestionnaireId = qid,
+        //                QuestionId = model.QuestionId,
+        //                ResponseScore = model.ResponseScore,
+        //            };
+        //            db.Surveys.Add(survey);
+        //            db.SaveChanges();
+        //        }
+        //        else if (question.ResponseType == ResponseType.TextBox)
+        //        {
+        //            var survey1 = new Survey
+        //            {
+        //                QuestionnaireId = qid,
+        //                QuestionId = model.Id,
+        //                ResponseInput = model.ResponseInput,
+        //            };
+        //            db.Surveys.Add(survey1);
+        //            db.SaveChanges();
         //        }
 
-        //        return RedirectToAction("CRUMemberIndex", "Questionnaire");
-
         //    }
+
+        //    return View(model);
+        //}
+
 
 
         /// <summary>  
@@ -133,88 +151,42 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// </summary> 
         /// <param name="id">QuestionnaireTypeId from the Questionnaire is the parameter, in order to sort through the questions in the database.</param> 
         /// <returns>Survey, CreateSurvey view</returns>
-        //public ActionResult CreateSurvey(int? id)
-        //    {
-        //        // Create the list of possible answers for questions
-        //        // Each questions may have a different number of answers
-        //        // In this case all questions have 5 possible answers
-
-        //        var possibleAnswers = new List<AnswerViewModel>
-        //        {
-        //            new AnswerViewModel { Id = 1, Text= "Strongly Agree"},
-        //            new AnswerViewModel { Id = 2, Text= "Agree"},
-        //            new AnswerViewModel { Id = 3, Text= "Neutral"},
-        //            new AnswerViewModel { Id = 4, Text= "Disagree"},
-        //            new AnswerViewModel { Id = 5, Text= "Strongly Disagree"},
-        //        };
-
-        //        var questions = db.QuestionTypes.Where(p => p.QuestionnaireTypeID == id).Select(p => p.Question).ToList();
-
-        //        //var questions = new List<QuestionViewModel>
-
-        //        var model = new List<QuestionViewModel>();
-
-        //        //Loop questions to retrieve relative response type.
-        //        foreach (var item in questions)
-        //        {
-
-        //            if (item.ResponseType == ResponseType.RadioButton)
-        //            {
-        //                model.Add(new QuestionViewModel
-        //                {
-        //                    Id = item.QuestionID,
-        //                    QuestionText = item.QuestionText,
-        //                    ResponseType = ResponseType.RadioButton,
-        //                    PossibleAnswers = possibleAnswers,
-        //                });
-        //            }
-
-        //            else if (item.ResponseType == ResponseType.TextBox)
-        //            {
-        //                model.Add(new QuestionViewModel
-        //                {
-        //                    Id = item.QuestionID,
-        //                    QuestionText = item.QuestionText,
-        //                    ResponseType = ResponseType.TextBox,
-        //                });
-        //            };
-        //        };
-
-        //        var model1 = new SurveyViewModel();
-
-        //        model1.Questions = model;
-
-        //        return View(model1);
-        //    }
-    }
-
-    public class AnswerViewModel
-    {
-        public int Id { get; set; }
-        public string Text { get; set; }
-    }
-
-    public class SurveyViewModel
-    {
-        public SurveyViewModel()
+        public ActionResult CreateSurvey(int? id)
         {
-            Questions = new List<QuestionViewModel>();
+            // Create the list of possible answers for questions
+            // Each questions may have a different number of answers
+            // In this case all questions have 5 possible answers
+
+            var possibleAnswers = new List<AnswerViewModel>
+                {
+                    new AnswerViewModel { Id = 1, Text= "Strongly Agree"},
+                    new AnswerViewModel { Id = 2, Text= "Agree"},
+                    new AnswerViewModel { Id = 3, Text= "Neutral"},
+                    new AnswerViewModel { Id = 4, Text= "Disagree"},
+                    new AnswerViewModel { Id = 5, Text= "Strongly Disagree"},
+                };
+
+            var questions = db.QuestionTypes.Where(p => p.QuestionnaireTypeID == id).Select(p => p.Question).ToList();
+            var model = new List<QuestionViewModel>();
+
+            foreach (var item in questions)
+            {
+                model.Add(new QuestionViewModel
+                {
+                    Id = item.QuestionID,
+                    QuestionText = item.QuestionText,
+                    PossibleAnswers = possibleAnswers,
+                });
+            }
+
+            var modelx = new SurveyViewModel();
+
+            modelx.Questions = model;
+
+            return View(modelx);
         }
-
-        public int Id { get; set; }
-
-        public string Title { get; set; }    
-
-        public int? ResponseScore { get; set; }
-
-        public int? QuestionnaireId { get; set; }
-
-        public int? QuestionId { get; set; }
-
-        public decimal? Grade { get; set; }
-
-        public virtual Questionnaire Questionnaire { get; set; }
-
-        public List<QuestionViewModel> Questions { get; set; }
     }
 }
+
+    
+

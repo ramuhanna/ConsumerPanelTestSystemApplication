@@ -461,6 +461,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 db.SaveChanges();
 
                 // Change questionaire and request status.
+                // If Brand Manager approves questionnaire.
                 if (questionnaire.BReviewQuestionnaire == Review.Approved)
                 {
                     questionnaire.Status = QuestionnaireStatus.MDQuestionnaireApproval;
@@ -474,9 +475,24 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     request.RequestStatus = RequestStatus.MDQuestionnaireApproval;
                     db.Entry(request).State = EntityState.Modified;
                     db.SaveChanges();
-                };
+                }
                 
+                // If Brand Manager rejects questionniare.
+                else if (questionnaire.BReviewQuestionnaire == Review.Rejected)
+                {
+                    questionnaire.Status = QuestionnaireStatus.QuestionnaireModification;
+                    db.Entry(questionnaire).State = EntityState.Modified;
+                    db.SaveChanges();
 
+                    if (questionnaire.Status == QuestionnaireStatus.QuestionnaireModification)
+                    {
+                        request.RequestStatus = RequestStatus.QuestionnaireModification;
+                        db.Entry(request).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                };
+
+                // If Marketing Director approves questionnaire.
                 if (questionnaire.MReviewQuestionnaire == Review.Approved)
                 {
                     questionnaire.Status = QuestionnaireStatus.QuestionnaireExecution;
@@ -490,21 +506,22 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                         db.SaveChanges();
                     }
                 }
+                // If Marketing Director rejects questionnaire.
                 else if (questionnaire.MReviewQuestionnaire == Review.Rejected)
                 {
-                    questionnaire.Status = QuestionnaireStatus.BMQuestionnaireApproval;
+                    questionnaire.Status = QuestionnaireStatus.QuestionnaireModification;
                     db.Entry(questionnaire).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    if (questionnaire.Status == QuestionnaireStatus.BMQuestionnaireApproval)
+                    if (questionnaire.Status == QuestionnaireStatus.QuestionnaireModification)
                     {
-                        request.RequestStatus = RequestStatus.BMQuestionnaireApproval;
+                        request.RequestStatus = RequestStatus.QuestionnaireModification;
                         db.Entry(request).State = EntityState.Modified;
                         db.SaveChanges();
                     }
                 }
  
-
+                // Return to Pending Requests 
                 if (User.IsInRole("Brand Manager"))
                 {
                     return RedirectToAction("BrandManagerReviewIndex", "CPTRequest");
@@ -513,6 +530,91 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     return RedirectToAction("MarketingDirectorReviewIndex", "CPTRequest");
                 }
+            }
+            return View();
+        }
+
+
+        // <summary>  
+        /// The ReviewQuestionnaire action allows the Brand Manager and Marketing Director users to review questionnaires.  
+        /// </summary>
+        /// <param name="id">QuestionnaireId as the parameter.</param>
+        /// <returns>Questionnaire, ReviewQuestionnaire view</returns>
+        [Authorize(Roles = "CPT Coordinator")]
+        // GET: Questionnaire/ReviewQuestionnaire/5
+        public ActionResult ConfirmResubmission(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Questionnaire questionnaire = db.Questionnaires.Find(id);
+            if (questionnaire == null)
+            {
+                return HttpNotFound();
+            }
+
+            QuestionnaireViewModel model = new QuestionnaireViewModel
+            {
+                Id = questionnaire.QuestionnaireID,
+            };
+
+            return View(model);
+        }
+
+
+        /// <summary>  
+        /// The ReviewQuestionnaire action allows the Brand Manager and Marketing Director users to review questionnaires.  
+        /// </summary>
+        /// <param name="id">QuestionnaireId as the parameter.</param>
+        /// <param name="model">QuestionnaireViewModel as the parameter.</param>
+        /// <returns>Questionnaire, ReviewQuestionnaire view</returns>
+        [Authorize(Roles = "CPT Coordinator")]
+        // POST: Questionnaire/ReviewQuestionnaire/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmResubmission(int? id, QuestionnaireViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Questionnaire questionnaire = db.Questionnaires.Find(id);
+                if (questionnaire == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Review the questionnaire.
+                questionnaire.ConfirmResubmission = model.ConfirmResubmission;
+
+                db.Entry(questionnaire).State = EntityState.Modified;
+                db.SaveChanges();
+
+                // Change questionaire and request status.
+                // If Brand Manager approves questionnaire.
+                if (questionnaire.ConfirmResubmission == Review.Approved)
+                {
+                    questionnaire.Status = QuestionnaireStatus.BMQuestionnaireApproval;
+                }
+                db.Entry(questionnaire).State = EntityState.Modified;
+                db.SaveChanges();
+
+                var request = db.CPTRequests.Where(r => r.QuestionnaireId == questionnaire.QuestionnaireID).First();
+                if (questionnaire.Status == QuestionnaireStatus.BMQuestionnaireApproval)
+                {
+                    request.RequestStatus = RequestStatus.BMQuestionnaireApproval;
+                    db.Entry(request).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Details", "Questionnaire", new { id = questionnaire.QuestionnaireID });
+
             }
             return View();
         }

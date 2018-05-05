@@ -33,8 +33,8 @@ namespace ConsumerPanelTestSystemApplication.Models
         [StringLength(150)]
         public string QuestionText { get; set; }
 
-        // Holds values of radio buttons
-        public int? SelectedAnswer { get; set; }
+        //// Holds values of radio buttons
+        //public int? SelectedAnswer { get; set; }
 
         // Holds values of textboxes and textarea
         public string Input { get; set; }

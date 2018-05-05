@@ -56,7 +56,7 @@
                     }
                    
 
-                    @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation && item.QuestionnaireExist != true)
+                    @if (item.RequestStatus == ConsumerPanelTestSystemApplication.Models.RequestStatus.QuestionnaireCreation)
                     {
                     @Html.ActionLink("Create Questionnaire", "Create", "Questionnaire", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
                     }

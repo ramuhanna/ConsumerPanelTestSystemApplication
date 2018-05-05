@@ -70,6 +70,9 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         [Display(Name = "Marketing Director Decision")]
         public Review? MReviewQuestionnaire { get; set; }
 
+        [Display(Name = "Confirm Resubmission")]
+        public Review? ConfirmResubmission { get; set; }
+
         public Location Location { get; set; }
 
         public string QuestionnaireTitle { get; set; }
