@@ -4,103 +4,122 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>View @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)'s Details</h2>
 
 <div>
-    <h4>CRUSupervisorViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+    <fieldset class="fieldset-border">
+        <legend class="legend-border"> &nbsp; Login Information</legend>
+        <div class="form-horizontal">
+            <dl class="dl-horizontal">
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+            </dl>
+        </div>
+    </fieldset>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+    <fieldset class="fieldset-border">
+        <legend class="legend-border"> &nbsp; Personal Information</legend>
+        <div class="form-horizontal">
+            <dl class="dl-horizontal">
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Telephone)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Telephone)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Telephone)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TelExtension)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Telephone)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TelExtension)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.TelExtension)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Mobile)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TelExtension)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Mobile)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Mobile)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+            </dl>
+        </div>
+    </fieldset>
 
-        <dd>
-            @Html.DisplayFor(model => model.Region)
-        </dd>
+    <fieldset class="fieldset-border">
+        <legend class="legend-border"> &nbsp; Employee Information</legend>
+        <div class="form-horizontal">
+            <dl class="dl-horizontal">
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Region)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Roles)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Region)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Roles)
-        </dd>
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Roles)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.Roles)
+                </dd>
+            </dl>
+        </div>
+    </fieldset>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="form-actions no-color col-md-offset-2">
+
+    @Html.ActionLink("Back to Employee List", "Index", null, new { @class = "btn btn-md btn-default" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-md btn-warning" })
+</div>

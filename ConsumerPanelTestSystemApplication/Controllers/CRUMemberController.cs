@@ -62,7 +62,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The Index action is utilized in order to generate a list of CRU Member users. 
         /// </summary>
-        /// <returns>MarketingDirectorReviewIndex View</returns>
+        /// <returns>Index View</returns>
         // GET: CRUMember
         public ActionResult Index()
         {

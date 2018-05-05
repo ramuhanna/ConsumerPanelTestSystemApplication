@@ -673,7 +673,6 @@
     <Content Include="Views\Questionnaire\ReviewQuestionnaire.cshtml" />
     <Content Include="Views\Questionnaire\CRUSupervisorIndex.cshtml" />
     <Content Include="Views\Questionnaire\ExecutionDetails.cshtml" />
-    <Content Include="Views\Questionnaire\AssignQuestionnaire1.cshtml" />
     <Content Include="Views\Questionnaire\AssignQuestionnaire.cshtml" />
     <Content Include="toc.yml" />
     <Content Include="Views\Questionnaire\ConfirmResubmission.cshtml" />

@@ -63,43 +63,26 @@
 
 @section scripts
 {
-    @*<script type="text/javascript" src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.scroller.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>*@
-
-    @*<script type="text/javascript">
-        $('#employeesTable').dataTable({
-
-            "scrollY": "80px",
-            "scrollCollapse": true,
-            "paging": true,
-
-            "columnDefs": [
-                { "orderable": true, "targets": -1 }
-            ]
-        });*@
-
-        @*<script type="text/javascript">
-                              $(document).ready( function () {
-                                  $('#employeesTable').DataTable(
-                                      {
-                                          "columnDefs": [
-                                    { "orderable": true, "targets": -1 }
-                                          ]
-                                      });*@
+    <script type="text/javascript" src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
 
     <script type="text/javascript">
-     $(document).ready( function () {
-        $('#employeesTable').DataTable();
-     } );
+      $(document).ready( function () {
+          $('#employeesTable').DataTable(
+              {
+                  "columnDefs": [
+            { "orderable": false, "targets": -1 }
+                  ]
+              });
+      });
+
     </script>
 }
-                              @*});
-    </script>*@
 
 @section styles
 {
-    @*<link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />
+    @*<link href="@Url.Content("/Content/DataTables/css/jquery.dataTables.min.css")" rel="stylesheet" />*@
     <link href="@Url.Content("/Content/DataTables/css/dataTables.scroller.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />*@
+    <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
 }
