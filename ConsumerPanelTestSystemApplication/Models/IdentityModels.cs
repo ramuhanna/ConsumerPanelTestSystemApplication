@@ -65,6 +65,11 @@ namespace ConsumerPanelTestSystemApplication.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Question>()
+                .HasMany(e => e.Surveys)
+                .WithOptional(e => e.Question)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Survey>()
                 .HasMany(e => e.EnterResults)
                 .WithOptional(e => e.Survey)

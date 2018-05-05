@@ -16,7 +16,7 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         public string Title { get; set; }
 
-        public int? ResponseScore { get; set; }
+        public int? SelectedAnswer { get; set; }
 
         public int? QuestionnaireId { get; set; }
 

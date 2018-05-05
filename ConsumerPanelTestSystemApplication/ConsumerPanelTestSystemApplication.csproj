@@ -665,7 +665,6 @@
     <Content Include="Views\CPTRequest\SubmittedRequestsDetails.cshtml" />
     <Content Include="Views\CPTRequest\Details.cshtml" />
     <Content Include="Views\Home\CPTRequests.cshtml" />
-    <Content Include="Views\Survey\ConductSurvey1.cshtml" />
     <Content Include="Views\Questionnaire\ReviewDetails.cshtml" />
     <Content Include="Views\Survey\CreateSurvey.cshtml" />
     <Content Include="Views\Question\QuestionCreate.cshtml" />

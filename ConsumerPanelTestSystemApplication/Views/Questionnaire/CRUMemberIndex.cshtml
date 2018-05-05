@@ -48,7 +48,7 @@
                 <td>
                     @Html.ActionLink("Execution Details", "ExecutionDetails", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
 
-                    @Html.ActionLink("Conduct Survey", "ConductSurvey", "Survey", new { id = item.QuestionnaireTypeId, qid = item.Id }, new { @class = "btn btn-sm btn-success" })
+                    @Html.ActionLink("Conduct Survey", "ConductSurvey", "Survey", new { id = item.QuestionnaireTypeId}, new { @class = "btn btn-sm btn-success" })
                 </td>
             </tr>
         }

@@ -22,25 +22,27 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// The ConductSurvey action returns a list of questions from the database based on the selected QuestionnaireTypeId, which is the parameter used, and saves the entered response.
         /// </summary>
         /// <param name="id">QuestionnaireTypeId from the Questionnaire is the parameter, in order to sort through the questions in the database.</param> 
-        /// <param name="qid">QuestionnaireId from the Questionnaire is the parameter in order to link the saved response to its questionnaire.</param> 
         /// <returns>Survey, ConductSurvey view</returns>
             // GET: ConductSurvey
-        public ActionResult ConductSurvey(int? id /*int qid*/)
+        public ActionResult ConductSurvey(int? id)
         {
             // Create the list of possible answers for questions
             // Each questions may have a different number of answers
             // In this case all questions have 5 possible answers
 
             var possibleAnswers = new List<AnswerViewModel>
-                {
-                    new AnswerViewModel { Id = 1, Text= "Strongly Agree"},
-                    new AnswerViewModel { Id = 2, Text= "Agree"},
-                    new AnswerViewModel { Id = 3, Text= "Neutral"},
-                    new AnswerViewModel { Id = 4, Text= "Disagree"},
-                    new AnswerViewModel { Id = 5, Text= "Strongly Disagree"},
-                };
+            {
+                new AnswerViewModel { Id = 1, Text= "Strongly Agree"},
+                new AnswerViewModel { Id = 2, Text= "Agree"},
+                new AnswerViewModel { Id = 3, Text= "Neutral"},
+                new AnswerViewModel { Id = 4, Text= "Disagree"},
+                new AnswerViewModel { Id = 5, Text= "Strongly Disagree"},
+
+            };
+
 
             var questions = db.QuestionTypes.Where(p => p.QuestionnaireTypeID == id).Select(p => p.Question).ToList();
+
             var model = new List<QuestionViewModel>();
 
             foreach (var item in questions)
@@ -49,7 +51,7 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                 {
                     Id = item.QuestionID,
                     QuestionText = item.QuestionText,
-                    PossibleAnswers = possibleAnswers,
+                    PossibleAnswers = possibleAnswers
                 });
             }
 
@@ -65,12 +67,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
         /// <summary>  
         /// The ConductSurvey action returns a list of questions from the database based on the selected QuestionnaireTypeId, which is the parameter used, and saves the entered response.
         /// </summary> 
-        /// <param name="qid">QuestionnaireId from the Questionnaire is the parameter in order to link the saved response to its questionnaire.</param> 
         /// <param name="model">SurveyViewModel as the parameter.</param> 
         /// <returns>Survey, ConductSurvey view</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConductSurvey(/*int qid,*/ SurveyViewModel model)
+        public ActionResult ConductSurvey(SurveyViewModel model)
         {
             decimal sum = 0;
             int count = 0;
@@ -96,10 +97,11 @@ namespace ConsumerPanelTestSystemApplication.Controllers
                     SurveyId = model.Id,
                     Grade = sum,
                 };
+
                 foreach (var question in model.Questions)
                 {
                     model.Id = question.Id;
-                    model.ResponseScore = question.SelectedAnswer;
+                    model.SelectedAnswer = question.SelectedAnswer;
                 }
 
                 db.Surveys.Add(survey);
@@ -110,39 +112,6 @@ namespace ConsumerPanelTestSystemApplication.Controllers
             return View(model);
             //return RedirectToAction("CRUMemberIndex", "Questionnaire");
         }
-
-        //if (ModelState.IsValid)
-        //{
-        //    // Save the questions with selected answers from the ViewModel to your database.
-        //    foreach (var question in model.Questions)
-        //    {
-        //        if (question.ResponseType == ResponseType.RadioButton)
-        //        {
-        //            var survey = new Survey
-        //            {
-        //                QuestionnaireId = qid,
-        //                QuestionId = model.QuestionId,
-        //                ResponseScore = model.ResponseScore,
-        //            };
-        //            db.Surveys.Add(survey);
-        //            db.SaveChanges();
-        //        }
-        //        else if (question.ResponseType == ResponseType.TextBox)
-        //        {
-        //            var survey1 = new Survey
-        //            {
-        //                QuestionnaireId = qid,
-        //                QuestionId = model.Id,
-        //                ResponseInput = model.ResponseInput,
-        //            };
-        //            db.Surveys.Add(survey1);
-        //            db.SaveChanges();
-        //        }
-
-        //    }
-
-        //    return View(model);
-        //}
 
 
 

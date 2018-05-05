@@ -24,6 +24,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
         public QuestionViewModel()
         {
             QuestionTypes = new List<SelectListItem>();
+            Surveys = new HashSet<Survey>();
+            PossibleAnswers = new List<AnswerViewModel>();
         }
 
         public int Id { get; set; }
@@ -38,6 +40,8 @@ namespace ConsumerPanelTestSystemApplication.ViewModels
 
         // Holds radio buttons answers
         public List<AnswerViewModel> PossibleAnswers { get; set; }
+
+        public virtual ICollection<Survey> Surveys { get; set; }
 
         //HACK Holds the list of question types
         public List<SelectListItem> QuestionTypes { get; set; }
